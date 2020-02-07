@@ -1,0 +1,7 @@
+{
+  "name": "IonicSideMenu",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
