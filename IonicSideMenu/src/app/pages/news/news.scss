@@ -1,0 +1,23 @@
+.scroll {
+  background: #ededed;
+}
+
+.news-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.news-card ion-card-header {
+  padding: 0;
+}
+
+.news-card ion-card-header .item {
+  padding: 4px 16px;
+}
+
+.news-card ion-card-content {
+  flex: 1 1 auto;
+
+  padding: 0;
+}

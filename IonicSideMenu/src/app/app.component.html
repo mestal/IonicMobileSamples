@@ -67,6 +67,16 @@
           </ion-list-header>
 
           <ion-menu-toggle autoHide="false">
+            <ion-item routerLink="/account" routerLinkActive="active" routerDirection="root" detail="false">
+              <ion-icon slot="start" name="log-in"></ion-icon>
+              <ion-label>
+                Hesabım
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
+
+          <ion-menu-toggle autoHide="false">
             <ion-item routerLink="/login" routerLinkActive="active" routerDirection="root" detail="false">
               <ion-icon slot="start" name="log-in"></ion-icon>
               <ion-label>
@@ -93,6 +103,15 @@
             </ion-item>
           </ion-menu-toggle>
         </ion-list>
+
+        <ion-menu-toggle autoHide="false">
+          <ion-item routerLink="/buypoint" routerLinkActive="active" routerDirection="root" detail="false">
+            <ion-icon slot="start" name="log-in"></ion-icon>
+            <ion-label>
+              Puan satın al
+            </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
         
       </ion-content>
     </ion-menu>

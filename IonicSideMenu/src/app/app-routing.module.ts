@@ -4,7 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'news',
     pathMatch: 'full'
   },
   {
@@ -29,7 +29,7 @@ const routes: Routes = [
   },
   {
     path: 'news',
-    loadChildren: () => import('./pages/schedule/schedule.module').then(m => m.ScheduleModule)
+    loadChildren: () => import('./pages/news/news.module').then(m => m.NewsModule)
   }
 ];
 

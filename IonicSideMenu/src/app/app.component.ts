@@ -13,7 +13,7 @@ export class AppComponent {
   public appPages = [
     {
       title: 'Anasayfa',
-      url: '/home',
+      url: '/',
       icon: 'home'
     },
     {
