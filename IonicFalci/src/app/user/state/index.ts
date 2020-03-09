@@ -8,9 +8,9 @@ export interface State extends fromRoot.State {
 }
 
 // Selector functions
-const getUserFeatureState = createFeatureSelector<UserState>('users');
+const getUserState = createFeatureSelector<UserState>('user');
 
 export const getCurrentUser = createSelector(
-  getUserFeatureState,
+  getUserState,
   state => state.currentUser
 );

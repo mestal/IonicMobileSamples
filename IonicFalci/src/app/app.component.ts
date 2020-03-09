@@ -10,6 +10,11 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Storage } from '@ionic/storage';
 
 import { UserData } from './providers/user-data';
+import { UserState } from './user/state/user.reducer';
+import { Store, select } from '@ngrx/store';
+
+import * as fromUser from './user/state';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -42,6 +47,7 @@ export class AppComponent implements OnInit {
   ];
   loggedIn = false;
   dark = false;
+  currentUser : any = null;
 
   constructor(
     private menu: MenuController,
@@ -53,11 +59,20 @@ export class AppComponent implements OnInit {
     private userData: UserData,
     private swUpdate: SwUpdate,
     private toastCtrl: ToastController,
+    private store: Store<UserState>
   ) {
     this.initializeApp();
   }
 
   async ngOnInit() {
+
+    //this.currentUser = 
+    this.store.pipe(
+      select(fromUser.getCurrentUser), 
+      tap(a => {
+        console.log('currentUser111: ' + JSON.stringify(a));
+      })).subscribe(a => this.currentUser = a);
+
     this.checkLoginStatus();
     this.listenForLoginEvents();
 

@@ -23,7 +23,7 @@ const userRoutes: Routes = [
     FormsModule,
     IonicModule.forRoot(),
     RouterModule.forChild(userRoutes),
-    StoreModule.forFeature('users', reducer),
+    StoreModule.forFeature('user', reducer),
     EffectsModule.forFeature([UserEffects])
   ],
   declarations: [

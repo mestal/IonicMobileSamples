@@ -18,7 +18,7 @@
           </ion-menu-toggle>
         </ion-list>
 
-        <ion-list *ngIf="loggedIn" lines="none">
+        <ion-list *ngIf="currentUser" lines="none">
           <ion-list-header>
             Hesabım
           </ion-list-header>
@@ -61,7 +61,7 @@
 
         </ion-list>
 
-        <ion-list *ngIf="!loggedIn" lines="none">
+        <ion-list *ngIf="!currentUser" lines="none">
           <ion-list-header>
             Hesabım
           </ion-list-header>
