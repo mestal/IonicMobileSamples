@@ -24,28 +24,6 @@ import * as userActions from './user/state/user.actions';
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit {
-  appPages = [
-    {
-      title: 'Akış',
-      url: '/app/tabs/schedule',
-      icon: 'calendar'
-    },
-    {
-      title: 'Fallarım',
-      url: '/app/tabs/speakers',
-      icon: 'people'
-    },
-    // {
-    //   title: 'Map',
-    //   url: '/app/tabs/map',
-    //   icon: 'map'
-    // },
-    // {
-    //   title: 'About',
-    //   url: '/app/tabs/about',
-    //   icon: 'information-circle'
-    // }
-  ];
   loggedIn = false;
   dark = false;
   currentUser : any = null;

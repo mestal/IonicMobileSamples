@@ -5,9 +5,28 @@
       <ion-content>
         <ion-list lines="none">
           <ion-list-header>
-            Conference
+            Falcı
           </ion-list-header>
-          <ion-menu-toggle autoHide="false" *ngFor="let p of appPages; let i = index">
+
+          <ion-menu-toggle autoHide="false">
+            <ion-item routerLink="/app/tabs/speakers" routerLinkActive="selected" routerDirection="root" detail="false">
+              <ion-icon slot="start" name="calendar-outline"></ion-icon>
+              <ion-label>
+                Akış
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle autoHide="false">
+            <ion-item routerLink="/fallist" routerLinkActive="selected" routerDirection="root" detail="false">
+              <ion-icon slot="start" name="people-outline"></ion-icon>
+              <ion-label>
+                Fallarım
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
+          <!-- <ion-menu-toggle autoHide="false" *ngFor="let p of appPages; let i = index">
             <ion-item [routerLink]="p.url" routerLinkActive="selected" routerDirection="root" detail="false">
               <ion-icon slot="start" [name]="p.icon + '-outline'"></ion-icon>
               <ion-label>
@@ -15,7 +34,7 @@
               </ion-label>
             </ion-item>
 
-          </ion-menu-toggle>
+          </ion-menu-toggle> -->
         </ion-list>
 
         <ion-list *ngIf="currentUser" lines="none">
