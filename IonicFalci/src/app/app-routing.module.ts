@@ -40,6 +40,14 @@ const routes: Routes = [
   {
     path: 'fallist',
     loadChildren: () => import('./fal/fal-list/fal-list.module').then(m => m.FalListModule)
+  },
+  {
+    path: 'news-detail/:newsId',
+    loadChildren: () => import('./news/news-detail/news-detail.module').then(m => m.NewsDetailModule)
+  },
+  {
+    path: 'newsList',
+    loadChildren: () => import('./news/news-list/news-list.module').then(m => m.NewsListModule)
   }
 ];
 
