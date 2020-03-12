@@ -25,6 +25,12 @@ export function reducer(state = initialState, action: UserActions): UserState {
         currentUser: null
       };
 
+      case UserActionTypes.Logout:
+        return {
+          ...state,
+          currentUser: null
+        };
+
     default:
       return state;
   }

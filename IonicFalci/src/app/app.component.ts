@@ -15,6 +15,7 @@ import { Store, select } from '@ngrx/store';
 
 import * as fromUser from './user/state';
 import { tap } from 'rxjs/operators';
+import * as userActions from './user/state/user.actions';
 
 @Component({
   selector: 'app-root',
@@ -132,7 +133,8 @@ export class AppComponent implements OnInit {
 
   logout() {
     this.userData.logout().then(() => {
-      return this.router.navigateByUrl('/app/tabs/schedule');
+      this.store.dispatch(new userActions.Logout());
+      this.router.navigate(['/login']);
     });
   }
 

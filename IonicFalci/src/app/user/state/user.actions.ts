@@ -5,7 +5,8 @@ import { LoginInformation } from "../LoginInformation";
 export enum UserActionTypes {
   Login = '[User] Login',
   LoginSuccess = '[User] Login Success',
-  LoginFail = '[User] Login Fail'
+  LoginFail = '[User] Login Fail',
+  Logout = '[User] Logout'
 }
 
 export class Login implements Action {
@@ -26,6 +27,13 @@ export class LoginFail implements Action {
   constructor(public payload: any) { }
 }
 
+export class Logout implements Action {
+  readonly type = UserActionTypes.Logout;
+
+  constructor() { }
+}
+
 export type UserActions = Login 
     | LoginSuccess
-    | LoginFail;
+    | LoginFail
+    | Logout;

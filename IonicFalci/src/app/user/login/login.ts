@@ -48,11 +48,8 @@ export class LoginPage {
     this.router.navigateByUrl('/signup');
   }
 
-  isLoggedIn(): boolean {
-    return !!this.currentUser;
-  }
+  // isLoggedIn(): boolean {
+  //   return !!this.currentUser;
+  // }
   
-  logout(): void {
-    this.currentUser = null;
-  }
 }
