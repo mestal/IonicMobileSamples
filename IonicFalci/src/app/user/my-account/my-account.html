@@ -1,0 +1,100 @@
+<ion-content class="falci-detail">
+  <ion-header class="ion-no-border">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/newsList"></ion-back-button>
+      </ion-buttons>
+      <!-- <ion-buttons *ngIf="fal" slot="end">
+        <ion-button (click)="openContact(fal)">
+          <ion-icon slot="icon-only" ios="call-outline" md="call-sharp"></ion-icon>
+        </ion-button>
+        <ion-button (click)="openFalShare(fal)">
+          <ion-icon slot="icon-only" ios="share-outline" md="share-sharp"></ion-icon>
+        </ion-button>
+      </ion-buttons> -->
+    </ion-toolbar>
+  </ion-header>
+
+    
+  <!-- <div class="fal-background">
+    <img [src]="fal?.profilePic" [alt]="fal?.name">
+    <h2>{{fal.name}}</h2>
+  </div> -->
+
+  <div class="my-account-background">
+    <img *ngIf="currentUser?.profilePic" [src]="currentUser?.profilePic" [alt]="falci?.userName"><br>
+  </div>
+
+  <div class="ion-padding my-account-detail">
+    <div style="text-align: center;"><b>{{currentUser?.userName}}</b></div>
+    <br>
+    <!-- <div style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+      <table>
+        <tr>
+          <td>Baktığı fal sayısı:</td>
+          <td style="text-align: center;">{{falci?.falCount}}</td>
+        </tr>
+        <tr>
+          <td>Fal jeton sayısı: </td>
+          <td style="text-align: center;">{{falci?.falPrice}}</td>
+        </tr>
+      </table>
+    </div> -->
+    
+  </div>
+
+  <div class="ion-padding my-account-detail" *ngIf="currentUser?.role=='Falci'">
+    <div style="text-align: center;">Kahve Falı Ücreti<b>{{currentUser?.coffeePointPrice}}</b></div>
+    <div style="text-align: center;">Bakılan Fal sayısı<b>{{currentUser?.coffeFortuneTellingCount}}</b></div>
+    <br>
+    <!-- <div style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+      <table>
+        <tr>
+          <td>Baktığı fal sayısı:</td>
+          <td style="text-align: center;">{{falci?.falCount}}</td>
+        </tr>
+        <tr>
+          <td>Fal jeton sayısı: </td>
+          <td style="text-align: center;">{{falci?.falPrice}}</td>
+        </tr>
+      </table>
+    </div> -->
+    
+  </div>
+
+  <div class="ion-padding my-account-detail" *ngIf="currentUser?.role=='Consumer'">
+    <div style="text-align: center;">Puan<b>{{currentUser?.point}}</b></div>
+    <br>
+    <ion-button>100 Puan Satın Al - 10 TL</ion-button>
+    <ion-button>200 Puan Satın Al - 19 TL</ion-button>
+    <br>
+    <!-- <div style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+      <table>
+        <tr>
+          <td>Baktığı fal sayısı:</td>
+          <td style="text-align: center;">{{falci?.falCount}}</td>
+        </tr>
+        <tr>
+          <td>Fal jeton sayısı: </td>
+          <td style="text-align: center;">{{falci?.falPrice}}</td>
+        </tr>
+      </table>
+    </div> -->
+    
+  </div>
+
+  <!-- <ion-chip color="twitter" button (click)="openExternalUrl('https://twitter.com/' + fal.twitter)">
+    <ion-icon name="logo-twitter"></ion-icon>
+    <ion-label>Twitter</ion-label>
+  </ion-chip>
+
+  <ion-chip color="dark" button (click)="openExternalUrl('https://github.com/ionic-team/ionic')">
+    <ion-icon name="logo-github"></ion-icon>
+    <ion-label>GitHub</ion-label>
+  </ion-chip>
+
+  <ion-chip color="instagram" button (click)="openExternalUrl('https://instagram.com/ionicframework')">
+    <ion-icon name="logo-instagram"></ion-icon>
+    <ion-label>Instagram</ion-label>
+  </ion-chip> -->
+</ion-content>

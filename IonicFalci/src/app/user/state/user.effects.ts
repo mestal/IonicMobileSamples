@@ -26,6 +26,7 @@ export class UserEffects {
     map((action: UserActions.Login) => action.loginInformation),
     mergeMap((loginInformation: LoginInformation) =>
       this.userService.login(loginInformation).pipe(
+        tap(userInfo => console.log(userInfo)),
         map(userInfo => (new UserActions.LoginSuccess(userInfo))),
         tap(() => this.router.navigate(['/'])),
         catchError(err => of(new UserActions.LoginFail(err)))

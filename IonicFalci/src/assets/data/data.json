@@ -17,6 +17,24 @@
       "id": "2"
     }
   ],
+  "users": [
+    {
+      "name": "Ahmet",
+      "falCount": "5",
+      "profilePic": "assets/img/speakers/cheetah.jpg",
+      "falPrice": "100",
+      "status": "Online",
+      "id": "1"
+    },
+    {
+      "name": "Mehmet",
+      "falCount": "17",
+      "profilePic": "assets/img/speakers/eagle.jpg",
+      "falPrice": "80",
+      "status": "Offline",
+      "id": "2"
+    }
+  ],
 
   "fals": [
     {

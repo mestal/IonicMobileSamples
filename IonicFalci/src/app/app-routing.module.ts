@@ -29,6 +29,10 @@ const routes: Routes = [
     loadChildren: () => import('./falci/falci-detail/falci-detail.module').then(m => m.FalciDetailModule),
   },
   {
+    path: 'my-account',
+    loadChildren: () => import('./user/my-account/my-account.module').then(m => m.MyAccountModule),
+  },
+  {
     path: '',
     redirectTo: 'newsList',
     pathMatch: 'full'

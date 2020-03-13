@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, of } from 'rxjs';
 import { LoginInformation } from "./LoginInformation";
 import { tap, catchError } from 'rxjs/operators';
 
@@ -20,12 +20,20 @@ export class UserService {
     // }
 
     login(loginPayLoad: LoginInformation): Observable<any> {
-        const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-        return this.http.post(this.userUrl, loginPayLoad, { headers })
-          .pipe(
-            tap(data => console.log('login: ' + JSON.stringify(data))),
-            catchError(this.handleError)
-          );
+
+
+        var result = {"userId":"829b0527-7f96-4ac4-21b9-08d7c19afadb","userName":"user1","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiI4MjliMDUyNy03Zjk2LTRhYzQtMjFiOS0wOGQ3YzE5YWZhZGIiLCJSb2xlIjoiQ29uc3VtZXIiLCJuYmYiOjE1ODQxMDQwNDksImV4cCI6MTU4NDEwNTg0OSwiaWF0IjoxNTg0MTA0MDQ5fQ.CmTGtzXZ2d4G4LS7-81b78i-Ez733B3V9TEQeDjO3dQ","role":"Consumer","point":0}
+        
+        //"{userId\":\"829b0527-7f96-4ac4-21b9-08d7c19afadb\",\"userName\":\"user1\",\"token\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiI4MjliMDUyNy03Zjk2LTRhYzQtMjFiOS0wOGQ3YzE5YWZhZGIiLCJSb2xlIjoiQ29uc3VtZXIiLCJuYmYiOjE1ODQxMDQwNDksImV4cCI6MTU4NDEwNTg0OSwiaWF0IjoxNTg0MTA0MDQ5fQ.CmTGtzXZ2d4G4LS7-81b78i-Ez733B3V9TEQeDjO3dQ\",\"role\":\"Consumer\",\"point\":0}";
+
+        return of(result);
+
+        // const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+        // return this.http.post(this.userUrl, loginPayLoad, { headers })
+        //   .pipe(
+        //     tap(data => console.log('login: ' + JSON.stringify(data))),
+        //     catchError(this.handleError)
+        //   );
       }
 
       private handleError(err) {

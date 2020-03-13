@@ -48,3 +48,9 @@ ion-col:not(:last-of-type) .fal-card {
 
   padding: 0;
 }
+
+.fixedbutton {
+  position: fixed;
+  bottom: 0px;
+  right: 0px; 
+}

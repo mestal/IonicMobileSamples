@@ -49,8 +49,8 @@ export class AppComponent implements OnInit {
     this.store.pipe(
       select(fromUser.getCurrentUser), 
       tap(a => {
-        console.log('currentUser111: ' + JSON.stringify(a));
-      })).subscribe(a => this.currentUser = a);
+        //console.log('currentUser111: ' + JSON.stringify(a));
+      })).subscribe(user => this.currentUser = user);
 
     this.checkLoginStatus();
     this.listenForLoginEvents();
