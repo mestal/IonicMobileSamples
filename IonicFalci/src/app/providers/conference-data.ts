@@ -28,28 +28,28 @@ export class ConferenceData {
     // build up the data by linking speakers to sessions
     this.data = data;
 
-    // loop through each day in the schedule
-    this.data.schedule.forEach((day: any) => {
-      // loop through each timeline group in the day
-      day.groups.forEach((group: any) => {
-        // loop through each session in the timeline group
-        group.sessions.forEach((session: any) => {
-          session.speakers = [];
-          if (session.speakerNames) {
-            session.speakerNames.forEach((speakerName: any) => {
-              const speaker = this.data.speakers.find(
-                (s: any) => s.name === speakerName
-              );
-              if (speaker) {
-                session.speakers.push(speaker);
-                speaker.sessions = speaker.sessions || [];
-                speaker.sessions.push(session);
-              }
-            });
-          }
-        });
-      });
-    });
+    // // loop through each day in the schedule
+    // this.data.schedule.forEach((day: any) => {
+    //   // loop through each timeline group in the day
+    //   day.groups.forEach((group: any) => {
+    //     // loop through each session in the timeline group
+    //     group.sessions.forEach((session: any) => {
+    //       session.speakers = [];
+    //       if (session.speakerNames) {
+    //         session.speakerNames.forEach((speakerName: any) => {
+    //           const speaker = this.data.speakers.find(
+    //             (s: any) => s.name === speakerName
+    //           );
+    //           if (speaker) {
+    //             session.speakers.push(speaker);
+    //             speaker.sessions = speaker.sessions || [];
+    //             speaker.sessions.push(session);
+    //           }
+    //         });
+    //       }
+    //     });
+    //   });
+    // });
 
     return this.data;
   }
@@ -146,11 +146,16 @@ export class ConferenceData {
   getFals() {
     return this.load().pipe(
       map((data: any) => {
-        return data.fals.sort((a: any, b: any) => {
-          const aName = a.name.split(' ').pop();
-          const bName = b.name.split(' ').pop();
-          return aName.localeCompare(bName);
-        });
+        return data.fals;
+      })
+    );
+  }
+
+  
+  getFortuneTellers() {
+    return this.load().pipe(
+      map((data: any) => {
+        return data.fortuneTellers;
       })
     );
   }
@@ -158,11 +163,7 @@ export class ConferenceData {
   getNewsList() {
     return this.load().pipe(
       map((data: any) => {
-        return data.newsList.sort((a: any, b: any) => {
-          const aName = a.name.split(' ').pop();
-          const bName = b.name.split(' ').pop();
-          return aName.localeCompare(bName);
-        });
+        return data.newsList;
       })
     );
   }

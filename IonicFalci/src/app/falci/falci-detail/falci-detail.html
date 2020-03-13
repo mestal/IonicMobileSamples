@@ -1,8 +1,8 @@
-<ion-content class="fal-detail">
+<ion-content class="falci-detail">
   <ion-header class="ion-no-border">
     <ion-toolbar>
       <ion-buttons slot="start">
-        <ion-back-button defaultHref="/fallist"></ion-back-button>
+        <ion-back-button defaultHref="/falcilist"></ion-back-button>
       </ion-buttons>
       <!-- <ion-buttons *ngIf="fal" slot="end">
         <ion-button (click)="openContact(fal)">
@@ -21,18 +21,26 @@
     <h2>{{fal.name}}</h2>
   </div> -->
 
-  <div class="fal-background">
-
+  <div class="falci-background">
+    <img [src]="falci?.profilePic" [alt]="falci?.name"><br>
   </div>
 
-  <div class="ion-padding fal-detail">
-    <b>Durum: </b>{{fal?.status}}<br>
-    <b>Gönderme tarihi: </b>{{fal?.sentDateTime}}<br>
-    <b>Yorum tarihi: </b>{{fal?.commentDateTime}}<br>
-    <b>Konu: </b>{{fal?.subject}}<br>
-    <b>Falcı: </b>{{fal?.fortuneTeller}}<br>
-    <b>Yorum: </b><br>
-    <div class="text-pre-wrap" style="text-align: center;">{{fal?.comment}}</div><br>
+  <div class="ion-padding falci-detail">
+    <div style="text-align: center;"><b>{{falci?.name}}</b></div>
+    <br>
+    <div style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+      <table>
+        <tr>
+          <td>Baktığı fal sayısı:</td>
+          <td style="text-align: center;">{{falci?.falCount}}</td>
+        </tr>
+        <tr>
+          <td>Fal jeton sayısı: </td>
+          <td style="text-align: center;">{{falci?.falPrice}}</td>
+        </tr>
+      </table>
+    </div>
+    
   </div>
 
   <!-- <ion-chip color="twitter" button (click)="openExternalUrl('https://twitter.com/' + fal.twitter)">

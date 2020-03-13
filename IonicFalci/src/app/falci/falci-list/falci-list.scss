@@ -2,7 +2,7 @@
   background: #ededed;
 }
 
-.news-card {
+.falci-card {
   display: flex;
   flex-direction: column;
 }
@@ -10,30 +10,30 @@
 /* Due to the fact the cards are inside of columns the margins don't overlap
  * properly so we want to remove the extra margin between cards
  */
-ion-col:not(:last-of-type) .news-card {
+ion-col:not(:last-of-type) .falci-card {
   margin-bottom: 0;
 }
 
-.news-card .news-item {
+.falci-card .fal-item {
   --min-height: 85px;
 }
 
-.news-card .news-item h2 {
+.falci-card .falci-item h2 {
   font-size: 18px;
   font-weight: 500;
   letter-spacing: 0.02em;
 }
 
-.news-card .news-item p {
+.falci-card .falci-item p {
   font-size: 13px;
   letter-spacing: 0.02em;
 }
 
-.news-card ion-card-header {
+.falci-card ion-card-header {
   padding: 0;
 }
 
-.news-card ion-card-content {
+.falci-card ion-card-content {
   flex: 1 1 auto;
 
   padding: 0;
@@ -47,9 +47,4 @@ ion-col:not(:last-of-type) .news-card {
   border-top: 1px solid var(--ion-color-step-150, #d7d8da);
 
   padding: 0;
-}
-
-.text-pre-wrap{
-  white-space: pre-wrap !important;
-  overflow-wrap: break-word;
 }

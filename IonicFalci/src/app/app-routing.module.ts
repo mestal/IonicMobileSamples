@@ -18,8 +18,15 @@ const routes: Routes = [
   },
   {
     path: 'newsList',
-    loadChildren: () => import('./news/news-list/news-list.module').then(m => m.NewsListModule),
-    pathMatch: 'full'
+    loadChildren: () => import('./news/news-list/news-list.module').then(m => m.NewsListModule)
+  },
+  {
+    path: 'falciList',
+    loadChildren: () => import('./falci/falci-list/falci-list.module').then(m => m.FalciListModule)
+  },
+  {
+    path: 'falci-detail/:falciId',
+    loadChildren: () => import('./falci/falci-detail/falci-detail.module').then(m => m.FalciDetailModule),
   },
   {
     path: '',

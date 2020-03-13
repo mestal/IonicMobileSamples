@@ -18,6 +18,15 @@
           </ion-menu-toggle>
 
           <ion-menu-toggle autoHide="false">
+            <ion-item routerLink="/falciList" routerLinkActive="selected" routerDirection="root" detail="false">
+              <ion-icon slot="start" name="calendar-outline"></ion-icon>
+              <ion-label>
+                Falcılar
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle autoHide="false" *ngIf="currentUser">
             <ion-item routerLink="/fallist" routerLinkActive="selected" routerDirection="root" detail="false">
               <ion-icon slot="start" name="people-outline"></ion-icon>
               <ion-label>

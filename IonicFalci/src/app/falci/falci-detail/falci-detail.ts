@@ -5,12 +5,12 @@ import { ActionSheetController } from '@ionic/angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 @Component({
-  selector: 'page-fal-detail',
-  templateUrl: 'fal-detail.html',
-  styleUrls: ['./fal-detail.scss'],
+  selector: 'page-falci-detail',
+  templateUrl: 'falci-detail.html',
+  styleUrls: ['./falci-detail.scss'],
 })
-export class FalDetailPage implements OnInit {
-  fal: any;
+export class FalciDetailPage implements OnInit {
+  falci: any;
 
   constructor(
     private dataProvider: ConferenceData,
@@ -26,11 +26,11 @@ export class FalDetailPage implements OnInit {
 
   ionViewWillEnter() {
     this.dataProvider.load().subscribe((data: any) => {
-      const falId = this.route.snapshot.paramMap.get('falId');
-      if (data && data.fals) {
-        for (const fal of data.fals) {
-          if (fal && fal.id === falId) {
-            this.fal = fal;
+      const falciId = this.route.snapshot.paramMap.get('falciId');
+      if (data && data.fortuneTellers) {
+        for (const falci of data.fortuneTellers) {
+          if (falci && falci.id === falciId) {
+            this.falci = falci;
             break;
           }
         }
@@ -45,22 +45,22 @@ export class FalDetailPage implements OnInit {
     );
   }
 
-  async openFalShare(fal: any) {
+  async openFalShare(falci: any) {
     const actionSheet = await this.actionSheetCtrl.create({
-      header: 'Share ' + fal.name,
+      header: 'Share ' + falci.name,
       buttons: [
         {
           text: 'Copy Link',
           handler: () => {
             console.log(
-              'Copy link clicked on https://twitter.com/' + fal.twitter
+              'Copy link clicked on https://twitter.com/' + falci.twitter
             );
             if (
               (window as any).cordova &&
               (window as any).cordova.plugins.clipboard
             ) {
               (window as any).cordova.plugins.clipboard.copy(
-                'https://twitter.com/' + fal.twitter
+                'https://twitter.com/' + falci.twitter
               );
             }
           }
@@ -78,24 +78,24 @@ export class FalDetailPage implements OnInit {
     await actionSheet.present();
   }
 
-  async openContact(fal: any) {
+  async openContact(falci: any) {
     const mode = 'ios'; // this.config.get('mode');
 
     const actionSheet = await this.actionSheetCtrl.create({
-      header: 'Contact ' + fal.name,
+      header: 'Contact ' + falci.name,
       buttons: [
         {
-          text: `Email ( ${fal.email} )`,
+          text: `Email ( ${falci.email} )`,
           icon: mode !== 'ios' ? 'mail' : null,
           handler: () => {
-            window.open('mailto:' + fal.email);
+            window.open('mailto:' + falci.email);
           }
         },
         {
-          text: `Call ( ${fal.phone} )`,
+          text: `Call ( ${falci.phone} )`,
           icon: mode !== 'ios' ? 'call' : null,
           handler: () => {
-            window.open('tel:' + fal.phone);
+            window.open('tel:' + falci.phone);
           }
         },
         {

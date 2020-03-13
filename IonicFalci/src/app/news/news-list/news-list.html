@@ -20,12 +20,11 @@
         <ion-card class="news-card">
           <ion-card-header>
             <ion-item detail="false" lines="none" class="news-item" routerLink="/news-detail/{{news.id}}">
-              <ion-avatar slot="start">
-                <img [src]="news.profilePic" [alt]="news.name + ' profile picture'">
+              <ion-avatar slot="start" *ngIf=news.newsPic>
+                <img   [src]="news.newsPic" [alt]="news.title">
               </ion-avatar>
               <ion-label>
-                <h2>{{news.name}}</h2>
-                <p>{{news.title}}</p>
+                <div [innerHTML] ="news.title"  class="text-pre-wrap"></div>
               </ion-label>
             </ion-item>
           </ion-card-header>
@@ -40,7 +39,7 @@
 
               <ion-item detail="false" routerLink="/news-detail/{{news.id}}">
                 <ion-label>
-                  <h3>About {{news.name + " - " + news.id}}</h3>
+                  <div [innerHTML] ="news.shortDescriptionHtml"  class="text-pre-wrap"></div>
                 </ion-label>
               </ion-item>
             </ion-list>

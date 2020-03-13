@@ -4,28 +4,29 @@
       <ion-buttons slot="start">
         <ion-back-button defaultHref="/"></ion-back-button>
       </ion-buttons>
-      <ion-buttons *ngIf="news" slot="end">
+      <!-- <ion-buttons *ngIf="news" slot="end">
         <ion-button (click)="openContact(news)">
           <ion-icon slot="icon-only" ios="call-outline" md="call-sharp"></ion-icon>
         </ion-button>
         <ion-button (click)="openNewsShare(news)">
           <ion-icon slot="icon-only" ios="share-outline" md="share-sharp"></ion-icon>
         </ion-button>
-      </ion-buttons>
+      </ion-buttons> -->
     </ion-toolbar>
   </ion-header>
 
   <div class="news-background">
-    <img [src]="news?.profilePic" [alt]="news?.name">
-    <h2>{{news?.name}}</h2>
   </div>
 
   <div class="ion-padding news-detail">
-    <p>{{news?.about}} Say hello on social media!</p>
+    <h2>{{news?.title}}</h2>
 
     <hr>
+    <p>
+      {{news?.longDescriptionHtml}}
+    </p>
 
-    <ion-chip color="twitter" button (click)="openExternalUrl('https://twitter.com/' + news.twitter)">
+    <!-- <ion-chip color="twitter" button (click)="openExternalUrl('https://twitter.com/' + news.twitter)">
       <ion-icon name="logo-twitter"></ion-icon>
       <ion-label>Twitter</ion-label>
     </ion-chip>
@@ -38,6 +39,6 @@
     <ion-chip color="instagram" button (click)="openExternalUrl('https://instagram.com/ionicframework')">
       <ion-icon name="logo-instagram"></ion-icon>
       <ion-label>Instagram</ion-label>
-    </ion-chip>
+    </ion-chip> -->
   </div>
 </ion-content>
