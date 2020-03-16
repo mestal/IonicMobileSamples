@@ -16,6 +16,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { UserModule } from './user/user.module';
+import { NewFalModule } from './fal/new-fal/new-fal.module';
 
 @NgModule({
   imports: [
@@ -36,7 +37,8 @@ import { UserModule } from './user/user.module';
     StoreDevtoolsModule.instrument({
       name: 'Ionic Falci - State Management',
       maxAge: 25
-    })
+    }),
+    NewFalModule
     //,UserModule
   ],
   declarations: [AppComponent],
