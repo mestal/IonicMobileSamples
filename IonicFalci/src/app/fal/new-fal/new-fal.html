@@ -1,33 +1,23 @@
-<ion-content class="fal-detail">
-  <ion-header class="ion-no-border">
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Yeni Fal</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen="true">
+  <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-back-button defaultHref="/fallist"></ion-back-button>
-      </ion-buttons>
-      <!-- <ion-buttons *ngIf="fal" slot="end">
-        <ion-button (click)="openContact(fal)">
-          <ion-icon slot="icon-only" ios="call-outline" md="call-sharp"></ion-icon>
-        </ion-button>
-        <ion-button (click)="openFalShare(fal)">
-          <ion-icon slot="icon-only" ios="share-outline" md="share-sharp"></ion-icon>
-        </ion-button>
-      </ion-buttons> -->
+      <ion-title size="large">Fallarım</ion-title>
     </ion-toolbar>
   </ion-header>
-
+  
     
   <!-- <div class="fal-background">
     <img [src]="fal?.profilePic" [alt]="fal?.name">
     <h2>{{fal.name}}</h2>
   </div> -->
-
-  <div class="fal-background">
-
-  </div>
-
-  <new-fal-navigation></new-fal-navigation>
-  <br><br>
-  <ion-router-outlet id="new-fal-content"><br><br>kkklll</ion-router-outlet>
 
   <!-- <ion-chip color="twitter" button (click)="openExternalUrl('https://twitter.com/' + fal.twitter)">
     <ion-icon name="logo-twitter"></ion-icon>

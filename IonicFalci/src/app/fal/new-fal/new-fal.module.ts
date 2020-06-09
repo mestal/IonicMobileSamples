@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { NewFalPage } from './new-fal';
@@ -14,11 +14,14 @@ import { RouterModule } from '@angular/router';
     //NewFalPageRoutingModule
     RouterModule.forChild([
       { path: 'new-fal', component: NewFalPage }
+
+      
     ]),
   ],
   declarations: [
     NewFalPage,
     NewFalNavigation
-  ]
+  ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class NewFalModule { }
