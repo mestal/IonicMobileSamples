@@ -3,24 +3,63 @@
     <ion-menu contentId="main-content" type="overlay">
       <ion-content>
         <ion-list id="inbox-list">
-          <ion-list-header>Inbox</ion-list-header>
-          <ion-note>hi@ionicframework.com</ion-note>
+          <ion-list-header>Falcı</ion-list-header>
+          <!-- <ion-note>hi@ionicframework.com</ion-note> -->
 
-          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-            <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="selectedIndex == i">
-              <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
-              <ion-label>{{ p.title }}</ion-label>
+          <ion-menu-toggle auto-hide="false">
+            <ion-item routerDirection="root" routerLink="/mainPage" lines="none" detail="false" >
+              <ion-icon slot="start" [ios]="'heart-outline'" [md]="'heart-sharp'"></ion-icon>
+              <ion-label>Anasayfa</ion-label>
+            </ion-item>
+            <ion-item *ngIf="!isLoggedIn()" routerDirection="root" routerLink="/login" lines="none" detail="false" >
+              <ion-icon slot="start" [ios]="'paper-plane'" [md]="'paper-plane'"></ion-icon>
+              <ion-label>Üye Girişi</ion-label>
+            </ion-item>
+            <!-- <ion-item *ngIf="!isLoggedIn()" routerDirection="root" routerLink="/newUser" lines="none" detail="false" >
+              <ion-icon slot="start" [ios]="'heart-outline'" [md]="'heart-sharp'"></ion-icon>
+              <ion-label>Yeni Üye</ion-label>
+            </ion-item> -->
+            <ion-item routerDirection="root" routerLink="/falciList" lines="none" detail="false" >
+              <ion-icon slot="start" [ios]="'heart-outline'" [md]="'heart-sharp'"></ion-icon>
+              <ion-label>Falcılar</ion-label>
+            </ion-item>
+            <!-- <ion-item routerDirection="root" routerLink="/newfal" lines="none" detail="false" >
+              <ion-icon slot="start" [ios]="'heart-outline'" [md]="'heart-sharp'"></ion-icon>
+              <ion-label>Yeni Fal</ion-label>
+            </ion-item> -->
+            <ion-item *ngIf="isLoggedIn()" routerDirection="root" routerLink="/myFals" lines="none" detail="false" >
+              <ion-icon slot="start" [ios]="'heart-outline'" [md]="'heart-sharp'"></ion-icon>
+              <ion-label>Fallarım</ion-label>
+            </ion-item>
+            <ion-item *ngIf="isLoggedIn() == constants.userRoles.consumer" routerDirection="root" routerLink="/buyPoint" lines="none" detail="false" >
+              <ion-icon slot="start" [ios]="'heart-outline'" [md]="'heart-sharp'"></ion-icon>
+              <ion-label>Puan Satın Al</ion-label>
+            </ion-item>
+            <ion-item *ngIf="isLoggedIn()" routerDirection="root" routerLink="/incomingMessages" lines="none" detail="false" >
+              <ion-icon slot="start" [ios]="'mail'" [md]="'mail'"></ion-icon>
+              <ion-label>Gelen Mesajlar</ion-label>
+            </ion-item>
+            <ion-item *ngIf="isLoggedIn()" routerDirection="root" routerLink="/myAccount" lines="none" detail="false" >
+              <ion-icon slot="start" [ios]="'heart-outline'" [md]="'heart-sharp'"></ion-icon>
+              <ion-label>Üyelik Bilgilerim</ion-label>
+            </ion-item>
+            <!-- <ion-item routerDirection="root" routerLink="/newPersonalTest" lines="none" detail="false" >
+              <ion-icon slot="start" [ios]="'archive'" [md]="'archive'"></ion-icon>
+              <ion-label>Yeni Kişilik Testi</ion-label>
+            </ion-item>
+            <ion-item routerDirection="root" routerLink="/newTrueFalseTest" lines="none" detail="false" >
+              <ion-icon slot="start" [ios]="'warning'" [md]="'warning'"></ion-icon>
+              <ion-label>Yeni Doğru/Yanlış Testi</ion-label>
+            </ion-item>
+            <ion-item routerDirection="root" routerLink="/viewNewsItem" lines="none" detail="false" >
+              <ion-icon slot="start" [ios]="'heart-outline'" [md]="'heart-sharp'"></ion-icon>
+              <ion-label>Haber İncele</ion-label>
+            </ion-item> -->
+            <ion-item routerDirection="root" (click)="logout()" routerLink="" *ngIf="isLoggedIn()" lines="none" detail="false">
+              <ion-icon slot="start" [ios]="'heart-outline'" [md]="'heart-sharp'"></ion-icon>
+              <ion-label>Çıkış</ion-label>
             </ion-item>
           </ion-menu-toggle>
-        </ion-list>
-
-        <ion-list id="labels-list">
-          <ion-list-header>Labels</ion-list-header>
-
-          <ion-item *ngFor="let label of labels" lines="none">
-            <ion-icon slot="start" ios="bookmark-outline" md="bookmark-sharp"></ion-icon>
-            <ion-label>{{ label }}</ion-label>
-          </ion-item>
         </ion-list>
       </ion-content>
     </ion-menu>
