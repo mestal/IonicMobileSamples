@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 export class UserService {
 
   constructor(private http: HttpClient) { } //private fb: FormBuilder, 
-  readonly BaseURI = environment.apiUrl;
+  readonly BaseURI = environment.baseUrl;
 
 //   formModel = this.fb.group({
 //     UserName: ['', Validators.required],
@@ -45,11 +45,11 @@ export class UserService {
 //   }
 
   login(formData) {
-    return this.http.post(this.BaseURI + '/User/Login', formData);
+    return this.http.post(this.BaseURI + 'User/Login', formData);
   }
 
   getEmployee(formData) {
-    return this.http.post(this.BaseURI + '/GetEmployee', formData);
+    return this.http.post(this.BaseURI + 'GetEmployee', formData);
   }
   
 }

@@ -21,11 +21,11 @@
           <ion-card-header>
             <ion-item detail="false" lines="none" class="fal-item" routerLink="/falci-detail/{{falci.id}}">
               <ion-avatar slot="start">
-                <img [src]="falci.profilePic" [alt]="falci.name">
+                <img [src]="'assets/img/profileImages/' + falci.picturePath" [alt]="falci.name">
               </ion-avatar>
               <ion-label>
-                <h2>{{falci.name}}</h2>
-                <p>{{falci.status}}</p>
+                <h2>{{falci.fullName}}</h2>
+                <p>{{falci.connectionStatus}}</p>
               </ion-label>
             </ion-item>
           </ion-card-header>

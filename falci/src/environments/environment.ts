@@ -4,7 +4,11 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:5000/api'
+  baseUrl: 'http://localhost:5000/api/',
+  apiUrls: {
+    getFortuneTellers: 'FortuneTelling/GetFortuneTellers',
+    getActiveFortuneTellers: 'FortuneTelling/GetActiveFortuneTellers'
+  }
 };
 
 /*
