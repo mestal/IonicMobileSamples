@@ -9,6 +9,10 @@ export class FortuneTellingService {
 
   constructor(private http: HttpClient) { }
 
+  getFortuneTellings(data: any) {
+    return this.http.post(environment.baseUrl + environment.apiUrls.getFortuneTellings, data);
+  }
+
   getActiveFortuneTellers() {
     return this.http.get(environment.baseUrl + environment.apiUrls.getActiveFortuneTellers);
   }

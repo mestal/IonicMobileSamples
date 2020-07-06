@@ -7,7 +7,8 @@ export const environment = {
   baseUrl: 'http://localhost:5000/api/',
   apiUrls: {
     getFortuneTellers: 'FortuneTelling/GetFortuneTellers',
-    getActiveFortuneTellers: 'FortuneTelling/GetActiveFortuneTellers'
+    getActiveFortuneTellers: 'FortuneTelling/GetActiveFortuneTellers',
+    getFortuneTellings: 'FortuneTelling/GetUserItems'
   }
 };
 
