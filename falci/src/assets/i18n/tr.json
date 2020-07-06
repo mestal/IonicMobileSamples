@@ -1,0 +1,11 @@
+{
+    "Type.General": "Genel",
+    "Type.Business": "İş",
+    "Type.Money": "Para",
+    "Type.Love": "Aşk",
+    "FalStatus.Consumer.Draft": "Yeni",
+    "FalStatus.Consumer.SubmittedByUser": "Gönderildi",
+    "FalStatus.Consumer.SubmittedByFortuneTeller": "Bakıldı",
+    "FalStatus.Falci.SubmittedByUser": "Yeni",
+    "FalStatus.Falci.SubmittedByFortuneTeller": "Bakıldı"
+}

@@ -21,9 +21,8 @@
           <ion-card-header>
             <ion-item detail="false" lines="none" class="fal-item" routerLink="/fal-detail/{{fal.id}}">
               <ion-label>
-                <h2>{{fal.sentDateTime}}</h2>
-                <p>{{fal.type}}</p>
-                <p>{{fal.status}}</p>
+                <p>{{ 'Type.' + fal.type | translate }}</p>
+                <p>{{ 'FalStatus.Consumer.' + fal.status | translate }}</p>
                 <p>{{fal.fortuneTellerComment}}</p>
                 <p>{{fal.submitDateUtc}}</p>
                 <p>{{fal.submitByFortuneTellerDateUtc}}</p>

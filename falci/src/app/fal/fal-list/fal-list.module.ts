@@ -4,12 +4,14 @@ import { IonicModule } from '@ionic/angular';
 
 import { FalListPage } from './fal-list';
 import { FalListPageRoutingModule } from './fal-list-routing.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
     CommonModule,
     IonicModule,
-    FalListPageRoutingModule
+    FalListPageRoutingModule,
+    TranslateModule
   ],
   declarations: [FalListPage],
 })
