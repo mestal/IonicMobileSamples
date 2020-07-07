@@ -5,10 +5,12 @@
 export const environment = {
   production: false,
   baseUrl: 'http://localhost:5000/api/',
+  urlForAssets: 'http://localhost:5000/',
   apiUrls: {
     getFortuneTellers: 'FortuneTelling/GetFortuneTellers',
     getActiveFortuneTellers: 'FortuneTelling/GetActiveFortuneTellers',
-    getFortuneTellings: 'FortuneTelling/GetUserItems'
+    getFortuneTellings: 'FortuneTelling/GetUserItems',
+    getFeeds: 'Feed/GetFeeds'
   }
 };
 

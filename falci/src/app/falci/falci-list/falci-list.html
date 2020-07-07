@@ -21,7 +21,7 @@
           <ion-card-header>
             <ion-item detail="false" lines="none" class="fal-item" routerLink="/falci-detail/{{falci.id}}">
               <ion-avatar slot="start">
-                <img [src]="'assets/img/profileImages/' + falci.picturePath" [alt]="falci.name">
+                <img [src]="environment.urlForAssets + constants.folderForProfilePictures + 'Mert02.png'" [alt]="falci.name">
               </ion-avatar>
               <ion-label>
                 <h2>{{falci.fullName}}</h2>

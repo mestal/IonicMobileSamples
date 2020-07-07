@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { ConferenceData } from '../../providers/conference-data';
 import { FortuneTellingService } from 'src/app/services/fortuneTelling.service';
+import { constants } from '../../constants';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'page-falci-list',
@@ -9,6 +10,8 @@ import { FortuneTellingService } from 'src/app/services/fortuneTelling.service';
 })
 export class FalciListPage {
   fortuneTellers: any[] = [];
+  constants = constants;
+  environment = environment;
 
   constructor(public fortuneTellingService: FortuneTellingService) {}
 

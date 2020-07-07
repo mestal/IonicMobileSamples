@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { ConferenceData } from '../../providers/conference-data';
+import { FeedService } from 'src/app/services/feed.service';
+import { constants } from 'src/app/constants';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'page-news-list',
@@ -8,12 +10,55 @@ import { ConferenceData } from '../../providers/conference-data';
 })
 export class NewsListPage {
   newsList: any[] = [];
+  pageIndex;
+  hasNextPage: false;
+  constants = constants;
+  environment = environment;
 
-  constructor(public confData: ConferenceData) {}
+  constructor(public feedService: FeedService) {}
+
 
   ionViewDidEnter() {
-    this.confData.getNewsList().subscribe((newsList: any[]) => {
-      this.newsList = newsList;
+    this.loadItems(null);
+  }
+
+  loadItems(scrollEvent) {
+    var query = {
+      Args: {
+        PageIndex: this.pageIndex == null ? 1 : this.pageIndex,
+        PageSize: 3,
+        PagingStrategy: 1,
+      }
+    };
+
+    this.feedService.getFeeds(query).subscribe((newsList: any) => {
+      if(newsList == null || newsList.items == null || newsList.items.length == 0)
+      {
+        this.hasNextPage = false;
+        return;
+      }
+
+      for(var i = 0; i < newsList.items.length; i++)
+      {
+        this.newsList.push(newsList.items[i]);
+      }
+      
+      this.hasNextPage = newsList.hasNextPage;
+      this.pageIndex = newsList.pageIndex;
+      if(scrollEvent)
+      {
+        scrollEvent.target.complete();
+      }
     });
+  }
+
+  loadMoreItems(event) {
+    if(this.hasNextPage) {
+      this.pageIndex++;
+      this.loadItems(event);
+    }
+    else {
+      event.target.complete();
+    }
   }
 }
