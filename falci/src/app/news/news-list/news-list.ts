@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FeedService } from 'src/app/services/feed.service';
 import { constants } from 'src/app/constants';
 import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'page-news-list',
@@ -15,7 +16,7 @@ export class NewsListPage {
   constants = constants;
   environment = environment;
 
-  constructor(public feedService: FeedService) {}
+  constructor(public feedService: FeedService, private router: Router) {}
 
 
   ionViewDidEnter() {
@@ -59,6 +60,19 @@ export class NewsListPage {
     }
     else {
       event.target.complete();
+    }
+  }
+
+  cardClicked(feed: any) {
+    if(feed.feedType == constants.feedTypeNews)
+    {
+      this.router.navigate(['/news', { id: feed.id }]);
+    }
+    else if(feed.feedType == constants.feedTypeSurvey) {
+      this.router.navigate(['/survey', { id: feed.id }]);
+    }
+    else {
+
     }
   }
 }

@@ -13,7 +13,7 @@ export class FeedService {
     return this.http.post(environment.baseUrl + environment.apiUrls.getFeeds, data);
   }
 
-  getActiveFortuneTellers() {
-    return this.http.get(environment.baseUrl + environment.apiUrls.getActiveFortuneTellers);
+  getSurvey(surveyId: any) {
+    return this.http.get(environment.baseUrl + environment.apiUrls.getSurvey + '?surveyId=' + surveyId);
   }
 }

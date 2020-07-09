@@ -1,0 +1,52 @@
+<ion-content class="survey-detail">
+  <ion-header class="ion-no-border">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/"></ion-back-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <div *ngIf="survey != null">
+    <img [src]="environment.urlForAssets + constants.folderForFeedPictures + survey.mainPhoto" style="width:100%">
+  </div>
+
+  <div class="ion-padding survey-detail" *ngIf="survey != null">
+    <h2>{{survey.title}}</h2>
+    <hr>
+    <p>
+      {{survey.infoHtml}}
+    </p>
+    <div *ngFor="let question of survey.items">
+      <div *ngIf="question.picturePath"><img  [src]="environment.urlForAssets + constants.folderForSurveyPictures + question.picturePath" style="width:100%"></div>
+      <div>{{ question.question }}</div>
+      <div *ngFor="let answer of question.answers">
+        <table>
+          <tr>
+            <td style="vertical-align:middle">
+              <span style="display:table-cell; vertical-align:middle">
+                <input type="radio" 
+                    [name]="'question_' + question.order" 
+                    [checked]="question.selectedAnswer === answer.order" 
+                    [value]="answer.order" 
+                    (change)="optionSelected(question, answer.order)"
+                    style="vertical-align: middle;">
+              </span>
+            </td>
+            <td>
+              <span (click)="optionSelected(question, answer.order)">
+                {{ answer.answer }}
+                <img *ngIf="answer.picturePath" 
+                  (click)="optionSelected(question, answer.order)" 
+                  [src]="environment.urlForAssets + constants.folderForSurveyPictures + answer.picturePath" style="width:40%">
+              </span>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div>
+      <input type="button" value="Sonucu Gör" (click)="submitSurvey()" >
+    </div>
+  </div>
+</ion-content>
