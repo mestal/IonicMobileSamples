@@ -18,7 +18,7 @@
     <ion-row>
       <ion-col size="12" size-md="6" *ngFor="let feed of newsList">
         <ion-card (click)="cardClicked(feed)">
-          <img [src]="environment.urlForAssets + constants.folderForFeedPictures + feed.mainPhoto" style="width:100%" [alt]="feed.title">
+          <img *ngIf="feed.mainPhoto" [src]="environment.urlForAssets + constants.folderForFeedPictures + feed.mainPhoto" style="width:100%" [alt]="feed.title">
           <ion-card-content>
             <div [innerHTML] ="feed.title" class="text-pre-wrap"></div>
           </ion-card-content>

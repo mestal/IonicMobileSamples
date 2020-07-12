@@ -8,5 +8,6 @@ export const environment = {
     getFortuneTellings: 'FortuneTelling/GetUserItems',
     getFeeds: 'Feed/GetFeeds',
     getSurvey: 'Feed/GetSurvey'
-  }
+  },
+  feedsPageSize: 10
 };

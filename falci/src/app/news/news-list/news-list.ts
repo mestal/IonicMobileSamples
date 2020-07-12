@@ -18,16 +18,17 @@ export class NewsListPage {
 
   constructor(public feedService: FeedService, private router: Router) {}
 
-
   ionViewDidEnter() {
-    this.loadItems(null);
+    if(this.newsList == null || this.newsList.length == 0) {
+      this.loadItems(null);
+    }
   }
 
   loadItems(scrollEvent) {
     var query = {
       Args: {
         PageIndex: this.pageIndex == null ? 1 : this.pageIndex,
-        PageSize: 3,
+        PageSize: environment.feedsPageSize,
         PagingStrategy: 1,
       }
     };
