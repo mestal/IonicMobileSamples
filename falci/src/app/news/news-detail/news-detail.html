@@ -4,41 +4,23 @@
       <ion-buttons slot="start">
         <ion-back-button defaultHref="/"></ion-back-button>
       </ion-buttons>
-      <!-- <ion-buttons *ngIf="news" slot="end">
-        <ion-button (click)="openContact(news)">
-          <ion-icon slot="icon-only" ios="call-outline" md="call-sharp"></ion-icon>
-        </ion-button>
-        <ion-button (click)="openNewsShare(news)">
-          <ion-icon slot="icon-only" ios="share-outline" md="share-sharp"></ion-icon>
-        </ion-button>
-      </ion-buttons> -->
     </ion-toolbar>
   </ion-header>
 
-  <div class="news-background">
+  <div *ngIf="news != null">
+    <img [src]="environment.urlForAssets + constants.folderForFeedPictures + news.mainPhoto" style="width:100%">
   </div>
 
-  <div class="ion-padding news-detail">
-    <h2>{{news?.title}}</h2>
-
+  <div class="ion-padding news-detail" *ngIf="news != null">
+    <h2>{{news.title}}</h2>
     <hr>
     <p>
-      {{news?.longDescriptionHtml}}
+      {{news.infoHtml}}
     </p>
-
-    <!-- <ion-chip color="twitter" button (click)="openExternalUrl('https://twitter.com/' + news.twitter)">
-      <ion-icon name="logo-twitter"></ion-icon>
-      <ion-label>Twitter</ion-label>
-    </ion-chip>
-
-    <ion-chip color="dark" button (click)="openExternalUrl('https://github.com/ionic-team/ionic')">
-      <ion-icon name="logo-github"></ion-icon>
-      <ion-label>GitHub</ion-label>
-    </ion-chip>
-
-    <ion-chip color="instagram" button (click)="openExternalUrl('https://instagram.com/ionicframework')">
-      <ion-icon name="logo-instagram"></ion-icon>
-      <ion-label>Instagram</ion-label>
-    </ion-chip> -->
+    <div *ngFor="let item of news.items">
+      <div>{{ item.title }}</div>
+      <div *ngIf="item.picturePath"><img  [src]="environment.urlForAssets + constants.folderForNewsPictures + item.picturePath" style="width:100%"></div>
+      <div>{{ item.information }}</div>
+    </div>
   </div>
 </ion-content>

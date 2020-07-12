@@ -16,4 +16,8 @@ export class FeedService {
   getSurvey(surveyId: any) {
     return this.http.get(environment.baseUrl + environment.apiUrls.getSurvey + '?surveyId=' + surveyId);
   }
+
+  getNews(newsId: any) {
+    return this.http.get(environment.baseUrl + environment.apiUrls.getNews + '?newsId=' + newsId);
+  }
 }
