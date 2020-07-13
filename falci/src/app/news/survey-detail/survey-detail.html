@@ -18,7 +18,14 @@
       {{survey.infoHtml}}
     </p>
     <div *ngFor="let question of survey.items">
-      <div *ngIf="question.picturePath"><img  [src]="environment.urlForAssets + constants.folderForSurveyPictures + question.picturePath" style="width:100%"></div>
+      <div *ngIf="question.picturePath">
+        <img  [src]="environment.urlForAssets + constants.folderForSurveyPictures + question.picturePath" style="width:100%">
+      </div>
+      <div *ngIf="question.videoPath">
+        <video loop style="width:100%" autoplay>
+          <source type="video/webm" [src]="environment.urlForAssets + constants.folderForSurveyVideos + question.videoPath">
+        </video>
+      </div>
       <div>{{ question.question }}</div>
       <div *ngFor="let answer of question.answers">
         <table>

@@ -19,7 +19,14 @@
     </p>
     <div *ngFor="let item of news.items">
       <div>{{ item.title }}</div>
-      <div *ngIf="item.picturePath"><img  [src]="environment.urlForAssets + constants.folderForNewsPictures + item.picturePath" style="width:100%"></div>
+      <div *ngIf="item.picturePath">
+        <img  [src]="environment.urlForAssets + constants.folderForNewsPictures + item.picturePath" style="width:100%">
+      </div>
+      <div *ngIf="item.videoPath">
+        <video loop style="width:100%" autoplay>
+          <source type="video/webm" [src]="environment.urlForAssets + constants.folderForNewsVideos + item.videoPath">
+        </video>
+      </div>
       <div>{{ item.information }}</div>
     </div>
   </div>
