@@ -17,40 +17,38 @@
     <p>
       {{survey.infoHtml}}
     </p>
-    <div *ngFor="let question of survey.items">
+    <div *ngFor="let question of survey.items" style="padding-bottom: 30px;">
+      <div>{{ question.question }}</div>
       <div *ngIf="question.picturePath">
-        <img  [src]="environment.urlForAssets + constants.folderForSurveyPictures + question.picturePath" style="width:100%">
+        <img [src]="environment.urlForAssets + constants.folderForSurveyPictures + question.picturePath" style="width:100%">
       </div>
       <div *ngIf="question.videoPath">
         <video loop style="width:100%" autoplay>
           <source type="video/webm" [src]="environment.urlForAssets + constants.folderForSurveyVideos + question.videoPath">
         </video>
       </div>
-      <div>{{ question.question }}</div>
-      <div *ngFor="let answer of question.answers">
-        <table>
-          <tr>
-            <td style="vertical-align:middle">
-              <span style="display:table-cell; vertical-align:middle">
+      <ion-grid fixed>
+        <ion-row>
+          <ion-col size="6" size-md="2" *ngFor="let answer of question.answers">
+            <ion-card>
+              <ion-card-content>
                 <input type="radio" 
-                    [name]="'question_' + question.order" 
-                    [checked]="question.selectedAnswer === answer.order" 
-                    [value]="answer.order" 
-                    (change)="optionSelected(question, answer.order)"
-                    style="vertical-align: middle;">
-              </span>
-            </td>
-            <td>
-              <span (click)="optionSelected(question, answer.order)">
-                {{ answer.answer }}
-                <img *ngIf="answer.picturePath" 
-                  (click)="optionSelected(question, answer.order)" 
-                  [src]="environment.urlForAssets + constants.folderForSurveyPictures + answer.picturePath" style="width:40%">
-              </span>
-            </td>
-          </tr>
-        </table>
-      </div>
+                      [name]="'question_' + question.order" 
+                      [checked]="question.selectedAnswer === answer.order" 
+                      [value]="answer.order" 
+                      (change)="optionSelected(question, answer.order)"
+                      style="vertical-align: middle;">
+                <span (click)="optionSelected(question, answer.order)">
+                  {{ answer.answer }}
+                  <img *ngIf="answer.picturePath" 
+                    (click)="optionSelected(question, answer.order)" 
+                    [src]="environment.urlForAssets + constants.folderForSurveyPictures + answer.picturePath" style="width:100%">
+                </span>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </div>
     <div>
       <input type="button" value="Sonucu Gör" (click)="submitSurvey()" >
