@@ -26,8 +26,10 @@
     "@ngx-translate/core": "^13.0.0",
     "@ngx-translate/http-loader": "^6.0.0",
     "cordova-android": "8.1.0",
+    "cordova-browser": "6.0.0",
     "rxjs": "^6.5.5",
     "tslib": "^1.10.0",
+    "web": "0.0.2",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
@@ -72,7 +74,8 @@
       "cordova-plugin-ionic-keyboard": {}
     },
     "platforms": [
-      "android"
+      "android",
+      "browser"
     ]
   }
 }

@@ -7,7 +7,8 @@ export const environment = {
     getActiveFortuneTellers: 'FortuneTelling/GetActiveFortuneTellers',
     getFortuneTellings: 'FortuneTelling/GetUserItems',
     getFeeds: 'Feed/GetFeeds',
-    getSurvey: 'Feed/GetSurvey'
+    getSurvey: 'Feed/GetSurvey',
+    getNews: 'Feed/GetNews'
   },
   feedsPageSize: 10
 };
