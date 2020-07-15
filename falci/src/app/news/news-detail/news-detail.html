@@ -17,7 +17,7 @@
     <p>
       {{news.infoHtml}}
     </p>
-    <div *ngFor="let item of news.items">
+    <div *ngFor="let item of news.items" style="padding-bottom: 30px;">
       <div>{{ item.title }}</div>
       <div *ngIf="item.picturePath">
         <img  [src]="environment.urlForAssets + constants.folderForNewsPictures + item.picturePath" style="width:100%">
