@@ -21,7 +21,7 @@ export class FalListPage {
     var query = {
       Args: {
         PageIndex: this.pageIndex == null ? 1 : this.pageIndex,
-        PageSize: 3,
+        PageSize: 6,
         PagingStrategy: 1,
       }
     };
