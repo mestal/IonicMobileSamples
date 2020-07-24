@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="con.mestal.falcim" version="1.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.mestal.falcim" version="1.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Falcım</name>
-    <description>Falına baktır, eğlen</description>
+    <description>Falina baktir, eğlen</description>
     <author email="mestal@gmail.com" href="http://ionicframework.com/">Mestal</author>
     <content src="index.html" />
     <access origin="*" />

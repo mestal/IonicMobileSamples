@@ -13,4 +13,10 @@
       <ion-title size="large">Yeni Fal</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <ion-button (click)="captureImage()">
+    Click Picture
+  </ion-button>
+  
+  <img [src]="clickedImage" />
 </ion-content>

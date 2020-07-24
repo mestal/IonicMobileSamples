@@ -14,6 +14,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { Camera } from '@ionic-native/camera/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -41,7 +42,8 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
       useClass: AuthInterceptor,
       multi: true
     },
-    { provide: LocationStrategy, useClass: HashLocationStrategy }
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    Camera
   ],
   bootstrap: [AppComponent]
 })
