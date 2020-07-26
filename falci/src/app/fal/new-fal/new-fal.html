@@ -15,8 +15,28 @@
   </ion-header>
 
   <ion-button (click)="captureImage()">
-    Click Picture
+    Foto Çek
+  </ion-button>
+  <ion-button (click)="loadImage()">
+    Foto Yükle
   </ion-button>
   
-  <img [src]="clickedImage" />
+  <!-- <img [src]="clickedImage" /> -->
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="3" size-md="2" *ngFor="let falImage of falImages;let indexOfElement = index;">
+        <ion-card>
+          <ion-card-content>
+            <span (click)="imageSelected(indexOfElement)">
+              <img  
+                [src]="falImage" 
+                [ngClass]="{ 'selectedImage' : indexOfElement == activeImageIndex }"
+              />
+            </span>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <img [src]="this.falImages[activeImageIndex]" />
 </ion-content>

@@ -7,7 +7,8 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
   styleUrls: ['./new-fal.scss'],
 })
 export class NewFalPage implements OnInit {
-  clickedImage: string;
+  falImages: string[] = [];
+  activeImageIndex = 0;
 
   options: CameraOptions = {
     quality: 30,
@@ -18,14 +19,15 @@ export class NewFalPage implements OnInit {
 
   fal: any;
   fortuneTellers: any[] = [];
-  constructor(
-    private camera: Camera
-    ) 
-  {
-  }
+  constructor(private camera: Camera) {}
 
   ngOnInit() {
+    this.falImages.push("assets/img/WIN_20200725_13_21_37_Pro.jpg");
+    this.falImages.push("assets/img/WIN_20200725_13_22_11_Pro.jpg");
+    this.falImages.push("assets/img/WIN_20200725_13_22_14_Pro.jpg");
+    this.falImages.push("assets/img/WIN_20200725_13_22_17_Pro.jpg");
 
+    this.activeImageIndex = 0;
   }
 
   captureImage() {
@@ -33,20 +35,21 @@ export class NewFalPage implements OnInit {
       // imageData is either a base64 encoded string or a file URI
       // If it's base64 (DATA_URL):
       let base64Image = 'data:image/jpeg;base64,' + imageData;
-      this.clickedImage = base64Image;
+      this.falImages[this.activeImageIndex] = base64Image;
     }, (err) => {
       console.log(err);
       // Handle error
     });
   }
 
-  
+  imageSelected(indexOfElement) {
+    this.activeImageIndex = indexOfElement;
+  }
 
-  
+  loadImage() {
+
+  }
 
   ionViewDidEnter() {
-    // this.confData.getFortuneTellers().subscribe((fortuneTellers: any[]) => {
-    //   this.fortuneTellers = fortuneTellers;
-    // });
   }
 }
