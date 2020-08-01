@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { FortuneTellingService } from 'src/app/services/fortuneTelling.service';
 
 @Component({
   selector: 'page-new-fal',
@@ -19,13 +20,13 @@ export class NewFalPage implements OnInit {
 
   fal: any;
   fortuneTellers: any[] = [];
-  constructor(private camera: Camera) {}
+  constructor(private camera: Camera, private fortuneTellingService: FortuneTellingService) {}
 
   ngOnInit() {
-    this.falImages.push("assets/img/WIN_20200725_13_21_37_Pro.jpg");
-    this.falImages.push("assets/img/WIN_20200725_13_22_11_Pro.jpg");
-    this.falImages.push("assets/img/WIN_20200725_13_22_14_Pro.jpg");
-    this.falImages.push("assets/img/WIN_20200725_13_22_17_Pro.jpg");
+    this.falImages.push("assets/img/no-image.jpg");
+    this.falImages.push("assets/img/no-image.jpg");
+    this.falImages.push("assets/img/no-image.jpg");
+    this.falImages.push("assets/img/no-image.jpg");
 
     this.activeImageIndex = 0;
   }
@@ -52,4 +53,32 @@ export class NewFalPage implements OnInit {
 
   ionViewDidEnter() {
   }
+
+  submit() {
+
+    const formData: FormData = new FormData();
+    formData.append('Pictures', this.makeblob(this.falImages[0]), "ImageName");
+    formData.append('FortuneTellerId', "A17DD253-A153-4E25-BA4D-08D8272C5223");
+
+    this.fortuneTellingService.submitFortuneTelling(formData).subscribe(
+      data => {
+        console.log('done');
+      }
+    );
+  }
+
+  makeblob(dataURL) {
+    const BASE64_MARKER = ';base64,';
+    const parts = dataURL.split(BASE64_MARKER);
+    const contentType = parts[0].split(':')[1];
+    const raw = window.atob(parts[1]);
+    const rawLength = raw.length;
+    const uInt8Array = new Uint8Array(rawLength);
+
+    for (let i = 0; i < rawLength; ++i) {
+        uInt8Array[i] = raw.charCodeAt(i);
+    }
+
+    return new Blob([uInt8Array], { type: contentType });
+}
 }

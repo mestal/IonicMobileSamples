@@ -12,7 +12,8 @@ export const environment = {
     getFortuneTellings: 'FortuneTelling/GetUserItems',
     getFeeds: 'Feed/GetFeeds',
     getSurvey: 'Feed/GetSurvey',
-    getNews: 'Feed/GetNews'
+    getNews: 'Feed/GetNews',
+    submitCoffeeFortuneTelling: 'FortuneTelling/SubmitCoffeeFortuneTelling'
   },
   feedsPageSize: 10
 };
