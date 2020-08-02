@@ -40,6 +40,15 @@
   </ion-grid>
   <img [src]="this.falImages[activeImageIndex]" />
   <br>
+   <ion-list>
+    <ion-item>
+      <ion-label>Falcı</ion-label> 
+      <ion-select #newSelect formControlName="selectedFalci" (ionChange)="onSelectedFalciChanged($event)">
+        <ion-select-option *ngFor="let fortuneTeller of fortuneTellers;" [value]="fortuneTeller.id" >{{ fortuneTeller.fullName }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list> 
+  <br>
   <ion-button (click)="submit()">
     Gönder
   </ion-button>

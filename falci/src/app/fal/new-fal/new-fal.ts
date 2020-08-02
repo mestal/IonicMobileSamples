@@ -18,8 +18,17 @@ export class NewFalPage implements OnInit {
     mediaType: this.camera.MediaType.PICTURE
   }
 
+  private optionsGallery: CameraOptions = {
+    quality: 100,
+    sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+    destinationType: this.camera.DestinationType.DATA_URL,
+    encodingType: this.camera.EncodingType.JPEG,
+    mediaType: this.camera.MediaType.PICTURE
+  }
+
   fal: any;
-  fortuneTellers: any[] = [];
+  fortuneTellers: any;
+  selectedFalciId: string;
   constructor(private camera: Camera, private fortuneTellingService: FortuneTellingService) {}
 
   ngOnInit() {
@@ -29,6 +38,12 @@ export class NewFalPage implements OnInit {
     this.falImages.push("assets/img/no-image.jpg");
 
     this.activeImageIndex = 0;
+
+    this.fortuneTellingService.getActiveFortuneTellers().subscribe(
+      data => {
+        this.fortuneTellers = data;
+      }
+    );
   }
 
   captureImage() {
@@ -48,7 +63,14 @@ export class NewFalPage implements OnInit {
   }
 
   loadImage() {
+    this.camera.getPicture(this.optionsGallery).then((imageData) => {
+      let base64Image = 'data:image/jpeg;base64,' + imageData;
 
+      this.falImages[this.activeImageIndex] = base64Image;
+     }, (err) => {
+      // Handle error
+      console.log(err)
+     })
   }
 
   ionViewDidEnter() {
@@ -57,8 +79,11 @@ export class NewFalPage implements OnInit {
   submit() {
 
     const formData: FormData = new FormData();
-    formData.append('Pictures', this.makeblob(this.falImages[0]), "ImageName");
-    formData.append('FortuneTellerId', "A17DD253-A153-4E25-BA4D-08D8272C5223");
+    formData.append('Pictures', this.makeblob(this.falImages[0]));
+    formData.append('Pictures', this.makeblob(this.falImages[1]));
+    formData.append('Pictures', this.makeblob(this.falImages[2]));
+    formData.append('Pictures', this.makeblob(this.falImages[3]));
+    formData.append('FortuneTellerId', this.selectedFalciId);
 
     this.fortuneTellingService.submitFortuneTelling(formData).subscribe(
       data => {
@@ -80,5 +105,9 @@ export class NewFalPage implements OnInit {
     }
 
     return new Blob([uInt8Array], { type: contentType });
-}
+  }
+
+  onSelectedFalciChanged($event){ 
+    this.selectedFalciId = $event.target.value;
+  }
 }
