@@ -48,6 +48,17 @@
       </ion-select>
     </ion-item>
   </ion-list> 
+  <ion-list>
+    <ion-item>
+      <ion-label>Konu</ion-label> 
+      <ion-select formControlName="type" (ionChange)="onSelectedTypeChanged($event)">
+        <ion-select-option value="0" >Genel</ion-select-option>
+        <ion-select-option value="1" >Para</ion-select-option>
+        <ion-select-option value="2" >İş</ion-select-option>
+        <ion-select-option value="3" >Aşk</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list> 
   <br>
   <ion-button (click)="submit()">
     Gönder

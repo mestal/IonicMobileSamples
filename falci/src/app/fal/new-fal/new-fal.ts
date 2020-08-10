@@ -29,6 +29,7 @@ export class NewFalPage implements OnInit {
   fal: any;
   fortuneTellers: any;
   selectedFalciId: string;
+  selectedType: string;
   constructor(private camera: Camera, private fortuneTellingService: FortuneTellingService) {}
 
   ngOnInit() {
@@ -79,15 +80,29 @@ export class NewFalPage implements OnInit {
   submit() {
 
     const formData: FormData = new FormData();
-    formData.append('Pictures', this.makeblob(this.falImages[0]));
-    formData.append('Pictures', this.makeblob(this.falImages[1]));
-    formData.append('Pictures', this.makeblob(this.falImages[2]));
-    formData.append('Pictures', this.makeblob(this.falImages[3]));
+    if(this.falImages[0] != "assets/img/no-image.jpg") {
+      formData.append('Pictures', this.makeblob(this.falImages[0]));
+    }
+    if(this.falImages[1] != "assets/img/no-image.jpg") {
+      formData.append('Pictures', this.makeblob(this.falImages[1]));
+    }
+    if(this.falImages[2] != "assets/img/no-image.jpg") {
+      formData.append('Pictures', this.makeblob(this.falImages[2]));
+    }
+    if(this.falImages[3] != "assets/img/no-image.jpg") {
+      formData.append('Pictures', this.makeblob(this.falImages[3]));
+    }
+    
     formData.append('FortuneTellerId', this.selectedFalciId);
+    formData.append('Type', this.selectedType);
 
     this.fortuneTellingService.submitFortuneTelling(formData).subscribe(
       data => {
         console.log('done');
+        alert('done');
+      },
+      error => {
+        alert(JSON.stringify(error));
       }
     );
   }
@@ -109,5 +124,9 @@ export class NewFalPage implements OnInit {
 
   onSelectedFalciChanged($event){ 
     this.selectedFalciId = $event.target.value;
+  }
+
+  onSelectedTypeChanged($event){ 
+    this.selectedType = $event.target.value;
   }
 }
