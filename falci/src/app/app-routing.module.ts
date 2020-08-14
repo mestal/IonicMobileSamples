@@ -35,6 +35,14 @@ const routes: Routes = [
   {
     path: 'news',
     loadChildren: () => import('./news/news-detail/news-detail.module').then( m => m.NewsDetailModule)
+  },
+  {
+    path: 'register',
+    loadChildren: () => import('./user/new-account/new-account.module').then( m => m.NewAccountModule)
+  },
+  {
+    path: 'newUserConfirmation',
+    loadChildren: () => import('./user/newUserConfirmation/newUserConfirmation.module').then( m => m.NewUserConfirmationModule)
   }
 ];
 

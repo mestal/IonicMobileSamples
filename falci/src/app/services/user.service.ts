@@ -34,15 +34,13 @@ export class UserService {
 //     }
 //   }
 
-//   register() {
-//     var body = {
-//       UserName: this.formModel.value.UserName,
-//       Email: this.formModel.value.Email,
-//       FullName: this.formModel.value.FullName,
-//       Password: this.formModel.value.Passwords.Password
-//     };
-//     return this.http.post(this.BaseURI + '/ApplicationUser/Register', body);
-//   }
+  register(formData) {
+    return this.http.post(this.BaseURI + 'User/RegisterNewUser', formData);
+  }
+
+  confirmNewUser(formData) {
+    return this.http.post(this.BaseURI + 'User/ConfirmNewUser', formData);
+  }
 
   login(formData) {
     return this.http.post(this.BaseURI + 'User/Login', formData);

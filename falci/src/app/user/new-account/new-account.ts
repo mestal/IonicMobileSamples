@@ -4,21 +4,18 @@ import { Router } from '@angular/router';
 
 import { UserData } from '../../providers/user-data';
 
-import { UserOptions } from '../../interfaces/user-options';
-import { User } from '../user';
-import { LoginInformation } from "../LoginInformation";
 import { UserService } from 'src/app/services/user.service';
+import { NewUser } from 'src/app/interfaces/new-user';
 //import { UserService } from '../user.service';
 
 @Component({
-  selector: 'page-login',
-  templateUrl: 'login.html',
-  styleUrls: ['./login.scss'],
+  selector: 'page-new-account',
+  templateUrl: 'new-account.html',
+  styleUrls: ['./new-account.scss'],
 })
-export class LoginPage {
-  login: UserOptions = { username: '', password: '' };
+export class NewAccountPage {
   submitted = false;
-  currentUser: User | null;
+  newUser: NewUser = { UserName: '', Password: '', Password2: '', EMail: '', FullName: '' };
 
   constructor(
     public userData: UserData,
@@ -26,15 +23,10 @@ export class LoginPage {
     private service: UserService
   ) { }
 
-  onLogin(form: NgForm) {
-    this.service.login(form.value).subscribe(
+  onSubmit(form: NgForm) {
+    this.service.register(form.value).subscribe(
       (res: any) => {
-        localStorage.setItem('token', res.token);
-        localStorage.setItem('role', res.role);
-        if(res.role == "Falci")
-          this.router.navigateByUrl('/mainPage');
-        else if(res.role == "Consumer")
-          this.router.navigateByUrl('/mainPage');
+        
       },
       err => {
         if (err.status == 400)
@@ -64,7 +56,7 @@ export class LoginPage {
   }
 
   onSignup() {
-    this.router.navigateByUrl('/register');
+    this.router.navigateByUrl('/signup');
   }
 
   // isLoggedIn(): boolean {

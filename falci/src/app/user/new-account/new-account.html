@@ -1,0 +1,88 @@
+<ion-content>
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+
+      <ion-title>Yeni Üye</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+
+  <div class="new-account-logo">
+    <img src="assets/img/single_user.png" alt="Ionic logoo">
+  </div>
+
+  <form #registerForm="ngForm" novalidate>
+    <ion-list>
+      <ion-item>
+        <ion-label position="stacked" color="primary">Üye isimi</ion-label>
+        <ion-input [(ngModel)]="newUser.UserName" name="userName" type="text" #username="ngModel" spellcheck="false" autocapitalize="off"
+          required>
+        </ion-input>
+      </ion-item>
+
+      <!-- <ion-text color="danger">
+        <p [hidden]="username.valid || submitted == false" class="ion-padding-start">
+          Üye isimi zorunludur.
+        </p>
+      </ion-text> -->
+
+      <ion-item>
+        <ion-label position="stacked" color="primary">Şifre</ion-label>
+        <ion-input [(ngModel)]="newUser.Password" name="password" type="password" #password="ngModel" required>
+        </ion-input>
+      </ion-item>
+
+      <!-- <ion-text color="danger">
+        <p [hidden]="password.valid || submitted == false" class="ion-padding-start">
+          Şifre zorunludur
+        </p>
+      </ion-text> -->
+
+      <ion-item>
+        <ion-label position="stacked" color="primary">Şifre (Tekrar)</ion-label>
+        <ion-input [(ngModel)]="newUser.Password2" name="password2" type="password" #password="ngModel" required>
+        </ion-input>
+      </ion-item>
+
+      <!-- <ion-text color="danger">
+        <p [hidden]="password2.valid || submitted == false" class="ion-padding-start">
+          Şifre zorunludur
+        </p>
+      </ion-text> -->
+
+      <ion-item>
+        <ion-label position="stacked" color="primary">İsim</ion-label>
+        <ion-input [(ngModel)]="newUser.FullName" name="fullName" type="text" #password="ngModel" required>
+        </ion-input>
+      </ion-item>
+
+      <!-- <ion-text color="danger">
+        <p [hidden]="fullName.valid || submitted == false" class="ion-padding-start">
+          İsim zorunludur
+        </p>
+      </ion-text> -->
+
+      <ion-item>
+        <ion-label position="stacked" color="primary">E-Mail</ion-label>
+        <ion-input [(ngModel)]="newUser.eMail" name="email" type="text" #password="ngModel" required>
+        </ion-input>
+      </ion-item>
+
+      <!-- <ion-text color="danger">
+        <p [hidden]="mailAddress.valid || submitted == false" class="ion-padding-start">
+          E-Mail zorunludur
+        </p>
+      </ion-text> -->
+    </ion-list>
+
+    <ion-row>
+      <ion-col>
+        <ion-button (click)="onSubmit(registerForm)" type="submit" expand="block">Oluştur</ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+
+</ion-content>
