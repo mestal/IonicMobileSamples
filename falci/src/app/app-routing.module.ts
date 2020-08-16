@@ -43,6 +43,14 @@ const routes: Routes = [
   {
     path: 'newUserConfirmation',
     loadChildren: () => import('./user/newUserConfirmation/newUserConfirmation.module').then( m => m.NewUserConfirmationModule)
+  },
+  {
+    path: 'forgatPassword',
+    loadChildren: () => import('./user/forgat-password/forgat-password.module').then( m => m.ForgatPasswordModule)
+  },
+  {
+    path: 'resetPassword',
+    loadChildren: () => import('./user/reset-password/reset-password.module').then( m => m.ResetPasswordModule)
   }
 ];
 

@@ -18,7 +18,7 @@
     <ion-list>
       <ion-item>
         <ion-label position="stacked" color="primary">Üye isimi</ion-label>
-        <ion-input [(ngModel)]="newUser.UserName" name="userName" type="text" #username="ngModel" spellcheck="false" autocapitalize="off"
+        <ion-input [(ngModel)]="newUser.UserName" name="userName" class="b1" type="text" #username="ngModel" spellcheck="false" autocapitalize="off"
           required>
         </ion-input>
       </ion-item>
@@ -43,7 +43,7 @@
 
       <ion-item>
         <ion-label position="stacked" color="primary">Şifre (Tekrar)</ion-label>
-        <ion-input [(ngModel)]="newUser.Password2" name="password2" type="password" #password="ngModel" required>
+        <ion-input [(ngModel)]="newUser.Password2" name="password2" type="password" #password2="ngModel" required>
         </ion-input>
       </ion-item>
 
@@ -55,7 +55,7 @@
 
       <ion-item>
         <ion-label position="stacked" color="primary">İsim</ion-label>
-        <ion-input [(ngModel)]="newUser.FullName" name="fullName" type="text" #password="ngModel" required>
+        <ion-input [(ngModel)]="newUser.FullName" name="fullName" type="text" #fullName="ngModel" required>
         </ion-input>
       </ion-item>
 
@@ -67,7 +67,7 @@
 
       <ion-item>
         <ion-label position="stacked" color="primary">E-Mail</ion-label>
-        <ion-input [(ngModel)]="newUser.eMail" name="email" type="text" #password="ngModel" required>
+        <ion-input [(ngModel)]="newUser.eMail" name="email" type="text" #email="ngModel" required>
         </ion-input>
       </ion-item>
 

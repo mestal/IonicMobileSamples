@@ -5,17 +5,17 @@ import { Router } from '@angular/router';
 import { UserData } from '../../providers/user-data';
 
 import { UserService } from 'src/app/services/user.service';
-import { NewUser } from 'src/app/interfaces/new-user';
+import { ForgatPassword } from 'src/app/interfaces/new-user';
 //import { UserService } from '../user.service';
 
 @Component({
-  selector: 'page-new-account',
-  templateUrl: 'new-account.html',
-  styleUrls: ['./new-account.scss'],
+  selector: 'page-forgat-password',
+  templateUrl: 'forgat-password.html',
+  styleUrls: ['./forgat-password.scss'],
 })
-export class NewAccountPage {
+export class ForgatPasswordPage {
   submitted = false;
-  newUser: NewUser = { UserName: '', Password: '', Password2: '', EMail: '', FullName: '' };
+  forgatPassword: ForgatPassword = { UserName: '', EMail: '' };
 
   constructor(
     public userData: UserData,
@@ -24,14 +24,17 @@ export class NewAccountPage {
   ) { }
 
   onSubmit(form: NgForm) {
-    this.service.register(form.value).subscribe(
+    this.service.forgatPassword(form.value).subscribe(
       (res: any) => {
-        
+        alert('Mail adresinize şifre yenileme linki gönderildi.');
       },
       err => {
         if (err.error != null && err.error.Message)
         {
           alert(err.error.Message);
+        }
+        else {
+          alert(JSON.stringify(err));
         }
       }
     );

@@ -17,7 +17,7 @@
   <form #loginForm="ngForm" novalidate>
     <ion-list>
       <ion-item>
-        <ion-label position="stacked" color="primary">Üye isimi</ion-label>
+        <ion-label position="stacked" color="primary">Üye isimi veya E-mail</ion-label>
         <ion-input [(ngModel)]="login.username" name="username" type="text" #username="ngModel" spellcheck="false" autocapitalize="off"
           required>
         </ion-input>
@@ -50,6 +50,11 @@
         <ion-button (click)="onSignup()" color="light" expand="block">Yeni Üye</ion-button>
       </ion-col>
     </ion-row>
+    
+    <ion-row>
+      <ion-col>
+        <ion-label position="stacked" color="primary" (click)="forgatPassword()">Şifremi unuttum</ion-label>
+      </ion-col>
+    </ion-row>
   </form>
-
 </ion-content>

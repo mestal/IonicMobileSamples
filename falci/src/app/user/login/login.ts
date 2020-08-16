@@ -67,6 +67,10 @@ export class LoginPage {
     this.router.navigateByUrl('/register');
   }
 
+  forgatPassword() {
+    this.router.navigateByUrl('/forgatPassword');
+  }
+
   // isLoggedIn(): boolean {
   //   return !!this.currentUser;
   // }
