@@ -7,5 +7,7 @@
     "FalStatus.Consumer.SubmittedByUser": "Gönderildi",
     "FalStatus.Consumer.SubmittedByFortuneTeller": "Bakıldı",
     "FalStatus.Falci.SubmittedByUser": "Yeni",
-    "FalStatus.Falci.SubmittedByFortuneTeller": "Bakıldı"
+    "FalStatus.Falci.SubmittedByFortuneTeller": "Bakıldı",
+    "Male": "Erkek",
+    "Female": "Kadın"
 }

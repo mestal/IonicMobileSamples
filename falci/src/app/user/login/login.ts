@@ -29,6 +29,7 @@ export class LoginPage {
   onLogin(form: NgForm) {
     this.service.login(form.value).subscribe(
       (res: any) => {
+        localStorage.setItem('userName', res.userName);
         localStorage.setItem('token', res.token);
         localStorage.setItem('role', res.role);
         if(res.role == "Falci")

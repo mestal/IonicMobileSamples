@@ -3,7 +3,7 @@
     <ion-menu contentId="main-content" type="overlay">
       <ion-content>
         <ion-list id="inbox-list">
-          <ion-list-header>Falcı</ion-list-header>
+          <ion-list-header>Falcım</ion-list-header>
           <!-- <ion-note>hi@ionicframework.com</ion-note> -->
 
           <ion-menu-toggle auto-hide="false">
@@ -31,14 +31,14 @@
               <ion-icon slot="start" [ios]="'heart-outline'" [md]="'heart-sharp'"></ion-icon>
               <ion-label>Fallarım</ion-label>
             </ion-item>
-            <ion-item *ngIf="isLoggedIn() == constants.userRoles.consumer" routerDirection="root" routerLink="/buyPoint" lines="none" detail="false" >
+            <!-- <ion-item *ngIf="isLoggedIn() == constants.userRoles.consumer" routerDirection="root" routerLink="/buyPoint" lines="none" detail="false" >
               <ion-icon slot="start" [ios]="'heart-outline'" [md]="'heart-sharp'"></ion-icon>
               <ion-label>Puan Satın Al</ion-label>
-            </ion-item>
-            <ion-item *ngIf="isLoggedIn()" routerDirection="root" routerLink="/incomingMessages" lines="none" detail="false" >
+            </ion-item> -->
+            <!-- <ion-item *ngIf="isLoggedIn()" routerDirection="root" routerLink="/incomingMessages" lines="none" detail="false" >
               <ion-icon slot="start" [ios]="'mail'" [md]="'mail'"></ion-icon>
               <ion-label>Gelen Mesajlar</ion-label>
-            </ion-item>
+            </ion-item> -->
             <ion-item *ngIf="isLoggedIn()" routerDirection="root" routerLink="/myAccount" lines="none" detail="false" >
               <ion-icon slot="start" [ios]="'heart-outline'" [md]="'heart-sharp'"></ion-icon>
               <ion-label>Üyelik Bilgilerim</ion-label>

@@ -46,8 +46,8 @@ export class UserService {
     return this.http.post(this.BaseURI + 'User/Login', formData);
   }
 
-  getEmployee(formData) {
-    return this.http.post(this.BaseURI + 'GetEmployee', formData);
+  getConsumerUserInfo(userName) {
+    return this.http.get(this.BaseURI + 'User/GetConsumerUserInfo?userName=' + userName);
   }
 
   forgatPassword(formData) {
