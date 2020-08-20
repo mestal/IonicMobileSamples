@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FortuneTellingService } from 'src/app/services/fortuneTelling.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'page-fal-list',
@@ -11,7 +12,7 @@ export class FalListPage {
   pageIndex;
   hasNextPage: false;
 
-  constructor(public fortuneTellingService: FortuneTellingService) {}
+  constructor(public fortuneTellingService: FortuneTellingService, private router: Router) {}
 
   ionViewDidEnter() {
     this.loadItems(null);
@@ -44,6 +45,15 @@ export class FalListPage {
       {
         scrollEvent.target.complete();
       }
+    },
+    err => {
+      if (err.error != null && err.error.Message)
+      {
+        alert(err.error.Message);
+      }
+      else {
+        alert(JSON.stringify(err));
+      }
     });
   }
 
@@ -55,5 +65,9 @@ export class FalListPage {
     else {
       event.target.complete();
     }
+  }
+
+  cardClicked(fal: any) {
+    this.router.navigate(['/falDetail', { id: fal.id }]);
   }
 }

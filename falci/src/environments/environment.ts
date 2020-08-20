@@ -10,6 +10,7 @@ export const environment = {
     getFortuneTellers: 'FortuneTelling/GetFortuneTellers',
     getActiveFortuneTellers: 'FortuneTelling/GetActiveFortuneTellers',
     getFortuneTellings: 'FortuneTelling/GetUserItems',
+    getFortuneTelling: 'FortuneTelling/GetFortuneTellingById',
     getFeeds: 'Feed/GetFeeds',
     getSurvey: 'Feed/GetSurvey',
     getNews: 'Feed/GetNews',

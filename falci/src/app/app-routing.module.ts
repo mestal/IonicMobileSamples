@@ -55,6 +55,10 @@ const routes: Routes = [
   {
     path: 'myAccount',
     loadChildren: () => import('./user/my-account/my-account.module').then( m => m.MyAccountModule)
+  },
+  {
+    path: 'falDetail',
+    loadChildren: () => import('./fal/fal-detail/fal-detail.module').then( m => m.FalDetailModule)
   }
 ];
 

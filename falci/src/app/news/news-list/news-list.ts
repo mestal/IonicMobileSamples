@@ -51,6 +51,15 @@ export class NewsListPage {
       {
         scrollEvent.target.complete();
       }
+    },
+    err => {
+      if (err.error != null && err.error.Message)
+      {
+        alert(err.error.Message);
+      }
+      else {
+        alert(JSON.stringify(err));
+      }
     });
   }
 
