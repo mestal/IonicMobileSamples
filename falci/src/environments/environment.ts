@@ -11,6 +11,7 @@ export const environment = {
     getActiveFortuneTellers: 'FortuneTelling/GetActiveFortuneTellers',
     getFortuneTellings: 'FortuneTelling/GetUserItems',
     getFortuneTelling: 'FortuneTelling/GetFortuneTellingById',
+    getFortuneTeller: 'FortuneTelling/GetFortuneTeller',
     getFeeds: 'Feed/GetFeeds',
     getSurvey: 'Feed/GetSurvey',
     getNews: 'Feed/GetNews',

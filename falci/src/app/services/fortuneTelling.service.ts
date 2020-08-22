@@ -24,4 +24,8 @@ export class FortuneTellingService {
   submitFortuneTelling(data: any) {
     return this.http.post(environment.baseUrl + environment.apiUrls.submitCoffeeFortuneTelling, data);
   }
+
+  getFortuneTeller(id: any) {
+    return this.http.get(environment.baseUrl + environment.apiUrls.getFortuneTeller + "?id=" + id);
+  }
 }

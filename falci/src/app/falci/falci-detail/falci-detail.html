@@ -4,57 +4,30 @@
       <ion-buttons slot="start">
         <ion-back-button defaultHref="/falcilist"></ion-back-button>
       </ion-buttons>
-      <!-- <ion-buttons *ngIf="fal" slot="end">
-        <ion-button (click)="openContact(fal)">
-          <ion-icon slot="icon-only" ios="call-outline" md="call-sharp"></ion-icon>
-        </ion-button>
-        <ion-button (click)="openFalShare(fal)">
-          <ion-icon slot="icon-only" ios="share-outline" md="share-sharp"></ion-icon>
-        </ion-button>
-      </ion-buttons> -->
     </ion-toolbar>
   </ion-header>
 
-    
-  <!-- <div class="fal-background">
-    <img [src]="fal?.profilePic" [alt]="fal?.name">
-    <h2>{{fal.name}}</h2>
-  </div> -->
-
   <div class="falci-background">
-    <img [src]="falci?.profilePic" [alt]="falci?.name"><br>
+    <img *ngIf="falci != null" [src]="environment.urlForAssets + constants.folderForProfilePictures + falci.picturePath" [alt]="falci?.name"><br>
   </div>
 
-  <div class="ion-padding falci-detail">
-    <div style="text-align: center;"><b>{{falci?.name}}</b></div>
+  <div class="ion-padding falci-detail" *ngIf="falci != null">
+    <div style="text-align: center;"><b>{{ falci?.name }}</b></div>
     <br>
-    <div style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+    <div style="display: block; margin-left: auto; margin-right: auto; width: 100%;">
       <table>
         <tr>
+          <td style="text-align: center;">{{falci?.fullName}} ({{ falci?.connectionStatus }})</td>
+        </tr>
+        <tr>
           <td>Baktığı fal sayısı:</td>
-          <td style="text-align: center;">{{falci?.falCount}}</td>
+          <td style="text-align: center;">{{ falci?.coffeFortuneTellingCount }}</td>
         </tr>
         <tr>
           <td>Fal jeton sayısı: </td>
-          <td style="text-align: center;">{{falci?.falPrice}}</td>
+          <td style="text-align: center;">{{ falci?.coffeePointPrice }}</td>
         </tr>
       </table>
     </div>
-    
   </div>
-
-  <!-- <ion-chip color="twitter" button (click)="openExternalUrl('https://twitter.com/' + fal.twitter)">
-    <ion-icon name="logo-twitter"></ion-icon>
-    <ion-label>Twitter</ion-label>
-  </ion-chip>
-
-  <ion-chip color="dark" button (click)="openExternalUrl('https://github.com/ionic-team/ionic')">
-    <ion-icon name="logo-github"></ion-icon>
-    <ion-label>GitHub</ion-label>
-  </ion-chip>
-
-  <ion-chip color="instagram" button (click)="openExternalUrl('https://instagram.com/ionicframework')">
-    <ion-icon name="logo-instagram"></ion-icon>
-    <ion-label>Instagram</ion-label>
-  </ion-chip> -->
 </ion-content>

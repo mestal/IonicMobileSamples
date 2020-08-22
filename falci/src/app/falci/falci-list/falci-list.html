@@ -17,11 +17,11 @@
   <ion-grid fixed>
     <ion-row>
       <ion-col size="12" size-md="6" *ngFor="let falci of fortuneTellers">
-        <ion-card class="falci-card">
+        <ion-card class="falci-card" (click)="cardClicked(falci)">
           <ion-card-header>
-            <ion-item detail="false" lines="none" class="fal-item" routerLink="/falci-detail/{{falci.id}}">
+            <ion-item detail="false" lines="none" class="fal-item">
               <ion-avatar slot="start">
-                <img [src]="environment.urlForAssets + constants.folderForProfilePictures + 'Mert02.png'" [alt]="falci.name">
+                <img [src]="environment.urlForAssets + constants.folderForProfilePictures + falci.picturePath" [alt]="falci.name">
               </ion-avatar>
               <ion-label>
                 <h2>{{falci.fullName}}</h2>
@@ -29,15 +29,6 @@
               </ion-label>
             </ion-item>
           </ion-card-header>
-
-          <!-- <ion-card-content>
-              <ion-item detail="false" routerLink="/fal-detail/{{fal.id}}">
-                <ion-label>
-                  <h3>About {{fal.name + " - " + fal.id}}</h3>
-                </ion-label>
-              </ion-item>
-            </ion-list>
-          </ion-card-content> -->
         </ion-card>
       </ion-col>
     </ion-row>

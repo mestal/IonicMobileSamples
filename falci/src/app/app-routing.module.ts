@@ -59,6 +59,10 @@ const routes: Routes = [
   {
     path: 'falDetail',
     loadChildren: () => import('./fal/fal-detail/fal-detail.module').then( m => m.FalDetailModule)
+  },
+  {
+    path: 'falciDetail',
+    loadChildren: () => import('./falci/falci-detail/falci-detail.module').then( m => m.FalciDetailModule)
   }
 ];
 
