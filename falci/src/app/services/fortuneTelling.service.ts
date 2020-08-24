@@ -13,6 +13,10 @@ export class FortuneTellingService {
     return this.http.post(environment.baseUrl + environment.apiUrls.getFortuneTellings, data);
   }
 
+  getFalciFortuneTellings(data: any) {
+    return this.http.post(environment.baseUrl + environment.apiUrls.getFalciFortuneTellings, data);
+  }
+
   getFortuneTelling(id: any) {
     return this.http.get(environment.baseUrl + environment.apiUrls.getFortuneTelling + "?id=" + id);
   }

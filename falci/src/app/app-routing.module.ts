@@ -29,6 +29,10 @@ const routes: Routes = [
     loadChildren: () => import('./fal/fal-list/fal-list.module').then( m => m.FalListModule)
   },
   {
+    path: 'fortuneTellerFals',
+    loadChildren: () => import('./falci/fal/fal-list/fal-list.module').then( m => m.FalListModule)
+  },
+  {
     path: 'survey',
     loadChildren: () => import('./news/survey-detail/survey-detail.module').then( m => m.SurveyDetailModule)
   },

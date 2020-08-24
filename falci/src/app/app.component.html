@@ -27,9 +27,13 @@
               <ion-icon slot="start" [ios]="'heart-outline'" [md]="'heart-sharp'"></ion-icon>
               <ion-label>Yeni Fal</ion-label>
             </ion-item> -->
-            <ion-item *ngIf="isLoggedIn()" routerDirection="root" routerLink="/myFals" lines="none" detail="false" >
+            <ion-item *ngIf="isLoggedIn()=='Consumer'" routerDirection="root" routerLink="/myFals" lines="none" detail="false" >
               <ion-icon slot="start" [ios]="'heart-outline'" [md]="'heart-sharp'"></ion-icon>
               <ion-label>Fallarım</ion-label>
+            </ion-item>
+            <ion-item *ngIf="isLoggedIn()=='Falci'" routerDirection="root" routerLink="/fortuneTellerFals" lines="none" detail="false" >
+              <ion-icon slot="start" [ios]="'heart-outline'" [md]="'heart-sharp'"></ion-icon>
+              <ion-label>Gelen Fallar</ion-label>
             </ion-item>
             <!-- <ion-item *ngIf="isLoggedIn() == constants.userRoles.consumer" routerDirection="root" routerLink="/buyPoint" lines="none" detail="false" >
               <ion-icon slot="start" [ios]="'heart-outline'" [md]="'heart-sharp'"></ion-icon>

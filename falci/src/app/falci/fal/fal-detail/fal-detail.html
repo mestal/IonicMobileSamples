@@ -1,0 +1,21 @@
+<ion-content class="fal-detail">
+  <ion-header class="ion-no-border">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/myFals"></ion-back-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <div class="fal-background">
+  </div>
+
+  <div class="ion-padding fal-detail">
+    <b>Durum: </b>{{'FalStatus.Consumer.' + fal?.status | translate}}<br>
+    <b>Gönderme tarihi: </b>{{fal?.submitDateUtc}}<br>
+    <b>Yorum tarihi: </b>{{fal?.submitByFortuneTellerDateUtc}}<br>
+    <b>Konu: </b>{{'Type.' + fal?.type | translate}}<br>
+    <b>Falcı: </b>{{fal?.user?.fullName}}<br>
+    <b>Yorum: </b><br>
+    <div class="text-pre-wrap" style="text-align: center;">{{fal?.fortuneTellerComment}}</div><br>
+  </div>
+</ion-content>

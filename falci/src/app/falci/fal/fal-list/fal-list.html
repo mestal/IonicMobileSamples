@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Fallarım</ion-title>
+    <ion-title>Gelen Fallar</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -23,7 +23,7 @@
               <ion-label>
                 <p>{{ 'Type.' + fal.type | translate }}</p>
                 <p>{{ 'FalStatus.Consumer.' + fal.status | translate }}</p>
-                <p>{{ fal.fortuneTeller.fullName }}</p>
+                <p>{{ fal.user.fullName }}</p>
                 <p>{{fal.submitDateUtc}}</p>
               </ion-label>
             </ion-item>
@@ -36,5 +36,5 @@
     <ion-infinite-scroll-content>
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
-  <ion-button class="fixedbutton" routerLink="/newfal" shape="round">+</ion-button>
+  <!-- <ion-button class="fixedbutton" routerLink="/newfal" shape="round">+</ion-button> -->
 </ion-content>
