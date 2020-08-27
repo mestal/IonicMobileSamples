@@ -16,7 +16,10 @@ export const environment = {
     getFeeds: 'Feed/GetFeeds',
     getSurvey: 'Feed/GetSurvey',
     getNews: 'Feed/GetNews',
-    submitCoffeeFortuneTelling: 'FortuneTelling/SubmitCoffeeFortuneTelling'
+    submitCoffeeFortuneTelling: 'FortuneTelling/SubmitCoffeeFortuneTelling',
+    submitByFortuneTeller: 'FortuneTelling/SubmitByFortuneTeller'
+
+    
   },
   feedsPageSize: 10
 };

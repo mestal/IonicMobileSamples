@@ -32,4 +32,8 @@ export class FortuneTellingService {
   getFortuneTeller(id: any) {
     return this.http.get(environment.baseUrl + environment.apiUrls.getFortuneTeller + "?id=" + id);
   }
+
+  submitByFortuneTeller(data: any) {
+    return this.http.post(environment.baseUrl + environment.apiUrls.submitByFortuneTeller, data);
+  }
 }

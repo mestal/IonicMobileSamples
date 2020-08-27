@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { FormsModule } from '@angular/forms';
 import { FalDetailPage } from './fal-detail';
 import { FalDetailPageRoutingModule } from './fal-detail-routing.module';
 import { IonicModule } from '@ionic/angular';
@@ -11,7 +11,8 @@ import { TranslateModule } from '@ngx-translate/core';
     CommonModule,
     IonicModule,
     FalDetailPageRoutingModule,
-    TranslateModule
+    TranslateModule,
+    FormsModule
   ],
   declarations: [
     FalDetailPage,

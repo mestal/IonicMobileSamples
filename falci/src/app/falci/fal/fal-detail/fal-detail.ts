@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ActionSheetController } from '@ionic/angular';
 import { FortuneTellingService } from 'src/app/services/fortuneTelling.service';
+import { constants } from '../../../constants';
+import { NgForm } from '@angular/forms';
+import { SubmitFortuneTellerComment } from '../../../interfaces/submitFortuneTellerComment';
 
 @Component({
   selector: 'page-fal-detail-for-falci',
@@ -10,6 +13,8 @@ import { FortuneTellingService } from 'src/app/services/fortuneTelling.service';
 })
 export class FalDetailPage implements OnInit {
   fal: any;
+  constants = constants;
+  submitFortuneTellerComment: SubmitFortuneTellerComment = { comment: '', fortuneTellingId: '' };
 
   constructor(
     private route: ActivatedRoute,
@@ -24,7 +29,14 @@ export class FalDetailPage implements OnInit {
     });
   }
 
-  ionViewWillEnter() {
-
+  submitComment(form: NgForm) {
+    form.value.fortuneTellingId = this.fal.id;
+    this.fortuneTellingService.submitByFortuneTeller(form.value).subscribe((result: any) => {
+        alert('done');
+      },
+      error => {
+        alert(JSON.stringify(error));
+      }
+    );
   }
 }

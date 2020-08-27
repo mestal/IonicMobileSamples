@@ -12,5 +12,10 @@ export const constants = {
     folderForSurveyPictures: 'Assets/SurveyPictures/',
     folderForSurveyVideos: 'Assets/SurveyVideos/',
     feedTypeNews: 'BackendSocialApp.Domain.Models.News',
-    feedTypeSurvey: 'BackendSocialApp.Domain.Models.Survey'
+    feedTypeSurvey: 'BackendSocialApp.Domain.Models.Survey',
+    fortuneTellingStatuses: {
+        Draft: 'Draft',
+        SubmittedByUser: 'SubmittedByUser',
+        SubmittedByFortuneTeller: 'SubmittedByFortuneTeller'
+    }
 }

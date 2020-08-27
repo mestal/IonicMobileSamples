@@ -68,6 +68,6 @@ export class FalListPage {
   }
 
   cardClicked(fal: any) {
-    this.router.navigate(['/falDetail', { id: fal.id }]);
+    this.router.navigate(['/falDetailForFalci', { id: fal.id }]);
   }
 }
