@@ -6,8 +6,25 @@
       </ion-buttons>
     </ion-toolbar>
   </ion-header>
-  <div class="fal-background">
-  </div>
+
+  <ion-grid fixed *ngIf="fal != null && fal.pictures != null && fal.pictures.length > 0">
+    <ion-row>
+      <ion-col size="3" size-md="2" *ngFor="let falImage of fal.pictures;let indexOfElement = index;">
+        <ion-card>
+          <ion-card-content>
+            <span (click)="imageSelected(indexOfElement)">
+              <img  
+                [src]="environment.urlForAssets + constants.folderForCoffeeFortuneTellingsPictures + falImage"
+                [ngClass]="{ 'selectedImage' : indexOfElement == activeImageIndex }"
+              />
+            </span>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <img *ngIf="fal != null && fal.pictures != null && fal.pictures.length > 0" [src]="environment.urlForAssets + constants.folderForCoffeeFortuneTellingsPictures + fal.pictures[activeImageIndex]" />
+  <br>
 
   <div class="ion-padding fal-detail" *ngIf="fal">
     <b>Durum: </b>{{'FalStatus.Falci.' + fal.status | translate}}<br>

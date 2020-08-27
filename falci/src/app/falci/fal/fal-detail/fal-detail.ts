@@ -5,6 +5,7 @@ import { FortuneTellingService } from 'src/app/services/fortuneTelling.service';
 import { constants } from '../../../constants';
 import { NgForm } from '@angular/forms';
 import { SubmitFortuneTellerComment } from '../../../interfaces/submitFortuneTellerComment';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'page-fal-detail-for-falci',
@@ -13,8 +14,10 @@ import { SubmitFortuneTellerComment } from '../../../interfaces/submitFortuneTel
 })
 export class FalDetailPage implements OnInit {
   fal: any;
+  activeImageIndex = 0;
   constants = constants;
   submitFortuneTellerComment: SubmitFortuneTellerComment = { comment: '', fortuneTellingId: '' };
+  environment = environment;
 
   constructor(
     private route: ActivatedRoute,
@@ -38,5 +41,9 @@ export class FalDetailPage implements OnInit {
         alert(JSON.stringify(error));
       }
     );
+  }
+
+  imageSelected(indexOfElement) {
+    this.activeImageIndex = indexOfElement;
   }
 }

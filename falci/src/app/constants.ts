@@ -11,6 +11,7 @@ export const constants = {
     folderForNewsVideos: 'Assets/NewsVideos/',
     folderForSurveyPictures: 'Assets/SurveyPictures/',
     folderForSurveyVideos: 'Assets/SurveyVideos/',
+    folderForCoffeeFortuneTellingsPictures: 'Assets/CoffeeFortuneTellingPictures/',
     feedTypeNews: 'BackendSocialApp.Domain.Models.News',
     feedTypeSurvey: 'BackendSocialApp.Domain.Models.Survey',
     fortuneTellingStatuses: {
