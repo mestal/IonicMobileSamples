@@ -18,3 +18,9 @@ export interface NewUser {
     Email: string;
     Token: string;
   }
+
+  export interface ChangePassword {
+    NewPassword: string;
+    NewPassword2: string;
+    CurrentPassword: string;
+  }

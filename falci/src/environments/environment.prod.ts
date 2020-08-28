@@ -10,10 +10,14 @@ export const environment = {
     getFortuneTellers: 'FortuneTelling/GetFortuneTellers',
     getActiveFortuneTellers: 'FortuneTelling/GetActiveFortuneTellers',
     getFortuneTellings: 'FortuneTelling/GetUserItems',
+    getFalciFortuneTellings: 'FortuneTelling/GetFortuneTellerItems',
+    getFortuneTelling: 'FortuneTelling/GetFortuneTellingById',
+    getFortuneTeller: 'FortuneTelling/GetFortuneTeller',
     getFeeds: 'Feed/GetFeeds',
     getSurvey: 'Feed/GetSurvey',
     getNews: 'Feed/GetNews',
-    submitCoffeeFortuneTelling: 'FortuneTelling/SubmitCoffeeFortuneTelling'
+    submitCoffeeFortuneTelling: 'FortuneTelling/SubmitCoffeeFortuneTelling',
+    submitByFortuneTeller: 'FortuneTelling/SubmitByFortuneTeller'
   },
   feedsPageSize: 10
 };

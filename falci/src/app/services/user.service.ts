@@ -57,5 +57,8 @@ export class UserService {
   resetPassword(formData) {
     return this.http.post(this.BaseURI + 'User/ResetPassword', formData);
   }
-  
+
+  changePassword(formData) {
+    return this.http.post(this.BaseURI + 'User/ChangePassword', formData);
+  }
 }

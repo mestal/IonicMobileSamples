@@ -71,7 +71,11 @@ const routes: Routes = [
   {
     path: 'falciDetail',
     loadChildren: () => import('./falci/falci-detail/falci-detail.module').then( m => m.FalciDetailModule)
-  }
+  },
+  {
+    path: 'changePassword',
+    loadChildren: () => import('./user/change-password/change-password.module').then( m => m.ChangePasswordModule)
+  },
 ];
 
 @NgModule({
