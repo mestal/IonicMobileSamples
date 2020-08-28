@@ -7,7 +7,7 @@
     </ion-toolbar>
   </ion-header>
 
-  <div class="falci-background">
+  <div>
     <img *ngIf="falci != null" [src]="environment.urlForAssets + constants.folderForProfilePictures + falci.picturePath" [alt]="falci?.name"><br>
   </div>
 
@@ -24,7 +24,7 @@
           <td style="text-align: center;">{{ falci?.coffeFortuneTellingCount }}</td>
         </tr>
         <tr>
-          <td>Fal jeton sayısı: </td>
+          <td>Fal puanı: </td>
           <td style="text-align: center;">{{ falci?.coffeePointPrice }}</td>
         </tr>
       </table>

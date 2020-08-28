@@ -33,6 +33,9 @@ export class NewAccountPage {
         {
           alert(err.error.Message);
         }
+        else {
+          alert(JSON.stringify(err));
+        }
       }
     );
   }

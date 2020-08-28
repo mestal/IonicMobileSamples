@@ -29,6 +29,9 @@ export class ChangePasswordPage {
         {
           alert(err.error.Message);
         }
+        else {
+          alert(JSON.stringify(err));
+        }
       }
     );
   }

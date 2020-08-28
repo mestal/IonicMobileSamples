@@ -37,8 +37,14 @@ export class FalDetailPage implements OnInit {
     this.fortuneTellingService.submitByFortuneTeller(form.value).subscribe((result: any) => {
         alert('done');
       },
-      error => {
-        alert(JSON.stringify(error));
+      err => {
+        if (err.error != null && err.error.Message)
+        {
+          alert(err.error.Message);
+        }
+        else {
+          alert(JSON.stringify(err));
+        }
       }
     );
   }

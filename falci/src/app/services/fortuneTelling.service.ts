@@ -30,7 +30,10 @@ export class FortuneTellingService {
   }
 
   getFortuneTeller(id: any) {
-    return this.http.get(environment.baseUrl + environment.apiUrls.getFortuneTeller + "?id=" + id);
+      return this.http.get(environment.baseUrl + environment.apiUrls.getFortuneTeller + "?id=" + id);
+  }
+  getFortuneTellerByName(userName: any) {
+    return this.http.get(environment.baseUrl + environment.apiUrls.getFortuneTeller + "?userName=" + userName);
   }
 
   submitByFortuneTeller(data: any) {

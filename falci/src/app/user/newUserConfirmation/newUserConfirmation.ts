@@ -32,8 +32,14 @@ export class NewUserConfirmationPage {
     this.service.confirmNewUser(payload).subscribe((result: any) => {
       this.message = "Üye aktifleştirildi.";
     },
-    error => {
-      this.message = JSON.stringify(error);
+    err => {
+      if (err.error != null && err.error.Message)
+      {
+        alert(err.error.Message);
+      }
+      else {
+        alert(JSON.stringify(err));
+      }
     });
   }
 }

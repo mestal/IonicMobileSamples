@@ -101,8 +101,14 @@ export class NewFalPage implements OnInit {
         console.log('done');
         alert('done');
       },
-      error => {
-        alert(JSON.stringify(error));
+      err => {
+        if (err.error != null && err.error.Message)
+        {
+          alert(err.error.Message);
+        }
+        else {
+          alert(JSON.stringify(err));
+        }
       }
     );
   }

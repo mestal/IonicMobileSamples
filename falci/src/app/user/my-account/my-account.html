@@ -6,13 +6,12 @@
       </ion-buttons>
     </ion-toolbar>
   </ion-header>
-  
+
   <div>
-    <img *ngIf="userInfo?.pictuerPath" [src]="userInfo?.pictuerPath" [alt]="userInfo?.userName"><br>
+    <img *ngIf="userInfo?.picturePath != null" [src]="environment.urlForAssets + constants.folderForProfilePictures + userInfo?.picturePath"><br>
   </div>
 
-  <div class="ion-padding my-account-detail">
-
+  <div class="ion-padding my-account-detail" *ngIf="role == constants.userRoles.consumer">
     <div style="text-align: center;"><b>{{userInfo?.userName}}</b></div>
     <br>
     <div style="text-align: center;">İsim: <b>{{userInfo?.fullName}}</b></div>
@@ -20,15 +19,23 @@
     <div style="text-align: center;">Email: <b>{{userInfo?.email}}</b></div>
     <br>
     <div style="text-align: center;">Cinsiyet: <b>{{userInfo?.gender | translate}}</b></div>
+    <br>
+    <div style="text-align: center;">Puan: <b>{{userInfo?.point}}</b></div>
   </div>
 
-  <div style="text-align: center;">Puan: <b>{{userInfo?.point}}</b>
+  <div class="ion-padding my-account-detail" *ngIf="role == constants.userRoles.falci">
+    <div style="text-align: center;"><b>{{userName}}</b></div>
+    <br>
+    <div style="text-align: center;">İsim: <b>{{userInfo?.fullName}}</b></div>
+    <br>
+    <div style="text-align: center;">Fal sayısı: <b>{{userInfo?.coffeFortuneTellingCount}}</b></div>
+    <br>
+    <div style="text-align: center;">Fal puanı: <b>{{userInfo?.coffeePointPrice}}</b></div>
+    <br>
   </div>
 
   <div style="text-align: center;">
-    <ion-button>Profil Fotoğrafı Değiştir</ion-button>
+    <!-- <ion-button>Profil Fotoğrafı Değiştir</ion-button> -->
     <ion-button routerLink="/changePassword">Şifre Değiştir</ion-button>
   </div>
-
-
 </ion-content>
