@@ -61,4 +61,8 @@ export class UserService {
   changePassword(formData) {
     return this.http.post(this.BaseURI + 'User/ChangePassword', formData);
   }
+
+  updateProfilePhoto(formData) {
+    return this.http.post(this.BaseURI + 'User/UpdateProfilePhoto', formData);
+  }
 }

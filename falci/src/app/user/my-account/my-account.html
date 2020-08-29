@@ -8,7 +8,8 @@
   </ion-header>
 
   <div>
-    <img *ngIf="userInfo?.picturePath != null" [src]="environment.urlForAssets + constants.folderForProfilePictures + userInfo?.picturePath"><br>
+    <img *ngIf="profilePicture == null && userInfo?.picturePath != null" [src]="environment.urlForAssets + constants.folderForProfilePictures + userInfo?.picturePath"><br>
+    <img *ngIf="profilePicture != null" [src]="profilePicture"><br>
   </div>
 
   <div class="ion-padding my-account-detail" *ngIf="role == constants.userRoles.consumer">
@@ -35,7 +36,7 @@
   </div>
 
   <div style="text-align: center;">
-    <!-- <ion-button>Profil Fotoğrafı Değiştir</ion-button> -->
+    <ion-button (click)="loadImage()">Profil Fotoğrafı Değiştir</ion-button>
     <ion-button routerLink="/changePassword">Şifre Değiştir</ion-button>
   </div>
 </ion-content>
