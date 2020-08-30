@@ -61,23 +61,6 @@
       <ion-icon slot="start" [md]="'chatbox-ellipses-outline'"></ion-icon>{{survey.commentCount}}
     </div>
     <br>
-    <div>
-      <b>Yorum Yaz</b>
-      <div class="text-pre-wrap" style="text-align: center;">
-        <form #submitCommentForm="ngForm" novalidate>
-          <ion-textarea name="comment" [(ngModel)]="enteredComment" #comment="ngModel" rows="6" cols="20" placeholder="Yorumunuzu buraya yazın..." style="background:#fdf7ad;border-radius:15px"></ion-textarea>
-          <ion-button class="fixedbutton" (click)="submitComment(submitCommentForm)" shape="round">Gönder</ion-button>
-        </form>
-      </div>
-    </div>
-    <div>
-      <b>Yorumlar</b>
-    </div>
-    <div *ngIf="hasMoreComments">
-      <span (click)="loadPreviousComments()">Önceki yorumları gör</span>
-    </div>
-    <div *ngFor="let comment of comments" style="padding-bottom: 30px;">
-      <div><b>{{ comment.user.fullName }} - </b>{{ comment.comment }}</div>
-    </div>
+    <comment-component [feed-id]="surveyId" [user-full-name]="userFullName"></comment-component>
   </div>
 </ion-content>

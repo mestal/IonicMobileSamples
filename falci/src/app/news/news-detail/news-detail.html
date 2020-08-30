@@ -37,11 +37,6 @@
       <ion-icon slot="start" [md]="'chatbox-ellipses-outline'"></ion-icon>{{news.commentCount}}
     </div>
     <br>
-    <div>
-      Yorumlar
-    </div>
-    <div *ngFor="let comment of comments" style="padding-bottom: 30px;">
-      <div><b>{{ comment.user.fullName }} - </b>{{ comment.comment }}</div>
-    </div>
+    <comment-component [feed-id]="newsId" [user-full-name]="userFullName"></comment-component>
   </div>
 </ion-content>

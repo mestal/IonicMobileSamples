@@ -14,8 +14,8 @@ export class NewsDetailPage {
   news: any;
   constants = constants;
   environment = environment;
-  commentsPageNumber = 1;
-  comments: any[] = [];
+  userFullName: string;
+  newsId: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -24,18 +24,10 @@ export class NewsDetailPage {
   ) {}
 
   ngOnInit() {
-    const newsId = this.route.snapshot.paramMap.get('id');
-    this.feedService.getNews(newsId).subscribe((news: any) => {
+    this.newsId = this.route.snapshot.paramMap.get('id');
+    this.userFullName = localStorage.getItem('fullName');
+    this.feedService.getNews(this.newsId).subscribe((news: any) => {
       this.news = news;
     });
-
-    this.feedService.getComments(newsId, this.commentsPageNumber)
-      .subscribe((comments: any) => {
-        this.comments.push(comments);
-      });
-  }
-
-  ionViewWillEnter() {
-
   }
 }
