@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FeedService } from 'src/app/services/feed.service';
 import { NgForm } from '@angular/forms';
+import { SortByPipe } from '../sort-by-pipe';
 
 @Component({
   selector: 'comment-component',
@@ -12,13 +13,14 @@ export class CommentComponent implements OnInit {
   @Input('feed-id') feedId: string; 
   @Input('user-full-name') userFullName: string; 
   
-  commentsPageNumber = 0;
+  commentsPageNumber = 1;
   comments: any[] = [];
   hasMoreComments = false;
   enteredComment: string;
 
   constructor(
-    public feedService: FeedService
+    public feedService: FeedService,
+    private sortByPipe: SortByPipe
   ) {}
 
   ngOnInit() {
@@ -26,9 +28,11 @@ export class CommentComponent implements OnInit {
       .subscribe((comments: any) => {
         for(var i = 0; i < comments.items.length; i++)
         {
+          comments.items[i].createDate = new Date(comments.items[i].createDate);
           this.comments.push(comments.items[i]);
         }
         this.hasMoreComments = comments.hasNextPage;
+        this.comments = this.sortByPipe.transform(this.comments, 'asc', 'createDate');
       });
   }
 
@@ -38,9 +42,11 @@ export class CommentComponent implements OnInit {
       .subscribe((comments: any) => {
         for(var i = 0; i < comments.items.length; i++)
         {
+          comments.items[i].createDate = new Date(comments.items[i].createDate);
           this.comments.push(comments.items[i]);
         }
         this.hasMoreComments = comments.hasNextPage;
+        this.comments = this.sortByPipe.transform(this.comments, 'asc', 'createDate');
       });
   }
 
@@ -53,7 +59,7 @@ export class CommentComponent implements OnInit {
           user: {
             fullName: this.userFullName
           },
-          createDate: ''
+          createDate: new Date()
         });
         this.enteredComment = '';
       },
