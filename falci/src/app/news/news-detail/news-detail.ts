@@ -14,6 +14,8 @@ export class NewsDetailPage {
   news: any;
   constants = constants;
   environment = environment;
+  commentsPageNumber = 1;
+  comments: any[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -26,6 +28,11 @@ export class NewsDetailPage {
     this.feedService.getNews(newsId).subscribe((news: any) => {
       this.news = news;
     });
+
+    this.feedService.getComments(newsId, this.commentsPageNumber)
+      .subscribe((comments: any) => {
+        this.comments.push(comments);
+      });
   }
 
   ionViewWillEnter() {

@@ -20,4 +20,26 @@ export class FeedService {
   getNews(newsId: any) {
     return this.http.get(environment.baseUrl + environment.apiUrls.getNews + '?newsId=' + newsId);
   }
+
+  getComments(newsId: any, pageId: any) {
+    var data = {
+      Args: {
+        PageIndex: pageId,
+        PageSize: 5,
+        PagingStrategy: 1,
+        FilteringOptions: [
+            {
+                Field: "RefId",
+                Value: newsId
+            }
+        ]
+      }
+    };
+
+    return this.http.post(environment.baseUrl + environment.apiUrls.getComments, data);
+  }
+
+  submitComment(data: any) {
+    return this.http.post(environment.baseUrl + environment.apiUrls.submitComment, data);
+  }
 }

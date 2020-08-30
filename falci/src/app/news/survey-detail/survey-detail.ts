@@ -5,6 +5,7 @@ import { ActionSheetController } from '@ionic/angular';
 import { FeedService } from 'src/app/services/feed.service';
 import { constants } from 'src/app/constants';
 import { environment } from 'src/environments/environment';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'page-survey-detail',
@@ -15,6 +16,11 @@ export class SurveyDetailPage implements OnInit {
   survey: any;
   constants = constants;
   environment = environment;
+  commentsPageNumber = 1;
+  comments: any[] = [];
+  hasMoreComments = false;
+  userFullName: string;
+  enteredComment: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -24,10 +30,21 @@ export class SurveyDetailPage implements OnInit {
 
   
   ngOnInit() {
+    this.userFullName = localStorage.getItem('fullName');
     const surveyId = this.route.snapshot.paramMap.get('id');
     this.feedService.getSurvey(surveyId).subscribe((survey: any) => {
       this.survey = survey;
     });
+
+    this.feedService.getComments(surveyId, this.commentsPageNumber)
+      .subscribe((comments: any) => {
+        for(var i = 0; i < comments.items.length; i++)
+        {
+          this.comments.push(comments.items[i]);
+        }
+        this.hasMoreComments = comments.hasNextPage;
+
+      });
   }
 
   ionViewWillEnter() {
@@ -74,5 +91,42 @@ export class SurveyDetailPage implements OnInit {
     if(!resultFound) {
       alert(this.survey.results[this.survey.results[i].length - 1].resultInformation);
     }
+  }
+
+  submitComment(form: NgForm) {
+    form.value.feedId = this.survey.id;
+    this.feedService.submitComment(form.value).subscribe((result: any) => {
+        alert('done');
+        this.comments.push({
+          comment: form.value.comment,
+          user: {
+            fullName: this.userFullName
+          },
+          createDate: ''
+        });
+        this.enteredComment = '';
+      },
+      err => {
+        if (err.error != null && err.error.Message)
+        {
+          alert(err.error.Message);
+        }
+        else {
+          alert(JSON.stringify(err));
+        }
+      }
+    );
+  }
+
+  loadPreviousComments() {
+    this.commentsPageNumber++;
+    this.feedService.getComments(this.survey.id, this.commentsPageNumber)
+      .subscribe((comments: any) => {
+        for(var i = 0; i < comments.items.length; i++)
+        {
+          this.comments.push(comments.items[i]);
+        }
+        this.hasMoreComments = comments.hasNextPage;
+      });
   }
 }

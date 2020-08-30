@@ -24,6 +24,7 @@ export class LoginPage {
     this.service.login(form.value).subscribe(
       (res: any) => {
         localStorage.setItem('userName', res.userName);
+        localStorage.setItem('fullName', res.fullName);
         localStorage.setItem('token', res.token);
         localStorage.setItem('role', res.role);
         this.router.navigateByUrl('/mainPage');
