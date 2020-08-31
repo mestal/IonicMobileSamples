@@ -12,6 +12,8 @@ export class CommentComponent implements OnInit {
 
   @Input('feed-id') feedId: string; 
   @Input('user-full-name') userFullName: string; 
+  @Input('user-name') userName: string; 
+  @Input('user-role') userRole: string; 
   
   commentsPageNumber = 1;
   comments: any[] = [];
@@ -62,6 +64,23 @@ export class CommentComponent implements OnInit {
           createDate: new Date()
         });
         this.enteredComment = '';
+      },
+      err => {
+        if (err.error != null && err.error.Message)
+        {
+          alert(err.error.Message);
+        }
+        else {
+          alert(JSON.stringify(err));
+        }
+      }
+    );
+  }
+
+  removeComment(comment: any) {
+    this.feedService.removeComment({ commentId: comment.id}).subscribe((result: any) => {
+        alert('done');
+        this.comments = this.comments.filter(item => item !== comment);
       },
       err => {
         if (err.error != null && err.error.Message)

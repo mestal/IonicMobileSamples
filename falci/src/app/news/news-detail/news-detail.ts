@@ -16,6 +16,8 @@ export class NewsDetailPage {
   environment = environment;
   userFullName: string;
   newsId: string;
+  userName: string;
+  userRole: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -26,6 +28,8 @@ export class NewsDetailPage {
   ngOnInit() {
     this.newsId = this.route.snapshot.paramMap.get('id');
     this.userFullName = localStorage.getItem('fullName');
+    this.userName = localStorage.getItem('userName');
+    this.userRole = localStorage.getItem('role');
     this.feedService.getNews(this.newsId).subscribe((news: any) => {
       this.news = news;
     });

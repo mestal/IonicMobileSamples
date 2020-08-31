@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserOptions } from '../../interfaces/user-options';
-import { User } from '../user';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -13,7 +12,6 @@ import { UserService } from 'src/app/services/user.service';
 export class LoginPage {
   login: UserOptions = { username: '', password: '' };
   submitted = false;
-  currentUser: User | null;
 
   constructor(
     public router: Router,

@@ -37,6 +37,6 @@
       <ion-icon slot="start" [md]="'chatbox-ellipses-outline'"></ion-icon>{{news.commentCount}}
     </div>
     <br>
-    <comment-component [feed-id]="newsId" [user-full-name]="userFullName"></comment-component>
+    <comment-component [feed-id]="newsId" [user-full-name]="userFullName" [user-name]="userName" [user-role]="userRole"></comment-component>
   </div>
 </ion-content>

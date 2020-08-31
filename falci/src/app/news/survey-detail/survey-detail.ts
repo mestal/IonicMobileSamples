@@ -16,6 +16,8 @@ export class SurveyDetailPage implements OnInit {
   environment = environment;
   userFullName: string;
   surveyId: string;
+  userName: string;
+  userRole: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -25,6 +27,8 @@ export class SurveyDetailPage implements OnInit {
   
   ngOnInit() {
     this.userFullName = localStorage.getItem('fullName');
+    this.userName = localStorage.getItem('userName');
+    this.userRole = localStorage.getItem('role');
     this.surveyId = this.route.snapshot.paramMap.get('id');
     this.feedService.getSurvey(this.surveyId).subscribe((survey: any) => {
       this.survey = survey;

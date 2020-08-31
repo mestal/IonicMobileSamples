@@ -19,7 +19,8 @@ export const environment = {
     getComments: 'Feed/GetComments',
     submitCoffeeFortuneTelling: 'FortuneTelling/SubmitCoffeeFortuneTelling',
     submitByFortuneTeller: 'FortuneTelling/SubmitByFortuneTeller',
-    submitComment: 'Feed/SubmitComment'
+    submitComment: 'Feed/SubmitComment',
+    removeComment: 'Feed/RemoveComment'
   },
   feedsPageSize: 10
 };

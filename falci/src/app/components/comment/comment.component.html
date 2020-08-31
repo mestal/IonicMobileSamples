@@ -14,5 +14,11 @@
   <span (click)="loadPreviousComments()">Önceki yorumları gör</span>
 </div>
   <div *ngFor="let comment of comments" style="padding-bottom: 30px;">
-    <div><b>{{ comment.user.fullName }} - </b>{{ comment.comment }} - {{ comment.createDate }}</div>
+    <div><b>{{ comment.user.fullName }} - </b>{{ comment.comment }}</div>
+    <div>
+      <span>{{ comment.createDate }}</span>
+      <span *ngIf="comment.user.userName == userName || userRole == 'Admin'"> - 
+        <span (click)="removeComment(comment)">Sil</span>
+      </span>
+    </div>
   </div>

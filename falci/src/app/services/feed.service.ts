@@ -42,4 +42,8 @@ export class FeedService {
   submitComment(data: any) {
     return this.http.post(environment.baseUrl + environment.apiUrls.submitComment, data);
   }
+
+  removeComment(data: any) {
+    return this.http.post(environment.baseUrl + environment.apiUrls.removeComment, data);
+  }
 }
