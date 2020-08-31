@@ -1,0 +1,5 @@
+<div>
+  <ion-icon slot="start" [name]="likeIcon" (click)="likeTypeClicked(1);$event.stopPropagation();" color="danger"></ion-icon>{{likeCount}}
+  <ion-icon slot="start" [name]="dislikeIcon" (click)="likeTypeClicked(2);$event.stopPropagation();"></ion-icon>{{dislikeCount}}
+  <ion-icon slot="start" [name]="'chatbox-ellipses-outline'"></ion-icon>{{commentCount}}
+</div>

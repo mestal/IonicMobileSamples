@@ -55,12 +55,24 @@
     </div>
     <br>
     <br>
-    <div>
-      <ion-icon slot="start" [md]="'heart-outline'"></ion-icon>{{survey.likeCount}}
-      <ion-icon slot="start" [md]="'heart-dislike-outline'"></ion-icon>{{survey.dislikeCount}}
-      <ion-icon slot="start" [md]="'chatbox-ellipses-outline'"></ion-icon>{{survey.commentCount}}
-    </div>
+    <like-summary-component 
+      [feed-id]="surveyId" 
+      [user-name]="userName"
+      [like-count]="survey.likeCount"
+      [dislike-count]="survey.dislikeCount"
+      [comment-count]="survey.commentCount"
+      [liked-type]="survey.likedType"
+    >
+    </like-summary-component>
     <br>
-    <comment-component [feed-id]="surveyId" [user-full-name]="userFullName" [user-name]="userName" [user-role]="userRole"></comment-component>
+    <comment-component 
+      [feed-id]="surveyId" 
+      [user-full-name]="userFullName" 
+      [user-name]="userName" 
+      [user-role]="userRole"
+      (comment-add-event)="commentAdded($event)"
+      (comment-remove-event)="commentRemoved($event)"
+    >
+    </comment-component>
   </div>
 </ion-content>

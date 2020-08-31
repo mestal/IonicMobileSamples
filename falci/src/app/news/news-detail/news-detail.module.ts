@@ -6,6 +6,7 @@ import { NewsDetailPageRoutingModule } from './news-detail-routing.module';
 import { IonicModule } from '@ionic/angular';
 import { CommentComponent } from 'src/app/components/comment/comment.component';
 import { FormsModule } from '@angular/forms';
+import { LikeSummaryComponent } from 'src/app/components/like-summary/like-summary.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { FormsModule } from '@angular/forms';
   ],
   declarations: [
     NewsDetailPage,
-    CommentComponent
+    CommentComponent,
+    LikeSummaryComponent
   ]
 })
 export class NewsDetailModule { }

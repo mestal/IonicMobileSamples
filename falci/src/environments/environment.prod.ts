@@ -17,7 +17,11 @@ export const environment = {
     getSurvey: 'Feed/GetSurvey',
     getNews: 'Feed/GetNews',
     submitCoffeeFortuneTelling: 'FortuneTelling/SubmitCoffeeFortuneTelling',
-    submitByFortuneTeller: 'FortuneTelling/SubmitByFortuneTeller'
+    submitByFortuneTeller: 'FortuneTelling/SubmitByFortuneTeller',
+    submitComment: 'Feed/SubmitComment',
+    removeComment: 'Feed/RemoveComment',
+    submitLike: 'Feed/LikeFeed',
+    removeLike: 'Feed/RemoveLikeFeed',
   },
   feedsPageSize: 10
 };

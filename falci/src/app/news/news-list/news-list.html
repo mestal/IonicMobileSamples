@@ -21,11 +21,15 @@
           <img *ngIf="feed.mainPhoto" [src]="environment.urlForAssets + constants.folderForFeedPictures + feed.mainPhoto" style="width:100%" [alt]="feed.title">
           <ion-card-content>
             <div [innerHTML] ="feed.title" class="text-pre-wrap"></div>
-            <div>
-              <ion-icon slot="start" [md]="'heart-outline'"></ion-icon>{{feed.likeCount}}
-              <ion-icon slot="start" [md]="'heart-dislike-outline'"></ion-icon>{{feed.dislikeCount}}
-              <ion-icon slot="start" [md]="'chatbox-ellipses-outline'"></ion-icon>{{feed.commentCount}}
-            </div>
+            <like-summary-component 
+              [feed-id]="feed.id" 
+              [like-count]="feed.likeCount"
+              [dislike-count]="feed.dislikeCount"
+              [comment-count]="feed.commentCount"
+              [liked-type]="feed.likedType"
+              [user-name]="userName"
+            >
+            </like-summary-component>
           </ion-card-content>
         </ion-card>
       </ion-col>

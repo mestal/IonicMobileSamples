@@ -20,7 +20,9 @@ export const environment = {
     submitCoffeeFortuneTelling: 'FortuneTelling/SubmitCoffeeFortuneTelling',
     submitByFortuneTeller: 'FortuneTelling/SubmitByFortuneTeller',
     submitComment: 'Feed/SubmitComment',
-    removeComment: 'Feed/RemoveComment'
+    removeComment: 'Feed/RemoveComment',
+    submitLike: 'Feed/LikeFeed',
+    removeLike: 'Feed/RemoveLikeFeed',
   },
   feedsPageSize: 10
 };

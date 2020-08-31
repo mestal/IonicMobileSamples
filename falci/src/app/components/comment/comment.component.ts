@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FeedService } from 'src/app/services/feed.service';
 import { NgForm } from '@angular/forms';
 import { SortByPipe } from '../sort-by-pipe';
@@ -14,7 +14,9 @@ export class CommentComponent implements OnInit {
   @Input('user-full-name') userFullName: string; 
   @Input('user-name') userName: string; 
   @Input('user-role') userRole: string; 
-  
+  @Output('comment-add-event') commentAddEvent = new EventEmitter<any>();
+  @Output('comment-remove-event') commentRemoveEvent = new EventEmitter<any>();
+
   commentsPageNumber = 1;
   comments: any[] = [];
   hasMoreComments = false;
@@ -56,7 +58,7 @@ export class CommentComponent implements OnInit {
     form.value.feedId = this.feedId;
     this.feedService.submitComment(form.value).subscribe((id: any) => {
         alert('done');
-        this.comments.push({
+        var comment = {
           comment: form.value.comment,
           id: id,
           user: {
@@ -64,8 +66,11 @@ export class CommentComponent implements OnInit {
             userName: this.userName
           },
           createDate: new Date()
-        });
+        };
+
+        this.comments.push(comment);
         this.enteredComment = '';
+        this.commentAddEvent.emit(comment);
       },
       err => {
         if (err.error != null && err.error.Message)
@@ -83,6 +88,7 @@ export class CommentComponent implements OnInit {
     this.feedService.removeComment({ commentId: comment.id}).subscribe((result: any) => {
         alert('done');
         this.comments = this.comments.filter(item => item !== comment);
+        this.commentRemoveEvent.emit(comment);
       },
       err => {
         if (err.error != null && err.error.Message)

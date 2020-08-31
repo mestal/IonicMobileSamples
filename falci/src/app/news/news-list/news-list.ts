@@ -15,6 +15,7 @@ export class NewsListPage {
   hasNextPage: false;
   constants = constants;
   environment = environment;
+  userName: string;
 
   constructor(public feedService: FeedService, private router: Router) {}
 
@@ -22,6 +23,7 @@ export class NewsListPage {
     if(this.newsList == null || this.newsList.length == 0) {
       this.loadItems(null);
     }
+    this.userName = localStorage.getItem('userName');
   }
 
   loadItems(scrollEvent) {

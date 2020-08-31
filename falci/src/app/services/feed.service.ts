@@ -46,4 +46,12 @@ export class FeedService {
   removeComment(data: any) {
     return this.http.post(environment.baseUrl + environment.apiUrls.removeComment, data);
   }
+
+  submitLike(data: any) {
+    return this.http.post(environment.baseUrl + environment.apiUrls.submitLike, data);
+  }
+
+  removeLike(data: any) {
+    return this.http.post(environment.baseUrl + environment.apiUrls.removeLike, data);
+  }
 }

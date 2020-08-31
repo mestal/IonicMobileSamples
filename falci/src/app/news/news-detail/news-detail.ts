@@ -34,4 +34,12 @@ export class NewsDetailPage {
       this.news = news;
     });
   }
+
+  commentAdded() {
+    this.news.commentCount++;
+  }
+
+  commentRemoved() {
+    this.news.commentCount--;
+  }
 }

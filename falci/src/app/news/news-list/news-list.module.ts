@@ -4,6 +4,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { NewsListPage } from './news-list';
 import { NewsListPageRoutingModule } from './news-list-routing.module';
+import { LikeSummaryComponent } from 'src/app/components/like-summary/like-summary.component';
 
 @NgModule({
   imports: [
@@ -11,6 +12,6 @@ import { NewsListPageRoutingModule } from './news-list-routing.module';
     IonicModule,
     NewsListPageRoutingModule
   ],
-  declarations: [NewsListPage],
+  declarations: [NewsListPage, LikeSummaryComponent],
 })
 export class NewsListModule {}

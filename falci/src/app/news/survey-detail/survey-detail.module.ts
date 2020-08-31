@@ -6,6 +6,7 @@ import { SurveyDetailPageRoutingModule } from './survey-detail-routing.module';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { CommentComponent } from 'src/app/components/comment/comment.component';
+import { LikeSummaryComponent } from 'src/app/components/like-summary/like-summary.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { CommentComponent } from 'src/app/components/comment/comment.component';
   ],
   declarations: [
     SurveyDetailPage,
-    CommentComponent
+    CommentComponent,
+    LikeSummaryComponent
   ]
 })
 export class SurveyDetailModule { }

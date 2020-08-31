@@ -31,12 +31,24 @@
     </div>
     <br>
     <br>
-    <div>
-      <ion-icon slot="start" [md]="'heart-outline'"></ion-icon>{{news.likeCount}}
-      <ion-icon slot="start" [md]="'heart-dislike-outline'"></ion-icon>{{news.dislikeCount}}
-      <ion-icon slot="start" [md]="'chatbox-ellipses-outline'"></ion-icon>{{news.commentCount}}
-    </div>
+    <like-summary-component 
+      [feed-id]="newsId" 
+      [user-name]="userName"
+      [like-count]="news.likeCount"
+      [dislike-count]="news.dislikeCount"
+      [comment-count]="news.commentCount"
+      [liked-type]="news.likedType"
+    >
+    </like-summary-component>
     <br>
-    <comment-component [feed-id]="newsId" [user-full-name]="userFullName" [user-name]="userName" [user-role]="userRole"></comment-component>
+    <comment-component 
+      [feed-id]="newsId" 
+      [user-full-name]="userFullName" 
+      [user-name]="userName" 
+      [user-role]="userRole"
+      (comment-add-event)="commentAdded($event)"
+      (comment-remove-event)="commentRemoved($event)"
+    >
+    </comment-component>
   </div>
 </ion-content>

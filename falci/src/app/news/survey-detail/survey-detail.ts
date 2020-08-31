@@ -76,4 +76,12 @@ export class SurveyDetailPage implements OnInit {
       alert(this.survey.results[this.survey.results[i].length - 1].resultInformation);
     }
   }
+
+  commentAdded() {
+    this.survey.commentCount++;
+  }
+
+  commentRemoved() {
+    this.survey.commentCount--;
+  }
 }
