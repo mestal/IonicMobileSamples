@@ -54,12 +54,14 @@ export class CommentComponent implements OnInit {
 
   submitComment(form: NgForm) {
     form.value.feedId = this.feedId;
-    this.feedService.submitComment(form.value).subscribe((result: any) => {
+    this.feedService.submitComment(form.value).subscribe((id: any) => {
         alert('done');
         this.comments.push({
           comment: form.value.comment,
+          id: id,
           user: {
-            fullName: this.userFullName
+            fullName: this.userFullName,
+            userName: this.userName
           },
           createDate: new Date()
         });
