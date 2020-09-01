@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
@@ -46,7 +46,8 @@ import { SortByPipe } from './components/sort-by-pipe';
     SortByPipe    
 
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  //schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule {}
 

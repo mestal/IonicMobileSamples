@@ -16,6 +16,7 @@ export const environment = {
     getFeeds: 'Feed/GetFeeds',
     getSurvey: 'Feed/GetSurvey',
     getNews: 'Feed/GetNews',
+    getComments: 'Feed/GetComments',
     submitCoffeeFortuneTelling: 'FortuneTelling/SubmitCoffeeFortuneTelling',
     submitByFortuneTeller: 'FortuneTelling/SubmitByFortuneTeller',
     submitComment: 'Feed/SubmitComment',

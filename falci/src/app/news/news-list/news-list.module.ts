@@ -4,14 +4,15 @@ import { IonicModule } from '@ionic/angular';
 
 import { NewsListPage } from './news-list';
 import { NewsListPageRoutingModule } from './news-list-routing.module';
-import { LikeSummaryComponent } from 'src/app/components/like-summary/like-summary.component';
+import { SharedModule } from 'src/app/shared-module/shared-module';
 
 @NgModule({
   imports: [
     CommonModule,
     IonicModule,
-    NewsListPageRoutingModule
+    NewsListPageRoutingModule,
+    SharedModule
   ],
-  declarations: [NewsListPage, LikeSummaryComponent],
+  declarations: [NewsListPage],
 })
 export class NewsListModule {}

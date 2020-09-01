@@ -23,7 +23,10 @@ export class NewsDetailPage {
     private route: ActivatedRoute,
     public actionSheetCtrl: ActionSheetController,
     public feedService: FeedService
-  ) {}
+  ) {
+    var a =5 ;
+    a++;
+  }
 
   ngOnInit() {
     this.newsId = this.route.snapshot.paramMap.get('id');
