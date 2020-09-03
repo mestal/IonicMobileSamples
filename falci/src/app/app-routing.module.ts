@@ -13,7 +13,6 @@ const routes: Routes = [
   },
   {
     path: 'mainPage',
-    //loadChildren: () => import('./mainPage/main-page.module').then( m => m.MainPageModule)
     loadChildren: () => import('./news/news-list/news-list.module').then( m => m.NewsListModule)
   },
   {
@@ -75,6 +74,10 @@ const routes: Routes = [
   {
     path: 'changePassword',
     loadChildren: () => import('./user/change-password/change-password.module').then( m => m.ChangePasswordModule)
+  },
+  {
+    path: 'pointList',
+    loadChildren: () => import('./point/point-list/point-list.module').then( m => m.PointListModule)
   }
 ];
 

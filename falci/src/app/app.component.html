@@ -47,6 +47,10 @@
               <ion-icon slot="start" [md]="'person-outline'"></ion-icon>
               <ion-label>Üyelik Bilgilerim</ion-label>
             </ion-item>
+            <ion-item *ngIf="isLoggedIn()" routerDirection="root" routerLink="/pointList" lines="none" detail="false" >
+              <ion-icon slot="start" [md]="'person-outline'"></ion-icon>
+              <ion-label>Puan Satın Al</ion-label>
+            </ion-item>
             <!-- <ion-item routerDirection="root" routerLink="/newPersonalTest" lines="none" detail="false" >
               <ion-icon slot="start" [ios]="'archive'" [md]="'archive'"></ion-icon>
               <ion-label>Yeni Kişilik Testi</ion-label>
