@@ -22,6 +22,7 @@
     "@ionic-native/camera": "^5.27.0",
     "@ionic-native/core": "^5.0.7",
     "@ionic-native/file": "^5.27.0",
+    "@ionic-native/in-app-purchase-2": "^5.28.0",
     "@ionic-native/splash-screen": "^5.0.0",
     "@ionic-native/status-bar": "^5.0.0",
     "@ionic/angular": "^5.0.0",
@@ -31,6 +32,7 @@
     "cordova-browser": "6.0.0",
     "cordova-plugin-camera": "^4.1.0",
     "cordova-plugin-file": "^6.0.2",
+    "cordova-plugin-purchase": "git+https://github.com/j3k0/cordova-plugin-purchase.git#v9",
     "rxjs": "^6.5.5",
     "tslib": "^1.10.0",
     "web": "0.0.2",
@@ -77,7 +79,10 @@
       "cordova-plugin-camera": {
         "ANDROID_SUPPORT_V4_VERSION": "27.+"
       },
-      "cordova-plugin-file": {}
+      "cordova-plugin-file": {},
+      "cordova-plugin-purchase": {
+        "BILLING_KEY": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAt8E7YaEvikYIm2S5E4a/YR2Q0dP6wiJAib5tAaz1Do/yT/8b9K45y6DBqs1hWsxo3bZjwGsgdU+YGaOmWOIZCaiUfIuZ1QD9Mu1Q3SOqicdK6kof3o+nBh5czDcl3OFfa8sqDn5fJg9GiqIrY5djYS1j0dltC4PDoY3l6trtl6ZrvcndkbEkyDnjPvea023uFD3PUBTCHMZl4bbc27SZ3ZUb0qHLAKbEPzbbJC72CDHyBBnp6rxgW9Vr/pNojRIEHjniAjC9lDa0U0n400e8O4znXv+PwJfpGj56/u4vFR5FSaTvQb/Xo8u9Asx14DvXN543NPde9jd1C4BNFAsN2QIDAQAB"
+      }
     },
     "platforms": [
       "browser",

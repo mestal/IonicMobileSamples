@@ -17,10 +17,9 @@
   <ion-grid fixed>
     <ion-row>
       <ion-col size="12" size-md="6" *ngFor="let point of pointList">
-        <!-- <ion-card (click)="cardClicked(feed)"> -->
-        <ion-card>
+        <ion-card (click)="checkout()">
           <ion-card-content>
-            <div [innerHTML] ="point.title" class="text-pre-wrap"></div>
+            <div class="text-pre-wrap">{{ product }}</div>
           </ion-card-content>
         </ion-card>
       </ion-col>

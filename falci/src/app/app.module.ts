@@ -14,6 +14,7 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { Camera } from '@ionic-native/camera/ngx';
 import { SortByPipe } from './components/sort-by-pipe';
+import { InAppPurchase2 } from '@ionic-native/in-app-purchase-2/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -43,7 +44,8 @@ import { SortByPipe } from './components/sort-by-pipe';
     },
     { provide: LocationStrategy, useClass: HashLocationStrategy },
     Camera,
-    SortByPipe    
+    SortByPipe,
+    InAppPurchase2
 
   ],
   bootstrap: [AppComponent],
