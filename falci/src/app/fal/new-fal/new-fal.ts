@@ -107,7 +107,7 @@ export class NewFalPage implements OnInit {
 
     this.fortuneTellingService.submitFortuneTelling(formData).subscribe(
       data => {
-        this.notificationService.success({Message: "Falınız alınmıştır. En kısa sürede yanıtlanacaktır." });
+        this.notificationService.success({Message: "Falınız gönderilmiştir. En kısa sürede yanıtlanacaktır." });
         this.router.navigateByUrl('/myFals');
       },
       err => {

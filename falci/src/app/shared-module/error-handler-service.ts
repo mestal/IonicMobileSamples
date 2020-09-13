@@ -8,6 +8,9 @@ export class ErrorHandlerService {
   isTestUser: any;
 
   constructor(public notificationService: NotificationService) { 
+  }
+
+  ngOnInit() {
     this.isTestUser = localStorage.getItem('isTestUser');
   }
 
@@ -17,7 +20,8 @@ export class ErrorHandlerService {
       this.notificationService.error({ Message: error.error.Message });
     }
     else {
-      if(this.isTestUser == true) {
+      this.isTestUser = localStorage.getItem('isTestUser');
+      if(this.isTestUser == "true") {
         this.notificationService.error({ Message: JSON.stringify(error) });
       }
       else {
