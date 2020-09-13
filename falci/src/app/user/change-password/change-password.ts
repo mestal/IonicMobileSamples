@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { ChangePassword } from 'src/app/interfaces/new-user';
+import { NotificationService } from 'src/app/shared-module/notification-service';
+import { ErrorHandlerService } from 'src/app/shared-module/error-handler-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'page-change-password',
@@ -14,24 +17,19 @@ export class ChangePasswordPage {
 
   constructor(
     private service: UserService,
+    private errorHandlerService : ErrorHandlerService,
+    private notificationService: NotificationService,
+    public router: Router
   ) { }
-
-  ionViewDidEnter() {
-  }
 
   onSubmit(form: NgForm) {
     this.service.changePassword(form.value).subscribe(
       (res: any) => {
-        alert('Şifre değiştirildi.');
+        this.notificationService.success({Message: "Şifre değiştirildi." });
+        this.router.navigateByUrl('/myAccount');
       },
       err => {
-        if (err.error != null && err.error.Message)
-        {
-          alert(err.error.Message);
-        }
-        else {
-          alert(JSON.stringify(err));
-        }
+        this.errorHandlerService.handle(err);
       }
     );
   }

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { FortuneTellingService } from 'src/app/services/fortuneTelling.service';
+import { ErrorHandlerService } from 'src/app/shared-module/error-handler-service';
+import { NotificationService } from 'src/app/shared-module/notification-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'page-new-fal',
@@ -30,7 +33,14 @@ export class NewFalPage implements OnInit {
   fortuneTellers: any;
   selectedFalciId: string;
   selectedType: string;
-  constructor(private camera: Camera, private fortuneTellingService: FortuneTellingService) {}
+
+  constructor(
+    private camera: Camera, 
+    private fortuneTellingService: FortuneTellingService,
+    private errorHandlerService : ErrorHandlerService,
+    private notificationService: NotificationService,
+    public router: Router
+  ) {}
 
   ngOnInit() {
     this.falImages.push("assets/img/no-image.jpg");
@@ -43,6 +53,9 @@ export class NewFalPage implements OnInit {
     this.fortuneTellingService.getActiveFortuneTellers().subscribe(
       data => {
         this.fortuneTellers = data;
+      },
+      err => {
+        this.errorHandlerService.handle(err);
       }
     );
   }
@@ -74,11 +87,7 @@ export class NewFalPage implements OnInit {
      })
   }
 
-  ionViewDidEnter() {
-  }
-
   submit() {
-
     const formData: FormData = new FormData();
     if(this.falImages[0] != "assets/img/no-image.jpg") {
       formData.append('Pictures', this.makeblob(this.falImages[0]));
@@ -98,17 +107,11 @@ export class NewFalPage implements OnInit {
 
     this.fortuneTellingService.submitFortuneTelling(formData).subscribe(
       data => {
-        console.log('done');
-        alert('done');
+        this.notificationService.success({Message: "Falınız alınmıştır. En kısa sürede yanıtlanacaktır." });
+        this.router.navigateByUrl('/myFals');
       },
       err => {
-        if (err.error != null && err.error.Message)
-        {
-          alert(err.error.Message);
-        }
-        else {
-          alert(JSON.stringify(err));
-        }
+        this.errorHandlerService.handle(err);
       }
     );
   }

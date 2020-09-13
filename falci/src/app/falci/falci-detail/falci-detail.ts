@@ -4,6 +4,7 @@ import { ActionSheetController } from '@ionic/angular';
 import { FortuneTellingService } from 'src/app/services/fortuneTelling.service';
 import { constants } from '../../constants';
 import { environment } from 'src/environments/environment';
+import { ErrorHandlerService } from 'src/app/shared-module/error-handler-service';
 
 @Component({
   selector: 'page-falci-detail',
@@ -18,7 +19,8 @@ export class FalciDetailPage implements OnInit {
   constructor(
     private route: ActivatedRoute,
     public actionSheetCtrl: ActionSheetController,
-    public fortuneTellingService: FortuneTellingService
+    public fortuneTellingService: FortuneTellingService,
+    private errorHandlerService : ErrorHandlerService
   ) {}
 
   ngOnInit() { }
@@ -27,6 +29,9 @@ export class FalciDetailPage implements OnInit {
     const falciId = this.route.snapshot.paramMap.get('id');
     this.fortuneTellingService.getFortuneTeller(falciId).subscribe((falci: any) => {
       this.falci = falci;
+    },
+    err => {
+      this.errorHandlerService.handle(err);
     });
   }
 }

@@ -2,6 +2,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FeedService } from 'src/app/services/feed.service';
 import { NgForm } from '@angular/forms';
 import { SortByPipe } from '../sort-by-pipe';
+import { NotificationService } from 'src/app/shared-module/notification-service';
+import { ErrorHandlerService } from 'src/app/shared-module/error-handler-service';
 
 @Component({
   selector: 'comment-component',
@@ -24,7 +26,9 @@ export class CommentComponent implements OnInit {
 
   constructor(
     public feedService: FeedService,
-    private sortByPipe: SortByPipe
+    private sortByPipe: SortByPipe,
+    private notificationService: NotificationService,
+    private errorHandlerService : ErrorHandlerService
   ) {}
 
   ngOnInit() {
@@ -57,7 +61,7 @@ export class CommentComponent implements OnInit {
   submitComment(form: NgForm) {
     form.value.feedId = this.feedId;
     this.feedService.submitComment(form.value).subscribe((id: any) => {
-        alert('done');
+      this.notificationService.success({ Message: "Yorum gönderildi." });
         var comment = {
           comment: form.value.comment,
           id: id,
@@ -73,31 +77,19 @@ export class CommentComponent implements OnInit {
         this.commentAddEvent.emit(comment);
       },
       err => {
-        if (err.error != null && err.error.Message)
-        {
-          alert(err.error.Message);
-        }
-        else {
-          alert(JSON.stringify(err));
-        }
+        this.errorHandlerService.handle(err);
       }
     );
   }
 
   removeComment(comment: any) {
     this.feedService.removeComment({ commentId: comment.id}).subscribe((result: any) => {
-        alert('done');
+        this.notificationService.success({ Message: "Yorum silindi." });
         this.comments = this.comments.filter(item => item !== comment);
         this.commentRemoveEvent.emit(comment);
       },
       err => {
-        if (err.error != null && err.error.Message)
-        {
-          alert(err.error.Message);
-        }
-        else {
-          alert(JSON.stringify(err));
-        }
+        this.errorHandlerService.handle(err);
       }
     );
   }

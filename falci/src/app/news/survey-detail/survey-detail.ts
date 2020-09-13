@@ -4,6 +4,8 @@ import { ActionSheetController } from '@ionic/angular';
 import { FeedService } from 'src/app/services/feed.service';
 import { constants } from 'src/app/constants';
 import { environment } from 'src/environments/environment';
+import { NotificationService } from 'src/app/shared-module/notification-service';
+import { ErrorHandlerService } from 'src/app/shared-module/error-handler-service';
 
 @Component({
   selector: 'page-survey-detail',
@@ -22,7 +24,9 @@ export class SurveyDetailPage implements OnInit {
   constructor(
     private route: ActivatedRoute,
     public actionSheetCtrl: ActionSheetController,
-    public feedService: FeedService
+    public feedService: FeedService,
+    private notificationService: NotificationService,
+    private errorHandlerService : ErrorHandlerService
   ) {}
   
   ngOnInit() {
@@ -32,6 +36,9 @@ export class SurveyDetailPage implements OnInit {
     this.surveyId = this.route.snapshot.paramMap.get('id');
     this.feedService.getSurvey(this.surveyId).subscribe((survey: any) => {
       this.survey = survey;
+    },
+    err => {
+      this.errorHandlerService.handle(err);
     });
   }
 
@@ -45,7 +52,7 @@ export class SurveyDetailPage implements OnInit {
     {
       if(this.survey.items[i].selectedAnswer == null)
       {
-        alert("Lütfen tüm soruları cevaplayın.");
+        this.notificationService.warn({Message: "Lütfen tüm soruları cevaplayın." });
         return;
       }
     }

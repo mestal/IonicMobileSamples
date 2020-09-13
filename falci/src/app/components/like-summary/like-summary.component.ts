@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FeedService } from 'src/app/services/feed.service';
+import { ErrorHandlerService } from 'src/app/shared-module/error-handler-service';
 
 @Component({
   selector: 'like-summary-component',
@@ -19,7 +20,8 @@ export class LikeSummaryComponent implements OnInit {
   dislikeIcon: string;
 
   constructor(
-    public feedService: FeedService
+    public feedService: FeedService,
+    private errorHandlerService : ErrorHandlerService
   ) {}
 
   ngOnInit() {
@@ -72,13 +74,7 @@ export class LikeSummaryComponent implements OnInit {
 
       },
       err => {
-        if (err.error != null && err.error.Message)
-        {
-          alert(err.error.Message);
-        }
-        else {
-          alert(JSON.stringify(err));
-        }
+        this.errorHandlerService.handle(err);
       }
     );
   }
@@ -100,13 +96,7 @@ export class LikeSummaryComponent implements OnInit {
         this.setIcons();
       },
       err => {
-        if (err.error != null && err.error.Message)
-        {
-          alert(err.error.Message);
-        }
-        else {
-          alert(JSON.stringify(err));
-        }
+        this.errorHandlerService.handle(err);
       }
     );
   }

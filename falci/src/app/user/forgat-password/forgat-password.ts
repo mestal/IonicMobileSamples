@@ -6,6 +6,8 @@ import { UserData } from '../../providers/user-data';
 
 import { UserService } from 'src/app/services/user.service';
 import { ForgatPassword } from 'src/app/interfaces/new-user';
+import { NotificationService } from 'src/app/shared-module/notification-service';
+import { ErrorHandlerService } from 'src/app/shared-module/error-handler-service';
 //import { UserService } from '../user.service';
 
 @Component({
@@ -20,22 +22,19 @@ export class ForgatPasswordPage {
   constructor(
     public userData: UserData,
     public router: Router,
-    private service: UserService
+    private service: UserService,
+    private errorHandlerService : ErrorHandlerService,
+    private notificationService: NotificationService
   ) { }
 
   onSubmit(form: NgForm) {
     this.service.forgatPassword(form.value).subscribe(
       (res: any) => {
-        alert('Mail adresinize şifre yenileme linki gönderildi.');
+        this.notificationService.success({Message: "Mail adresinize şifre yenileme linki gönderildi." });
+        this.router.navigateByUrl('/login');
       },
       err => {
-        if (err.error != null && err.error.Message)
-        {
-          alert(err.error.Message);
-        }
-        else {
-          alert(JSON.stringify(err));
-        }
+        this.errorHandlerService.handle(err);
       }
     );
   }

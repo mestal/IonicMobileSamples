@@ -3,6 +3,7 @@ import { FeedService } from 'src/app/services/feed.service';
 import { constants } from 'src/app/constants';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
+import { ErrorHandlerService } from 'src/app/shared-module/error-handler-service';
 
 @Component({
   selector: 'page-news-list',
@@ -17,7 +18,11 @@ export class NewsListPage {
   environment = environment;
   userName: string;
 
-  constructor(public feedService: FeedService, private router: Router) {}
+  constructor(
+    public feedService: FeedService, 
+    private router: Router,
+    private errorHandlerService : ErrorHandlerService
+  ) {}
 
   ionViewDidEnter() {
     if(this.newsList == null || this.newsList.length == 0) {
@@ -55,13 +60,7 @@ export class NewsListPage {
       }
     },
     err => {
-      if (err.error != null && err.error.Message)
-      {
-        alert(err.error.Message);
-      }
-      else {
-        alert(JSON.stringify(err));
-      }
+      this.errorHandlerService.handle(err);
     });
   }
 

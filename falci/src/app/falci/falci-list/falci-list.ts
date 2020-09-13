@@ -3,6 +3,7 @@ import { FortuneTellingService } from 'src/app/services/fortuneTelling.service';
 import { constants } from '../../constants';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
+import { ErrorHandlerService } from 'src/app/shared-module/error-handler-service';
 
 @Component({
   selector: 'page-falci-list',
@@ -14,11 +15,18 @@ export class FalciListPage {
   constants = constants;
   environment = environment;
 
-  constructor(public fortuneTellingService: FortuneTellingService, private router: Router) {}
+  constructor(
+    public fortuneTellingService: FortuneTellingService, 
+    private router: Router,
+    private errorHandlerService : ErrorHandlerService
+  ) {}
 
   ionViewDidEnter() {
     this.fortuneTellingService.getActiveFortuneTellers().subscribe((fortuneTellers: any[]) => {
       this.fortuneTellers = fortuneTellers;
+    },
+    err => {
+      this.errorHandlerService.handle(err);
     });
   }
 

@@ -4,6 +4,7 @@ import { ActionSheetController } from '@ionic/angular';
 import { FeedService } from 'src/app/services/feed.service';
 import { constants } from 'src/app/constants';
 import { environment } from 'src/environments/environment';
+import { ErrorHandlerService } from 'src/app/shared-module/error-handler-service';
 
 @Component({
   selector: 'page-fal-detail',
@@ -22,7 +23,8 @@ export class NewsDetailPage {
   constructor(
     private route: ActivatedRoute,
     public actionSheetCtrl: ActionSheetController,
-    public feedService: FeedService
+    public feedService: FeedService,
+    private errorHandlerService : ErrorHandlerService
   ) {
     var a =5 ;
     a++;
@@ -35,6 +37,9 @@ export class NewsDetailPage {
     this.userRole = localStorage.getItem('role');
     this.feedService.getNews(this.newsId).subscribe((news: any) => {
       this.news = news;
+    },
+    err => {
+      this.errorHandlerService.handle(err);
     });
   }
 

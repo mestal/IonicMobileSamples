@@ -5,6 +5,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { UserData } from '../../providers/user-data';
 
 import { UserService } from 'src/app/services/user.service';
+import { ErrorHandlerService } from 'src/app/shared-module/error-handler-service';
+import { NotificationService } from 'src/app/shared-module/notification-service';
 //import { UserService } from '../user.service';
 
 @Component({
@@ -18,7 +20,9 @@ export class NewUserConfirmationPage {
   constructor(
     public router: Router,
     private service: UserService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private errorHandlerService : ErrorHandlerService,
+    private notificationService: NotificationService
   ) { }
   
   ionViewDidEnter() {
@@ -30,16 +34,11 @@ export class NewUserConfirmationPage {
       token: token
     }
     this.service.confirmNewUser(payload).subscribe((result: any) => {
-      this.message = "Üye aktifleştirildi.";
+      this.notificationService.success({ Message: "Üye aktifleştirildi."});
+      this.router.navigateByUrl('/login');
     },
     err => {
-      if (err.error != null && err.error.Message)
-      {
-        alert(err.error.Message);
-      }
-      else {
-        alert(JSON.stringify(err));
-      }
+      this.errorHandlerService.handle(err);
     });
   }
 }

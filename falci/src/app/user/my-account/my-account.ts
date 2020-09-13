@@ -6,6 +6,8 @@ import { constants } from 'src/app/constants';
 import { FortuneTellingService } from 'src/app/services/fortuneTelling.service';
 import { environment } from 'src/environments/environment';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { ErrorHandlerService } from 'src/app/shared-module/error-handler-service';
+import { NotificationService } from 'src/app/shared-module/notification-service';
 
 @Component({
   selector: 'page-my-account',
@@ -40,7 +42,9 @@ export class MyAccountPage implements OnInit {
     public actionSheetCtrl: ActionSheetController,
     private service: UserService,
     private fortuneTellingService: FortuneTellingService,
-    private camera: Camera
+    private camera: Camera,
+    private errorHandlerService : ErrorHandlerService,
+    private notificationService: NotificationService
   ) {}
 
   ngOnInit() {
@@ -49,11 +53,17 @@ export class MyAccountPage implements OnInit {
     if(this.role == constants.userRoles.consumer) {
       this.service.getConsumerUserInfo(this.userName).subscribe((result: any) => {
         this.userInfo = result;
+      },
+      err => {
+        this.errorHandlerService.handle(err);
       });
     }
     else {
       this.fortuneTellingService.getFortuneTellerByName(this.userName).subscribe((result: any) => {
         this.userInfo = result;
+      },
+      err => {
+        this.errorHandlerService.handle(err);
       });
     }
   }
@@ -71,17 +81,10 @@ export class MyAccountPage implements OnInit {
       
       this.service.updateProfilePhoto(formData).subscribe(
         data => {
-          console.log('done');
-          alert('done');
+          this.notificationService.success({Message: "Profil resmi değiştirildi." });
         },
         err => {
-          if (err.error != null && err.error.Message)
-          {
-            alert(err.error.Message);
-          }
-          else {
-            alert(JSON.stringify(err));
-          }
+          this.errorHandlerService.handle(err);
         }
       );
      }, (err) => {

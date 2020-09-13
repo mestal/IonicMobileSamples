@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-
 import { UserData } from '../../providers/user-data';
-
 import { UserService } from 'src/app/services/user.service';
-import { NewUser, ResetPassword } from 'src/app/interfaces/new-user';
+import { ResetPassword } from 'src/app/interfaces/new-user';
+import { NotificationService } from 'src/app/shared-module/notification-service';
+import { ErrorHandlerService } from 'src/app/shared-module/error-handler-service';
 //import { UserService } from '../user.service';
 
 @Component({
@@ -23,7 +23,9 @@ export class ResetPasswordPage {
     public userData: UserData,
     public router: Router,
     private service: UserService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private errorHandlerService : ErrorHandlerService,
+    private notificationService: NotificationService
   ) { }
 
   ionViewDidEnter() {
@@ -37,16 +39,10 @@ export class ResetPasswordPage {
 
     this.service.resetPassword(form.value).subscribe(
       (res: any) => {
-        alert('Şifre değiştirildi.');
+        this.notificationService.success({Message: "Şifre değiştirildi." });
       },
       err => {
-        if (err.error != null && err.error.Message)
-        {
-          alert(err.error.Message);
-        }
-        else {
-          alert(JSON.stringify(err));
-        }
+        this.errorHandlerService.handle(err);
       }
     );
   }

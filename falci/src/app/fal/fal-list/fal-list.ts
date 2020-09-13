@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FortuneTellingService } from 'src/app/services/fortuneTelling.service';
 import { Router } from '@angular/router';
+import { ErrorHandlerService } from 'src/app/shared-module/error-handler-service';
 
 @Component({
   selector: 'page-fal-list',
@@ -12,7 +13,11 @@ export class FalListPage {
   pageIndex;
   hasNextPage: false;
 
-  constructor(public fortuneTellingService: FortuneTellingService, private router: Router) {}
+  constructor(
+    public fortuneTellingService: FortuneTellingService, 
+    private router: Router,
+    private errorHandlerService : ErrorHandlerService
+  ) {}
 
   ionViewDidEnter() {
     this.loadItems(null);
@@ -47,13 +52,7 @@ export class FalListPage {
       }
     },
     err => {
-      if (err.error != null && err.error.Message)
-      {
-        alert(err.error.Message);
-      }
-      else {
-        alert(JSON.stringify(err));
-      }
+      this.errorHandlerService.handle(err);
     });
   }
 

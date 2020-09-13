@@ -3,6 +3,8 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserOptions } from '../../interfaces/user-options';
 import { UserService } from 'src/app/services/user.service';
+import { NotificationService } from 'src/app/shared-module/notification-service';
+import { ErrorHandlerService } from 'src/app/shared-module/error-handler-service';
 
 @Component({
   selector: 'page-login',
@@ -15,7 +17,9 @@ export class LoginPage {
 
   constructor(
     public router: Router,
-    private service: UserService
+    private service: UserService,
+    public notificationService: NotificationService,
+    private errorHandlerService : ErrorHandlerService
   ) { }
 
   onLogin(form: NgForm) {
@@ -25,16 +29,11 @@ export class LoginPage {
         localStorage.setItem('fullName', res.fullName);
         localStorage.setItem('token', res.token);
         localStorage.setItem('role', res.role);
+        localStorage.setItem('isTestUser', res.isTestUser);
         this.router.navigateByUrl('/mainPage');
       },
       err => {
-        if (err.error != null && err.error.Message)
-        {
-          alert(err.error.Message);
-        }
-        else {
-          alert(JSON.stringify(err));
-        }
+        this.errorHandlerService.handle(err);
       }
     );
   }
