@@ -4,85 +4,113 @@
       <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
-
       <ion-title>Yeni Üye</ion-title>
     </ion-toolbar>
   </ion-header>
 
-
   <div class="new-account-logo">
-    <img src="assets/img/single_user.png" alt="Ionic logoo">
+    <img src="assets/img/single_user.png">
   </div>
 
-  <form #registerForm="ngForm" novalidate>
+  <form [formGroup]="registrationForm" (ngSubmit)="submit()">
     <ion-list>
       <ion-item>
-        <ion-label position="stacked" color="primary">Üye isimi</ion-label>
-        <ion-input [(ngModel)]="newUser.UserName" name="userName" class="b1" type="text" #username="ngModel" spellcheck="false" autocapitalize="off"
-          required>
+        <ion-label position="floating" color="primary">Üye isimi</ion-label>
+        <ion-input formControlName="userName" inputmode="text">
         </ion-input>
       </ion-item>
 
-      <!-- <ion-text color="danger">
-        <p [hidden]="username.valid || submitted == false" class="ion-padding-start">
-          Üye isimi zorunludur.
-        </p>
-      </ion-text> -->
+      <div *ngFor="let error of errorMessages.userName">
+        <ng-container *ngIf="userName.hasError(error.type) && (userName.dirty || userName.touched)">
+          <small class="error-message">{{error.message}}</small>
+        </ng-container>
+      </div>
 
       <ion-item>
-        <ion-label position="stacked" color="primary">Şifre</ion-label>
-        <ion-input [(ngModel)]="newUser.Password" name="password" type="password" #password="ngModel" required>
+        <ion-label position="floating" color="primary">Şifre</ion-label>
+        <ion-input formControlName="password" inputmode="password" type="password">
         </ion-input>
       </ion-item>
 
-      <!-- <ion-text color="danger">
-        <p [hidden]="password.valid || submitted == false" class="ion-padding-start">
-          Şifre zorunludur
-        </p>
-      </ion-text> -->
+      <div *ngFor="let error of errorMessages.password">
+        <ng-container *ngIf="password.hasError(error.type) && (password.dirty || password.touched)">
+          <small class="error-message">{{error.message}}</small>
+        </ng-container>
+      </div>
 
       <ion-item>
-        <ion-label position="stacked" color="primary">Şifre (Tekrar)</ion-label>
-        <ion-input [(ngModel)]="newUser.Password2" name="password2" type="password" #password2="ngModel" required>
+        <ion-label position="floating" color="primary">Şifre (Tekrar)</ion-label>
+        <ion-input formControlName="password2" inputmode="password" type="password">
         </ion-input>
       </ion-item>
 
-      <!-- <ion-text color="danger">
-        <p [hidden]="password2.valid || submitted == false" class="ion-padding-start">
-          Şifre zorunludur
-        </p>
-      </ion-text> -->
+      <div *ngFor="let error of errorMessages.password2">
+        <ng-container *ngIf="password2.hasError(error.type) && (password2.dirty || password2.touched)">
+          <small class="error-message">{{error.message}}</small>
+        </ng-container>
+      </div>
 
       <ion-item>
-        <ion-label position="stacked" color="primary">İsim</ion-label>
-        <ion-input [(ngModel)]="newUser.FullName" name="fullName" type="text" #fullName="ngModel" required>
+        <ion-label position="floating" color="primary">İsim</ion-label>
+        <ion-input formControlName="fullName" inputmode="text">
         </ion-input>
       </ion-item>
 
-      <!-- <ion-text color="danger">
-        <p [hidden]="fullName.valid || submitted == false" class="ion-padding-start">
-          İsim zorunludur
-        </p>
-      </ion-text> -->
+      <div *ngFor="let error of errorMessages.fullName">
+        <ng-container *ngIf="fullName.hasError(error.type) && (fullName.dirty || fullName.touched)">
+          <small class="error-message">{{error.message}}</small>
+        </ng-container>
+      </div>
 
       <ion-item>
-        <ion-label position="stacked" color="primary">E-Mail</ion-label>
-        <ion-input [(ngModel)]="newUser.EMail" name="email" type="text" #email="ngModel" required>
+        <ion-label position="floating" color="primary">E-Mail</ion-label>
+        <ion-input formControlName="eMail" inputmode="string">
         </ion-input>
       </ion-item>
 
-      <!-- <ion-text color="danger">
-        <p [hidden]="mailAddress.valid || submitted == false" class="ion-padding-start">
-          E-Mail zorunludur
-        </p>
-      </ion-text> -->
+      <div *ngFor="let error of errorMessages.eMail">
+        <ng-container *ngIf="eMail.hasError(error.type) && (eMail.dirty || eMail.touched)">
+          <small class="error-message">{{error.message}}</small>
+        </ng-container>
+      </div>
+
+      <ion-item>
+        <ion-label position="floating" color="primary">Cinsiyet</ion-label> 
+        <ion-select formControlName="gender">
+          <ion-select-option value="0" >Kadın</ion-select-option>
+          <ion-select-option value="1" >Erkek</ion-select-option>
+          <ion-select-option value="2" >Lgbt</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating" color="primary">İlişki durumu</ion-label> 
+        <ion-select formControlName="relationshipStatus">
+          <ion-select-option value="0" >Evli</ion-select-option>
+          <ion-select-option value="1" >Sevgilim var</ion-select-option>
+          <ion-select-option value="2" >Platonik</ion-select-option>
+          <ion-select-option value="3" >Karışık</ion-select-option>
+          <ion-select-option value="4" >İlişkim yok</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating" color="primary">Doğum Tarihi</ion-label> 
+          <ion-datetime value="2000-01-01" min="1900-01-01" max="2020"
+            displayFormat="DD MMM YYYY"
+            monthShortNames="Ocak, Şubat, Mart, Nisan, Mayıs, Haziran, Temmuz, Ağustos, Eylül, Ekim, Kasım, Aralık"
+            formControlName="birthDate"
+          >
+          </ion-datetime>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating" color="primary">Meslek</ion-label>
+        <ion-input formControlName="job" inputmode="text">
+        </ion-input>
+      </ion-item>
+      
+      <ion-button [disabled]="!registrationForm.valid" type="submit" expand="block">Oluştur</ion-button>
     </ion-list>
-
-    <ion-row>
-      <ion-col>
-        <ion-button (click)="onSubmit(registerForm)" type="submit" expand="block">Oluştur</ion-button>
-      </ion-col>
-    </ion-row>
   </form>
-
 </ion-content>

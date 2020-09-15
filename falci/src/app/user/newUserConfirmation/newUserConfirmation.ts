@@ -34,7 +34,7 @@ export class NewUserConfirmationPage {
       token: token
     }
     this.service.confirmNewUser(payload).subscribe((result: any) => {
-      this.notificationService.success({ Message: "Üye aktifleştirildi."});
+      this.notificationService.success({ Message: "Üyeliğiniz aktifleştirildi."});
       this.router.navigateByUrl('/login');
     },
     err => {

@@ -9,7 +9,7 @@ export class NotificationService {
 
   
   constructor(public toastController: ToastController) { }
-  defaultDuration = 3000;
+  defaultDuration = 4000;
 
   async error(data: NotificationData) {
     const toast = await this.toastController.create({

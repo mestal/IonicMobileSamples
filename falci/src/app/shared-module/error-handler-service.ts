@@ -15,7 +15,7 @@ export class ErrorHandlerService {
   }
 
   handle(error: any) {
-    if (error.error != null && error.error.Message)
+    if (error.error != null && error.error.Code && error.error.Code != "500")
     {
       this.notificationService.error({ Message: error.error.Message });
     }
