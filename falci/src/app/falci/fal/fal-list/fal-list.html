@@ -24,7 +24,7 @@
                 <p>{{ 'Type.' + fal.type | translate }}</p>
                 <p>{{ 'FalStatus.Falci.' + fal.status | translate }}</p>
                 <p>{{ fal.user.fullName }}</p>
-                <p>{{fal.submitDateUtc}}</p>
+                <p>{{fal.submitDateUtc | date: 'dd.LL.yyyy HH:mm'}}</p>
               </ion-label>
             </ion-item>
           </ion-card-header>

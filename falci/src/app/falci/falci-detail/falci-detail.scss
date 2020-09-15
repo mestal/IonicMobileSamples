@@ -1,6 +1,15 @@
 /*
  * Fal Background
  */
+.profile-picture {
+  padding: 20px 0;
+  min-height: 200px;
+  text-align: center;
+}
+
+ .profile-picture img {
+  max-width: 150px;
+}
 
 ion-toolbar {
   position: absolute;

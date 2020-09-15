@@ -11,8 +11,8 @@
 
   <div class="ion-padding fal-detail">
     <b>Durum: </b>{{'FalStatus.Consumer.' + fal?.status | translate}}<br>
-    <b>Gönderme tarihi: </b>{{fal?.submitDateUtc}}<br>
-    <b>Yorum tarihi: </b>{{fal?.submitByFortuneTellerDateUtc}}<br>
+    <b>Gönderme tarihi: </b>{{fal?.submitDateUtc | date: 'dd.LL.yyyy HH:mm'}}<br>
+    <b>Yorum tarihi: </b>{{fal?.submitByFortuneTellerDateUtc | date: 'dd.LL.yyyy HH:mm'}}<br>
     <b>Konu: </b>{{'Type.' + fal?.type | translate}}<br>
     <b>Falcı: </b>{{fal?.fortuneTeller?.fullName}}<br>
     <b>Yorum: </b><br>

@@ -28,8 +28,8 @@
 
   <div class="ion-padding fal-detail" *ngIf="fal">
     <b>Durum: </b>{{'FalStatus.Falci.' + fal.status | translate}}<br>
-    <b>Gönderme tarihi: </b>{{fal.submitDateUtc}}<br>
-      <div *ngIf="fal.status == constants.fortuneTellingStatuses.SubmittedByFortuneTeller"><b>Yorum tarihi: </b>{{fal.submitByFortuneTellerDateUtc}}<br></div>
+    <b>Gönderme tarihi: </b>{{fal.submitDateUtc | date: 'dd.LL.yyyy HH:mm'}}<br>
+      <div *ngIf="fal.status == constants.fortuneTellingStatuses.SubmittedByFortuneTeller"><b>Yorum tarihi: </b>{{fal.submitByFortuneTellerDateUtc | date: 'dd.LL.yyyy HH:mm'}}<br></div>
     <b>Konu: </b>{{'Type.' + fal.type | translate}}<br>
     <b>Kullanıcı: </b>{{fal.user?.fullName}}<br>
     <b>Yorum: </b><br>
