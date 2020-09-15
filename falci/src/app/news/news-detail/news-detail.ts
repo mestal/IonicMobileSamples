@@ -26,8 +26,6 @@ export class NewsDetailPage {
     public feedService: FeedService,
     private errorHandlerService : ErrorHandlerService
   ) {
-    var a =5 ;
-    a++;
   }
 
   ngOnInit() {

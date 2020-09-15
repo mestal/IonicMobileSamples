@@ -105,6 +105,17 @@
       </ion-item>
 
       <ion-item>
+        <ion-label position="floating" color="primary">Doğum Saati</ion-label> 
+          <ion-datetime  
+            displayFormat="HH:mm"
+            formControlName="birthTime"
+            [(ngModel)]="defaultBirthDateString"
+            (ionChange)="birthTimeChanged($events)"
+          >
+          </ion-datetime>
+      </ion-item>
+
+      <ion-item>
         <ion-label position="floating" color="primary">Meslek</ion-label>
         <ion-input formControlName="job" inputmode="text">
         </ion-input>

@@ -9,5 +9,11 @@
     "FalStatus.Falci.SubmittedByUser": "Yeni",
     "FalStatus.Falci.SubmittedByFortuneTeller": "Bakıldı",
     "Male": "Erkek",
-    "Female": "Kadın"
+    "Female": "Kadın",
+    "Lgbt": "Lgbt",
+    "RelationshipStatus.Married": "Evli",
+    "RelationshipStatus.HaveLover": "Sevgilim var",
+    "RelationshipStatus.Platonic": "Platonik",
+    "RelationshipStatus.Complicated": "Karışık",
+    "RelationshipStatus.HaveNotRelationship": "İlişkim yok"
 }

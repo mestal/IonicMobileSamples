@@ -7,33 +7,79 @@
     </ion-toolbar>
   </ion-header>
 
-  <div>
+  <div class="profile-picture">
     <img *ngIf="profilePicture == null && userInfo?.picturePath != null" [src]="environment.urlForAssets + constants.folderForProfilePictures + userInfo?.picturePath"><br>
     <img *ngIf="profilePicture != null" [src]="profilePicture"><br>
   </div>
 
-  <div class="ion-padding my-account-detail" *ngIf="role == constants.userRoles.consumer">
-    <div style="text-align: center;"><b>{{userInfo?.userName}}</b></div>
-    <br>
-    <div style="text-align: center;">İsim: <b>{{userInfo?.fullName}}</b></div>
-    <br>
-    <div style="text-align: center;">Email: <b>{{userInfo?.email}}</b></div>
-    <br>
-    <div style="text-align: center;">Cinsiyet: <b>{{userInfo?.gender | translate}}</b></div>
-    <br>
-    <div style="text-align: center;">Puan: <b>{{userInfo?.point}}</b></div>
-  </div>
+  <ion-list *ngIf="role == constants.userRoles.consumer">
+    <ion-item>
+      <ion-label color="primary">Üye İsimi</ion-label>
+      <ion-label>{{userInfo?.userName}}</ion-label>
+    </ion-item>
 
-  <div class="ion-padding my-account-detail" *ngIf="role == constants.userRoles.falci">
-    <div style="text-align: center;"><b>{{userName}}</b></div>
-    <br>
-    <div style="text-align: center;">İsim: <b>{{userInfo?.fullName}}</b></div>
-    <br>
-    <div style="text-align: center;">Fal sayısı: <b>{{userInfo?.coffeFortuneTellingCount}}</b></div>
-    <br>
-    <div style="text-align: center;">Fal puanı: <b>{{userInfo?.coffeePointPrice}}</b></div>
-    <br>
-  </div>
+    <ion-item>
+      <ion-label color="primary">İsim</ion-label>
+      <ion-label>{{userInfo?.fullName}}</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary">Email</ion-label>
+      <ion-label>{{userInfo?.email}}</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary">Cinsiyet</ion-label>
+      <ion-label  *ngIf="userInfo?.gender">{{userInfo?.gender | translate}}</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary">İlişki Durumu</ion-label>
+      <ion-label *ngIf="userInfo?.relationshipStatus">{{'RelationshipStatus.' + userInfo?.relationshipStatus | translate}}</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary">Doğum Tarihi</ion-label>
+      <ion-label>{{userInfo?.birthDate}}</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary">Doğum Zamanı</ion-label>
+      <ion-label>{{userInfo?.birthTime}}</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary">Meslek</ion-label>
+      <ion-label>{{userInfo?.job}}</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary">Puan</ion-label>
+      <ion-label>{{userInfo?.point}}</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngIf="role == constants.userRoles.falci">
+    <ion-item>
+      <ion-label color="primary">Üye İsimi</ion-label>
+      <ion-label>{{userName}}</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary">İsim</ion-label>
+      <ion-label>{{userInfo?.fullName}}</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary">Fal sayısı</ion-label>
+      <ion-label>{{userInfo?.coffeFortuneTellingCount}}</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary">Fal puanı</ion-label>
+      <ion-label>{{userInfo?.coffeePointPrice}}</ion-label>
+    </ion-item>
+  </ion-list>
 
   <div style="text-align: center;">
     <ion-button (click)="loadImage()">Profil Fotoğrafı Değiştir</ion-button>

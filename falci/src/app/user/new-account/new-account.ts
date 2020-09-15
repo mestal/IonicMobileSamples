@@ -11,6 +11,11 @@ import { ErrorHandlerService } from 'src/app/shared-module/error-handler-service
   styleUrls: ['./new-account.scss'],
 })
 export class NewAccountPage {
+
+  defaultBirthDate: Date;
+  defaultBirthDateString: string;
+  birthTimeSet: boolean;
+
   get userName() {
     return this.registrationForm.get('userName');
   }
@@ -76,6 +81,7 @@ export class NewAccountPage {
     gender: [''],
     relationshipStatus: [''],
     birthDate: [''],
+    birthTime: [''],
     job: ['', [Validators.maxLength(100)]]
   });
 
@@ -85,9 +91,18 @@ export class NewAccountPage {
     private errorHandlerService : ErrorHandlerService,
     private notificationService: NotificationService,
     private formBuilder: FormBuilder,
-  ) { }
+  ) { 
+    this.defaultBirthDate = new Date();
+    this.defaultBirthDate.setHours(0, 0);
+    this.defaultBirthDateString = this.defaultBirthDate.toISOString();
+    this.birthTimeSet = false;
+  }
 
   submit() {
+    if(!this.birthTimeSet) {
+      this.registrationForm.value.birthTime = null;
+    }
+
     this.service.register(this.registrationForm.value).subscribe(
       (res: any) => {
         this.notificationService.success({Message: "Lütfen mailinize gönderilen aktifleştirme butonuna tıklayın.", Duration: 6000 });
@@ -97,5 +112,9 @@ export class NewAccountPage {
         this.errorHandlerService.handle(err);
       }
     );
+  }
+
+  birthTimeChanged() {
+    this.birthTimeSet = true;
   }
 }
