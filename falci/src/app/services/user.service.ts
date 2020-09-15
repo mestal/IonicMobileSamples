@@ -65,4 +65,8 @@ export class UserService {
   updateProfilePhoto(formData) {
     return this.http.post(this.BaseURI + 'User/UpdateProfilePhoto', formData);
   }
+
+  updateUserInfo(formData) {
+    return this.http.post(this.BaseURI + 'User/UpdateUserInfo', formData);
+  }
 }

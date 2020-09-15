@@ -42,8 +42,8 @@ export class NewAccountPage {
 
   errorMessages = {
     userName: [
-       { type: 'required', message: 'İsim zorunludur.' },
-       { type: 'maxlength', message: 'İsim 256 karakteri geçemez.' }
+       { type: 'required', message: 'Kullancı isimi zorunludur.' },
+       { type: 'maxlength', message: 'Kullanıcı isimi 256 karakteri geçemez.' }
     ],
     fullName: [
       { type: 'required', message: 'İsim zorunludur.' },
@@ -60,9 +60,6 @@ export class NewAccountPage {
     password2: [
       { type: 'required', message: 'Şifre zorunludur.' },
       { type: 'minlength', message: 'Şifre en az 6 karakter olabilir.' }
-    ],
-    gender: [
-      { type: 'required', message: 'Şifre zorunludur.' }
     ],
     job: [
       { type: 'maxlength', message: 'Meslek 100 karakteri geçemez.' }

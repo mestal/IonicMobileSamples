@@ -1,0 +1,79 @@
+<ion-content>
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Profil Bilgileri Güncelleme</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <form [formGroup]="updateForm" (ngSubmit)="submit()">
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating" color="primary">Üye isimi</ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating" color="primary">İsim</ion-label>
+        <ion-input formControlName="fullName" inputmode="text">
+        </ion-input>
+      </ion-item>
+
+      <!-- <div *ngFor="let error of errorMessages.fullName">
+        <ng-container *ngIf="fullName.hasError(error.type) && (fullName.dirty || fullName.touched)">
+          <small class="error-message">{{error.message}}</small>
+        </ng-container>
+      </div> -->
+
+      <ion-item>
+        <ion-label position="floating" color="primary">Cinsiyet</ion-label> 
+        <ion-select formControlName="gender">
+          <ion-select-option value="Female" >Kadın</ion-select-option>
+          <ion-select-option value="Male" >Erkek</ion-select-option>
+          <ion-select-option value="Lgbt" >Lgbt</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating" color="primary">İlişki durumu</ion-label> 
+        <ion-select formControlName="relationshipStatus">
+          <ion-select-option value="Married" >Evli</ion-select-option>
+          <ion-select-option value="HaveLover" >Sevgilim var</ion-select-option>
+          <ion-select-option value="Platonic" >Platonik</ion-select-option>
+          <ion-select-option value="Complicated" >Karışık</ion-select-option>
+          <ion-select-option value="HaveNotRelationship" >İlişkim yok</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating" color="primary">Doğum Tarihi</ion-label> 
+          <ion-datetime value="2000-01-01" min="1900-01-01" max="2020"
+            displayFormat="DD.MM.YYYY"
+            monthShortNames="Ocak, Şubat, Mart, Nisan, Mayıs, Haziran, Temmuz, Ağustos, Eylül, Ekim, Kasım, Aralık"
+            formControlName="birthDate"
+          >
+          </ion-datetime>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating" color="primary">Doğum Saati</ion-label> 
+          <ion-datetime  
+            displayFormat="HH:mm"
+            formControlName="birthTime"
+            [(ngModel)]="defaultBirthDateString"
+            (ionChange)="birthTimeChanged($events)"
+          >
+          </ion-datetime>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating" color="primary">Meslek</ion-label>
+        <ion-input formControlName="job" inputmode="text">
+        </ion-input>
+      </ion-item>
+      
+      <ion-button [disabled]="!updateForm.valid" type="submit" expand="block">Güncelle</ion-button>
+    </ion-list>
+  </form>
+</ion-content>

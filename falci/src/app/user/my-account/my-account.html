@@ -40,12 +40,12 @@
 
     <ion-item>
       <ion-label color="primary">Doğum Tarihi</ion-label>
-      <ion-label>{{userInfo?.birthDate}}</ion-label>
+      <ion-label>{{userInfo?.birthDate | date: 'dd.LL.yyyy'}}</ion-label>
     </ion-item>
 
     <ion-item>
       <ion-label color="primary">Doğum Zamanı</ion-label>
-      <ion-label>{{userInfo?.birthTime}}</ion-label>
+      <ion-label>{{userInfo?.birthTime | date: 'HH:mm'}}</ion-label>
     </ion-item>
 
     <ion-item>
@@ -84,5 +84,6 @@
   <div style="text-align: center;">
     <ion-button (click)="loadImage()">Profil Fotoğrafı Değiştir</ion-button>
     <ion-button routerLink="/changePassword">Şifre Değiştir</ion-button>
+    <ion-button routerLink="/updateAccount">Profil Bilgilerini Değiştir</ion-button>
   </div>
 </ion-content>

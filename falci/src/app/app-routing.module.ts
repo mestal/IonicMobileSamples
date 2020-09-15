@@ -78,6 +78,10 @@ const routes: Routes = [
   {
     path: 'pointList',
     loadChildren: () => import('./point/point-list/point-list.module').then( m => m.PointListModule)
+  },
+  {
+    path: 'updateAccount',
+    loadChildren: () => import('./user/update-account/update-account.module').then( m => m.UpdateAccountModule)
   }
 ];
 
