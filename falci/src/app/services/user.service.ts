@@ -50,6 +50,10 @@ export class UserService {
     return this.http.get(this.BaseURI + 'User/GetConsumerUserInfo?userName=' + userName);
   }
 
+  getConsumerUserInfoById(userId) {
+    return this.http.get(this.BaseURI + 'User/GetConsumerUserInfo?consumerUserId=' + userId);
+  }
+
   forgatPassword(formData) {
     return this.http.post(this.BaseURI + 'User/ForgatPassword', formData);
   }

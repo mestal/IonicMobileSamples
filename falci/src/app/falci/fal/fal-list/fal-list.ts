@@ -19,7 +19,9 @@ export class FalListPage {
     private errorHandlerService : ErrorHandlerService) {}
 
   ionViewDidEnter() {
-    this.loadItems(null);
+    if(this.fals == null || this.fals.length == 0) {
+      this.loadItems(null);
+    }
   }
 
   loadItems(scrollEvent) {
