@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { InAppPurchase2, IAPProduct } from '@ionic-native/in-app-purchase-2/ngx';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'page-point-list',
@@ -11,74 +12,86 @@ export class PointListPage {
   pointList: any[] = [];
   product: any;
 
-  constructor(public platform: Platform, private store: InAppPurchase2) {
-
+  constructor(
+    public platform: Platform, 
+    private store: InAppPurchase2,
+    private userService: UserService) {
   }
 
   ionViewDidEnter() {
-    this.pointList = [{title: 'Bir'}];
-    this.platform.ready().then(() => {
-      //var products = this.store.products;
-      
-      this.store.verbosity = this.store.DEBUG;
-      this.store.register({
-        id: "point_20",
-        type: this.store.CONSUMABLE,
-      });
+    this.userService.getPoints('Android').subscribe((points: any) => {
+      this.pointList = points;
 
-      var product1 = this.store.get('point_20');
-      this.product = JSON.stringify(product1);
-      this.registerHandlersForPurchase('point_20');
-      // restore purchase
-      this.store.refresh();
-      // var products = this.store.products;
-      // this.store.when("point_20")
-      //   .approved(p => p.verify())
-      //   .verified(p => p.finish());
-      // this.store.refresh();
-     });
-    
+      this.platform.ready().then(() => {
+        
+        this.store.verbosity = this.store.DEBUG;
+  
+        for(var i = 0; i < this.pointList.length; i ++) {
+          this.store.register({
+            id: this.pointList[i].productId,
+            type: this.store.CONSUMABLE,
+          });
+          this.registerHandlersForPurchase(this.pointList[i].productId);
+        }
+        // restore purchase
+        this.store.refresh();
+       });
+    });
   }
 
   registerHandlersForPurchase(productId) {
     let self = this.store;
     this.store.when(productId).updated(function (product) {
-      alert("updated product - " + JSON.stringify(product))
+      //alert("updated product - " + JSON.stringify(product))
       if (product.loaded && product.valid && product.state === self.APPROVED && product.transaction != null) {
         product.finish();
       }
     });
     this.store.when(productId).registered((product: IAPProduct) => {
-      alert(` registered ${JSON.stringify(product)}`);
+      //alert(` registered ${JSON.stringify(product)}`);
     });
     this.store.when(productId).owned((product: IAPProduct) => {
       alert(` owned ${JSON.stringify(product)}`);
       product.finish();
     });
     this.store.when(productId).approved((product: IAPProduct) => {
-      alert(` approved ${JSON.stringify(product)}`);
+      //alert(` approved ${JSON.stringify(product)}`);
       product.finish();
+
+      alert('approved.');
+
+      this.userService.buyPoint({
+        TransactionJson: JSON.stringify(product.transaction),
+        TransactionId: product.transaction.id,
+        ProductId: product.id,
+        PointType: 'Android',
+      }).subscribe((result: any) => {
+        alert('Purchase Succesful2');
+      });
+
     });
     this.store.when(productId).refunded((product: IAPProduct) => {
-      alert(` refunded ${JSON.stringify(product)}`);
+      //alert(` refunded ${JSON.stringify(product)}`);
     });
     this.store.when(productId).expired((product: IAPProduct) => {
-      alert(` expired ${JSON.stringify(product)}`);
+      //alert(` expired ${JSON.stringify(product)}`);
     });
   }
 
-  checkout() {
-    this.registerHandlersForPurchase('point_20');
+  checkout(point: any) {
+    //this.registerHandlersForPurchase(point.productId);
     try {
-      let product = this.store.get('point_20');
-      alert('Product Info: ' + JSON.stringify(product));
-      this.store.order('point_20').then((p) => {
-        alert('Purchase Succesful' + JSON.stringify(p));
+      //let product = this.store.get(point.productId);
+      //alert('Product Info: ' + JSON.stringify(product));
+      this.store.order(point.productId).then((p) => {
+        //alert('Purchase Succesful' + JSON.stringify(p));
+
+
       }).catch((e) => {
         alert('Error Ordering From Store' + e);
       });
     } catch (err) {
-      alert('Error Ordering ' + JSON.stringify(err));
+      //alert('Error Ordering ' + JSON.stringify(err));
     }
   }
 }

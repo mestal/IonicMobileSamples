@@ -73,4 +73,12 @@ export class UserService {
   updateUserInfo(formData) {
     return this.http.post(this.BaseURI + 'User/UpdateUserInfo', formData);
   }
+
+  getPoints(pointType: string) {
+    return this.http.get(this.BaseURI + 'User/GetPoints?pointType=' + pointType);
+  }
+
+  buyPoint(data) {
+    return this.http.post(this.BaseURI + 'User/BuyPoint', data);
+  }
 }
