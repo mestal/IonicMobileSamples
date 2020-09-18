@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { InAppPurchase2, IAPProduct } from '@ionic-native/in-app-purchase-2/ngx';
 import { UserService } from 'src/app/services/user.service';
+import { NotificationService } from 'src/app/shared-module/notification-service';
+import { ErrorHandlerService } from 'src/app/shared-module/error-handler-service';
 
 @Component({
   selector: 'page-point-list',
@@ -15,7 +17,9 @@ export class PointListPage {
   constructor(
     public platform: Platform, 
     private store: InAppPurchase2,
-    private userService: UserService) {
+    private userService: UserService,
+    private notificationService: NotificationService,
+    private errorHandlerService: ErrorHandlerService) {
   }
 
   ionViewDidEnter() {
@@ -31,8 +35,14 @@ export class PointListPage {
             id: this.pointList[i].productId,
             type: this.store.CONSUMABLE,
           });
-          this.registerHandlersForPurchase(this.pointList[i].productId);
+
+          if(this.userService.productsRegistered != true) {
+            this.registerHandlersForPurchase(this.pointList[i].productId);
+          }
         }
+
+        this.userService.productsRegistered = true;
+
         // restore purchase
         this.store.refresh();
        });
@@ -58,17 +68,17 @@ export class PointListPage {
       //alert(` approved ${JSON.stringify(product)}`);
       product.finish();
 
-      alert('approved.');
-
       this.userService.buyPoint({
         TransactionJson: JSON.stringify(product.transaction),
         TransactionId: product.transaction.id,
         ProductId: product.id,
         PointType: 'Android',
       }).subscribe((result: any) => {
-        alert('Purchase Succesful2');
+        this.notificationService.success({ Message: `Toplam puanınız ${result} oldu.`});
+      },
+      err => {
+        this.errorHandlerService.handle(err);
       });
-
     });
     this.store.when(productId).refunded((product: IAPProduct) => {
       //alert(` refunded ${JSON.stringify(product)}`);
