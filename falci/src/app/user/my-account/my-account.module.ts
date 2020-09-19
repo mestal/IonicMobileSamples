@@ -5,13 +5,15 @@ import { MyAccountPage } from './my-account';
 import { MyAccountPageRoutingModule } from './my-account-routing.module';
 import { IonicModule } from '@ionic/angular';
 import { TranslateModule } from '@ngx-translate/core';
+import { UpdateProfilePictureModalModule } from './update-profile-picture-modal/update-profile-picture-modal-module';
 
 @NgModule({
   imports: [
     CommonModule,
     IonicModule,
     MyAccountPageRoutingModule,
-    TranslateModule
+    TranslateModule,
+    UpdateProfilePictureModalModule
   ],
   declarations: [
     MyAccountPage

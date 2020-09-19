@@ -1,0 +1,15 @@
+
+.mirrorItem {
+    display: inline-block; 
+    transform: scaleX(-1);
+}
+
+.profile-picture {
+    padding: 20px 0;
+    min-height: 200px;
+    text-align: center;
+}
+  
+.profile-picture img {
+    max-width: 250px;
+}

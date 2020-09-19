@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ActionSheetController } from '@ionic/angular';
+import { ActionSheetController, ModalController } from '@ionic/angular';
 import { UserService } from 'src/app/services/user.service';
 import { constants } from 'src/app/constants';
 import { FortuneTellingService } from 'src/app/services/fortuneTelling.service';
@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { ErrorHandlerService } from 'src/app/shared-module/error-handler-service';
 import { NotificationService } from 'src/app/shared-module/notification-service';
+import { UpdateProfilePictureModal } from './update-profile-picture-modal/update-profile-picture-modal';
 
 @Component({
   selector: 'page-my-account',
@@ -44,7 +45,8 @@ export class MyAccountPage implements OnInit {
     private fortuneTellingService: FortuneTellingService,
     private camera: Camera,
     private errorHandlerService : ErrorHandlerService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private modalController: ModalController
   ) {}
 
   ngOnInit() {
@@ -71,26 +73,7 @@ export class MyAccountPage implements OnInit {
   ionViewWillEnter() { }
 
   loadImage() {
-    this.camera.getPicture(this.optionsGallery).then((imageData) => {
-      let base64Image = 'data:image/jpeg;base64,' + imageData;
-
-      this.profilePicture = base64Image;
-
-      const formData: FormData = new FormData();
-      formData.append('Photo', this.makeblob(this.profilePicture));
-      
-      this.service.updateProfilePhoto(formData).subscribe(
-        data => {
-          this.notificationService.success({Message: "Profil resmi değiştirildi." });
-        },
-        err => {
-          this.errorHandlerService.handle(err);
-        }
-      );
-     }, (err) => {
-      // Handle error
-      console.log(err)
-     })
+    this.openModal();
   }
 
   makeblob(dataURL) {
@@ -106,5 +89,47 @@ export class MyAccountPage implements OnInit {
     }
 
     return new Blob([uInt8Array], { type: contentType });
+  }
+
+  async openModal() {
+    //var base64Image = this.imageUrlToBase64('profilePic');
+
+    var base64Image = this.getBase64Image(document.getElementById('profilePic'));
+    const modal: HTMLIonModalElement =
+       await this.modalController.create({
+          component: UpdateProfilePictureModal,
+          componentProps: {
+            profilePictureBase64: base64Image
+          }
+    });
+     
+    modal.onDidDismiss().then((detail) => {
+       if (detail !== null) {
+         this.profilePicture = detail.data;
+       }
+    });
+    
+    await modal.present();
+  }
+
+  imageUrlToBase64(elementName) {
+    var c = document.createElement('canvas');
+    var img = document.getElementById(elementName) as CanvasImageSource;
+    var ctx = c.getContext('2d');
+    c.height = img.height as number;
+    c.width = img.width as number;
+    ctx.drawImage(img, 0, 0, c.width, c.height);
+    return c.toDataURL();
+  }
+
+  getBase64Image(img) {
+    var canvas = document.createElement("canvas");
+    canvas.width = img.width;
+    canvas.height = img.height;
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0);
+    var dataURL = canvas.toDataURL("image/jpg");
+    return dataURL;
+    //return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
   }
 }
