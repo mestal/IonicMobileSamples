@@ -43,6 +43,9 @@ export class FalListPage {
 
       for(var i = 0; i < fals.items.length; i++)
       {
+        var tempDate = new Date(fals.items[i].submitDateUtc);
+        fals.items[i].submitDateUtc = tempDate.getTime() - tempDate.getTimezoneOffset() * 60000;
+
         this.fals.push(fals.items[i]);
       }
       

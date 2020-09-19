@@ -33,6 +33,13 @@ export class FalDetailPage implements OnInit {
   ngOnInit() {
     const falId = this.route.snapshot.paramMap.get('id');
     this.fortuneTellingService.getFortuneTelling(falId).subscribe((fal: any) => {
+      var tempDate = new Date(fal.submitDateUtc);
+      fal.submitDateUtc = tempDate.getTime() - tempDate.getTimezoneOffset() * 60000;
+
+      if(!!fal.submitByFortuneTellerDateUtc) {
+        var tempDate2 = new Date(fal.submitByFortuneTellerDateUtc);
+        fal.submitByFortuneTellerDateUtc = tempDate2.getTime() - tempDate2.getTimezoneOffset() * 60000;
+      }
       this.fal = fal;
     },
     err => {

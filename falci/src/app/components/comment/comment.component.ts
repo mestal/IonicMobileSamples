@@ -36,7 +36,9 @@ export class CommentComponent implements OnInit {
       .subscribe((comments: any) => {
         for(var i = 0; i < comments.items.length; i++)
         {
-          comments.items[i].createDate = new Date(comments.items[i].createDate);
+          var tempDate = new Date(comments.items[i].createDate);
+          comments.items[i].createDate = tempDate.getTime() - tempDate.getTimezoneOffset() * 60000;
+
           this.comments.push(comments.items[i]);
         }
         this.hasMoreComments = comments.hasNextPage;
@@ -50,7 +52,8 @@ export class CommentComponent implements OnInit {
       .subscribe((comments: any) => {
         for(var i = 0; i < comments.items.length; i++)
         {
-          comments.items[i].createDate = new Date(comments.items[i].createDate);
+          var tempDate = new Date(comments.items[i].createDate);
+          comments.items[i].createDate = tempDate.getTime() - tempDate.getTimezoneOffset() * 60000;
           this.comments.push(comments.items[i]);
         }
         this.hasMoreComments = comments.hasNextPage;

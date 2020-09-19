@@ -1,21 +1,42 @@
-<ion-content class="fal-detail">
-  <ion-header class="ion-no-border">
+<ion-header-bar>
+  <ion-header>
     <ion-toolbar>
       <ion-buttons slot="start">
-        <ion-back-button defaultHref="/myFals"></ion-back-button>
+        <ion-back-button defaultHref="/myFals" color="primary"></ion-back-button>
       </ion-buttons>
     </ion-toolbar>
   </ion-header>
-  <div class="fal-background">
-  </div>
+</ion-header-bar>
+<ion-content class="fal-detail">
+  <ion-list *ngIf="fal" style="padding-top:50px">
+    <ion-item>
+      <ion-label color="primary">Durum</ion-label>
+      <ion-label>{{'FalStatus.Consumer.' + fal.status | translate}}</ion-label>
+    </ion-item>
 
-  <div class="ion-padding fal-detail">
-    <b>Durum: </b>{{'FalStatus.Consumer.' + fal?.status | translate}}<br>
-    <b>Gönderme tarihi: </b>{{fal?.submitDateUtc | date: 'dd.LL.yyyy HH:mm'}}<br>
-    <b>Yorum tarihi: </b>{{fal?.submitByFortuneTellerDateUtc | date: 'dd.LL.yyyy HH:mm'}}<br>
-    <b>Konu: </b>{{'Type.' + fal?.type | translate}}<br>
-    <b>Falcı: </b>{{fal?.fortuneTeller?.fullName}}<br>
-    <b>Yorum: </b><br>
-    <div class="text-pre-wrap" style="text-align: center;">{{fal?.fortuneTellerComment}}</div><br>
-  </div>
+    <ion-item>
+      <ion-label color="primary">Gönderme tarihi</ion-label>
+      <ion-label>{{fal.submitDateUtc | date: 'dd.LL.yyyy HH:mm'}}</ion-label>
+    </ion-item>
+
+    <ion-item *ngIf="fal.status == constants.fortuneTellingStatuses.SubmittedByFortuneTeller">
+      <ion-label color="primary">Yorum tarihi</ion-label>
+      <ion-label>{{fal.submitByFortuneTellerDateUtc | date: 'dd.LL.yyyy HH:mm'}}</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary">Konu</ion-label>
+      <ion-label>{{'Type.' + fal?.type | translate}}</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary">Falcı</ion-label>
+      <ion-label>{{fal.fortuneTeller?.fullName}}</ion-label>
+    </ion-item>
+
+    <ion-item *ngIf="fal.status == constants.fortuneTellingStatuses.SubmittedByFortuneTeller">
+      <ion-label color="primary">Yorum</ion-label>
+      <ion-label class="ion-text-wrap">{{fal?.fortuneTellerComment}}</ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
