@@ -29,23 +29,13 @@ export class MyAccountPage implements OnInit {
     encodingType: this.camera.EncodingType.JPEG,
     mediaType: this.camera.MediaType.PICTURE
   }
-
-  private optionsGallery: CameraOptions = {
-    quality: 100,
-    sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
-    destinationType: this.camera.DestinationType.DATA_URL,
-    encodingType: this.camera.EncodingType.JPEG,
-    mediaType: this.camera.MediaType.PICTURE
-  }
   
   constructor(
-    private route: ActivatedRoute,
     public actionSheetCtrl: ActionSheetController,
     private service: UserService,
     private fortuneTellingService: FortuneTellingService,
     private camera: Camera,
     private errorHandlerService : ErrorHandlerService,
-    private notificationService: NotificationService,
     private modalController: ModalController
   ) {}
 
@@ -93,8 +83,14 @@ export class MyAccountPage implements OnInit {
 
   async openModal() {
     //var base64Image = this.imageUrlToBase64('profilePic');
+    var base64Image = "";
+    if(this.profilePicture != null) {
+      base64Image = this.profilePicture;
+    }
+    else {
+      base64Image = this.getBase64Image(document.getElementById('profilePic'));
+    }
 
-    var base64Image = this.getBase64Image(document.getElementById('profilePic'));
     const modal: HTMLIonModalElement =
        await this.modalController.create({
           component: UpdateProfilePictureModal,
