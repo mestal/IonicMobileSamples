@@ -1,0 +1,29 @@
+<div class="active-photo">
+    <img *ngIf="photoBase64 != null" [src]="photoBase64">
+</div>
+<div style="text-align: center;">
+    <ion-button (click)="photoBase64 = rotateBase64Image90deg(photoBase64, true)">
+        <ion-icon name="reload-outline"></ion-icon>
+    </ion-button>
+    <ion-button (click)="photoBase64 = rotateBase64Image90deg(photoBase64, false)">
+        <ion-icon name="reload-outline" class="mirrorItem" ></ion-icon>
+    </ion-button>
+    
+    <ion-button (click)="loadImage()">
+        <ion-icon name="image-outline"></ion-icon>
+    </ion-button>
+    
+    <ion-button (click)="captureImage()">
+        <ion-icon name="camera-outline"></ion-icon>
+    </ion-button>
+
+    <ion-button (click)="removeImage()">
+        <ion-icon name="trash-outline"></ion-icon>
+    </ion-button>
+
+    
+</div>
+<div style="text-align: center;">
+    <ion-button (click)="confirmPhoto()">Onayla</ion-button>
+    <ion-button (click)="cancel()">İptal</ion-button>
+</div>

@@ -7,38 +7,20 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content fullscreen="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Yeni Fal</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <ion-button (click)="captureImage()">
-    Foto Çek
-  </ion-button>
-  <ion-button (click)="loadImage()">
-    Foto Yükle
-  </ion-button>
-  
-  <!-- <img [src]="clickedImage" /> -->
+<ion-content fullscreen="true">  
   <ion-grid fixed>
     <ion-row>
       <ion-col size="3" size-md="2" *ngFor="let falImage of falImages;let indexOfElement = index;">
-        <ion-card>
+        <ion-card (click)="imageSelected(indexOfElement)">
           <ion-card-content>
-            <span (click)="imageSelected(indexOfElement)">
-              <img  
-                [src]="falImage" 
-                [ngClass]="{ 'selectedImage' : indexOfElement == activeImageIndex }"
-              />
+            <span>
+              <img [src]="falImage" />
             </span>
           </ion-card-content>
         </ion-card>
       </ion-col>
     </ion-row>
   </ion-grid>
-  <img [src]="this.falImages[activeImageIndex]" />
   <br>
    <ion-list>
     <ion-item>
@@ -60,7 +42,5 @@
     </ion-item>
   </ion-list> 
   <br>
-  <ion-button (click)="submit()">
-    Gönder
-  </ion-button>
+  <ion-button (click)="submit()">Gönder</ion-button>
 </ion-content>

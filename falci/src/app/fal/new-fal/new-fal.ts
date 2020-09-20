@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { FortuneTellingService } from 'src/app/services/fortuneTelling.service';
 import { ErrorHandlerService } from 'src/app/shared-module/error-handler-service';
 import { NotificationService } from 'src/app/shared-module/notification-service';
 import { Router } from '@angular/router';
+import { GetPhotoModal } from './get-photo-modal/get-photo-modal';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'page-new-fal',
@@ -13,21 +14,7 @@ import { Router } from '@angular/router';
 export class NewFalPage implements OnInit {
   falImages: string[] = [];
   activeImageIndex = 0;
-
-  options: CameraOptions = {
-    quality: 30,
-    destinationType: this.camera.DestinationType.DATA_URL,
-    encodingType: this.camera.EncodingType.JPEG,
-    mediaType: this.camera.MediaType.PICTURE
-  }
-
-  private optionsGallery: CameraOptions = {
-    quality: 100,
-    sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
-    destinationType: this.camera.DestinationType.DATA_URL,
-    encodingType: this.camera.EncodingType.JPEG,
-    mediaType: this.camera.MediaType.PICTURE
-  }
+  defaultImagePath = "assets/img/add-image.png";
 
   fal: any;
   fortuneTellers: any;
@@ -35,18 +22,18 @@ export class NewFalPage implements OnInit {
   selectedType: string;
 
   constructor(
-    private camera: Camera, 
     private fortuneTellingService: FortuneTellingService,
     private errorHandlerService : ErrorHandlerService,
     private notificationService: NotificationService,
-    public router: Router
+    public router: Router,
+    private modalController: ModalController
   ) {}
 
   ngOnInit() {
-    this.falImages.push("assets/img/no-image.jpg");
-    this.falImages.push("assets/img/no-image.jpg");
-    this.falImages.push("assets/img/no-image.jpg");
-    this.falImages.push("assets/img/no-image.jpg");
+    this.falImages.push(this.defaultImagePath);
+    this.falImages.push(this.defaultImagePath);
+    this.falImages.push(this.defaultImagePath);
+    this.falImages.push(this.defaultImagePath);
 
     this.activeImageIndex = 0;
 
@@ -60,46 +47,77 @@ export class NewFalPage implements OnInit {
     );
   }
 
-  captureImage() {
-    this.camera.getPicture(this.options).then((imageData) => {
-      // imageData is either a base64 encoded string or a file URI
-      // If it's base64 (DATA_URL):
-      let base64Image = 'data:image/jpeg;base64,' + imageData;
-      this.falImages[this.activeImageIndex] = base64Image;
-    }, (err) => {
-      console.log(err);
-      // Handle error
+  async openModal(base64Image: string) {
+    //var base64Image = this.imageUrlToBase64('profilePic');
+
+    const modal: HTMLIonModalElement =
+       await this.modalController.create({
+          component: GetPhotoModal,
+          componentProps: {
+            photoBase64: base64Image
+          }
     });
+     
+    modal.onDidDismiss().then((detail) => {
+      if (detail != null && detail.data != null) {
+        if(detail.data.process == 'Confirm') {
+          if(detail.data.image != null) {
+            this.falImages[this.activeImageIndex] = detail.data.image;
+          }
+          else {
+            this.falImages[this.activeImageIndex] = this.defaultImagePath;
+          }
+        }
+       }
+    });
+    
+    await modal.present();
   }
 
   imageSelected(indexOfElement) {
     this.activeImageIndex = indexOfElement;
-  }
-
-  loadImage() {
-    this.camera.getPicture(this.optionsGallery).then((imageData) => {
-      let base64Image = 'data:image/jpeg;base64,' + imageData;
-
-      this.falImages[this.activeImageIndex] = base64Image;
-     }, (err) => {
-      // Handle error
-      console.log(err)
-     })
+    if(this.falImages[this.activeImageIndex] != this.defaultImagePath) {
+      this.openModal(this.falImages[this.activeImageIndex]);
+    }
+    else {
+      this.openModal(null);
+    }
   }
 
   submit() {
+    var anyImage = false;
+
     const formData: FormData = new FormData();
-    if(this.falImages[0] != "assets/img/no-image.jpg") {
+    if(this.falImages[0] != this.defaultImagePath) {
       formData.append('Pictures', this.makeblob(this.falImages[0]));
+      anyImage = true;
     }
-    if(this.falImages[1] != "assets/img/no-image.jpg") {
+    if(this.falImages[1] != this.defaultImagePath) {
       formData.append('Pictures', this.makeblob(this.falImages[1]));
+      anyImage = true;
     }
-    if(this.falImages[2] != "assets/img/no-image.jpg") {
+    if(this.falImages[2] != this.defaultImagePath) {
       formData.append('Pictures', this.makeblob(this.falImages[2]));
+      anyImage = true;
     }
-    if(this.falImages[3] != "assets/img/no-image.jpg") {
+    if(this.falImages[3] != this.defaultImagePath) {
       formData.append('Pictures', this.makeblob(this.falImages[3]));
+      anyImage = true;
+    }
+
+    if(!anyImage) {
+      this.notificationService.error({Message: "En az bir kahve fotoğrafı ekleyin."});
+      return;
+    }
+
+    if(!this.selectedFalciId) {
+      this.notificationService.error({Message: "Falcı seçin."});
+      return;
+    }
+
+    if(!this.selectedType) {
+      this.notificationService.error({Message: "Konu seçin."});
+      return;
     }
     
     formData.append('FortuneTellerId', this.selectedFalciId);
