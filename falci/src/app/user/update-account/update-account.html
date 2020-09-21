@@ -20,6 +20,11 @@
         </ion-input>
       </ion-item>
 
+      <ion-item>
+        <ion-label position="floating" color="primary">Falcı Notu</ion-label>
+        <ion-input formControlName="description" inputmode="text">
+        </ion-input>
+      </ion-item>
       <!-- <div *ngFor="let error of errorMessages.fullName">
         <ng-container *ngIf="fullName.hasError(error.type) && (fullName.dirty || fullName.touched)">
           <small class="error-message">{{error.message}}</small>
@@ -35,7 +40,7 @@
         </ion-select>
       </ion-item>
 
-      <ion-item>
+      <ion-item *ngIf="role == constants.userRoles.consumer">
         <ion-label position="floating" color="primary">İlişki durumu</ion-label> 
         <ion-select formControlName="relationshipStatus">
           <ion-select-option value="Married" >Evli</ion-select-option>
@@ -56,7 +61,7 @@
           </ion-datetime>
       </ion-item>
 
-      <ion-item>
+      <ion-item *ngIf="role == constants.userRoles.consumer">
         <ion-label position="floating" color="primary">Doğum Saati</ion-label> 
           <ion-datetime  
             displayFormat="HH:mm"
@@ -67,7 +72,7 @@
           </ion-datetime>
       </ion-item>
 
-      <ion-item>
+      <ion-item *ngIf="role == constants.userRoles.consumer">
         <ion-label position="floating" color="primary">Meslek</ion-label>
         <ion-input formControlName="job" inputmode="text">
         </ion-input>

@@ -20,6 +20,7 @@ export class FalDetailPage implements OnInit {
   constants = constants;
   submitFortuneTellerComment: SubmitFortuneTellerComment = { comment: '', fortuneTellingId: '' };
   environment = environment;
+  commentSubmitting = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -48,12 +49,18 @@ export class FalDetailPage implements OnInit {
   }
 
   submitComment(form: NgForm) {
+    if(form.value.comment == null || form.value.comment.trim() == "") {
+      return;
+    }
+    this.commentSubmitting = true;
     form.value.fortuneTellingId = this.fal.id;
     this.fortuneTellingService.submitByFortuneTeller(form.value).subscribe((result: any) => {
-      this.notificationService.success({Message: "Yanıtınız gönderilmiştir." });
-      this.router.navigateByUrl('/fortuneTellerFals');
+        this.notificationService.success({Message: "Yanıtınız gönderilmiştir." });
+        this.commentSubmitting = false;
+        this.router.navigateByUrl('/fortuneTellerFals?refresh=true');
       },
       err => {
+        this.commentSubmitting = false;
         this.errorHandlerService.handle(err);
       }
     );

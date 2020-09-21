@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FortuneTellingService } from 'src/app/services/fortuneTelling.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ErrorHandlerService } from 'src/app/shared-module/error-handler-service';
 
 @Component({
@@ -16,9 +16,17 @@ export class FalListPage {
   constructor(
     public fortuneTellingService: FortuneTellingService, 
     private router: Router,
-    private errorHandlerService : ErrorHandlerService) {}
+    private errorHandlerService : ErrorHandlerService,
+    private route: ActivatedRoute
+  ) {}
 
   ionViewDidEnter() {
+    const refreshInfo = this.route.snapshot.queryParamMap.get('refresh');
+    if(refreshInfo == "true") {
+      this.fals = [];
+      this.pageIndex = 1;
+    }
+
     if(this.fals == null || this.fals.length == 0) {
       this.loadItems(null);
     }

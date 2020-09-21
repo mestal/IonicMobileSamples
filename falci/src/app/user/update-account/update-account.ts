@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { NotificationService } from 'src/app/shared-module/notification-service';
 import { ErrorHandlerService } from 'src/app/shared-module/error-handler-service';
+import { constants } from './../../constants';
+import { FortuneTellingService } from 'src/app/services/fortuneTelling.service';
 
 @Component({
   selector: 'page-update-account',
@@ -16,6 +18,8 @@ export class UpdateAccountPage implements OnInit {
   defaultBirthDateString: string;
   birthTimeSet: boolean;
   userName: string;
+  role: string;
+  constants = constants;
   private initialBirthTime: Date;
 
   get fullName() {
@@ -42,7 +46,8 @@ export class UpdateAccountPage implements OnInit {
     relationshipStatus: [''],
     birthDate: [''],
     birthTime: [''],
-    job: ['', [Validators.maxLength(100)]]
+    job: ['', [Validators.maxLength(100)]],
+    description: ['']
   });
 
   constructor(
@@ -51,6 +56,7 @@ export class UpdateAccountPage implements OnInit {
     private errorHandlerService : ErrorHandlerService,
     private notificationService: NotificationService,
     private formBuilder: FormBuilder,
+    private fortuneTellingService: FortuneTellingService
   ) { 
     this.defaultBirthDate = new Date();
     this.defaultBirthDate.setHours(0, 0);
@@ -60,21 +66,37 @@ export class UpdateAccountPage implements OnInit {
 
   ngOnInit(): void {
     this.userName = localStorage.getItem('userName');
-    this.service.getConsumerUserInfo(this.userName).subscribe(
-      (res: any) => {
-        this.updateForm.controls['fullName'].setValue(res.fullName);
-        this.updateForm.controls['gender'].setValue(res.gender);
-        this.updateForm.controls['relationshipStatus'].setValue(res.relationshipStatus);
-        this.updateForm.controls['birthDate'].setValue(res.birthDate);
-        this.updateForm.controls['birthTime'].setValue(res.birthTime);
-        this.updateForm.controls['job'].setValue(res.job);
+    this.role = localStorage.getItem('role');
+    if(this.role == this.constants.userRoles.consumer) {
+      this.service.getConsumerUserInfo(this.userName).subscribe(
+        (res: any) => {
+          this.updateForm.controls['fullName'].setValue(res.fullName);
+          this.updateForm.controls['gender'].setValue(res.gender);
+          this.updateForm.controls['relationshipStatus'].setValue(res.relationshipStatus);
+          this.updateForm.controls['birthDate'].setValue(res.birthDate);
+          this.updateForm.controls['birthTime'].setValue(res.birthTime);
+          this.updateForm.controls['job'].setValue(res.job);
 
-        this.initialBirthTime = res.birthTime;
-      },
-      err => {
-        this.errorHandlerService.handle(err);
-      }
-    );
+          this.initialBirthTime = res.birthTime;
+        },
+        err => {
+          this.errorHandlerService.handle(err);
+        }
+      );
+    }
+    else if(this.role == this.constants.userRoles.falci) {
+      this.fortuneTellingService.getFortuneTellerByName(this.userName)
+        .subscribe((result: any) => {
+          this.updateForm.controls['fullName'].setValue(result.fullName);
+          this.updateForm.controls['gender'].setValue(result.gender);
+          this.updateForm.controls['birthDate'].setValue(result.birthDate);
+          this.updateForm.controls['birthTime'].setValue(result.birthTime);
+          this.updateForm.controls['description'].setValue(result.description);
+
+          this.initialBirthTime = result.birthTime;
+        }
+      );
+    }
   }
 
   submit() {

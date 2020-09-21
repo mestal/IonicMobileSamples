@@ -63,6 +63,11 @@ export class CommentComponent implements OnInit {
 
   submitComment(form: NgForm) {
     form.value.feedId = this.feedId;
+
+    if(form.value.comment == null || form.value.comment.trim() == "") {
+      return;
+    }
+    
     this.feedService.submitComment(form.value).subscribe((id: any) => {
       this.notificationService.success({ Message: "Yorum gönderildi." });
         var comment = {
