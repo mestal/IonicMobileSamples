@@ -15,6 +15,7 @@ export class NewFalPage implements OnInit {
   falImages: string[] = [];
   activeImageIndex = 0;
   defaultImagePath = "assets/img/add-image.png";
+  submitting = false;
 
   fal: any;
   fortuneTellers: any;
@@ -85,6 +86,7 @@ export class NewFalPage implements OnInit {
   }
 
   submit() {
+    this.submitting = true;
     var anyImage = false;
 
     const formData: FormData = new FormData();
@@ -107,16 +109,19 @@ export class NewFalPage implements OnInit {
 
     if(!anyImage) {
       this.notificationService.error({Message: "En az bir kahve fotoğrafı ekleyin."});
+      this.submitting = false;
       return;
     }
 
     if(!this.selectedFalciId) {
       this.notificationService.error({Message: "Falcı seçin."});
+      this.submitting = false;
       return;
     }
 
     if(!this.selectedType) {
       this.notificationService.error({Message: "Konu seçin."});
+      this.submitting = false;
       return;
     }
     
@@ -125,10 +130,12 @@ export class NewFalPage implements OnInit {
 
     this.fortuneTellingService.submitFortuneTelling(formData).subscribe(
       data => {
+        this.submitting = false;
         this.notificationService.success({Message: "Falınız gönderilmiştir. En kısa sürede yanıtlanacaktır." });
-        this.router.navigateByUrl('/myFals');
+        this.router.navigateByUrl('/myFals?refresh=true');
       },
       err => {
+        this.submitting = false;
         this.errorHandlerService.handle(err);
       }
     );

@@ -72,6 +72,21 @@
     </ion-item>
 
     <ion-item>
+      <ion-label color="primary">Falcı Notu</ion-label>
+      <ion-label>{{userInfo?.description}}</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary">Cinsiyet</ion-label>
+      <ion-label  *ngIf="userInfo?.gender">{{userInfo?.gender | translate}}</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary">Doğum Tarihi</ion-label>
+      <ion-label>{{userInfo?.birthDate | date: 'dd.LL.yyyy'}}</ion-label>
+    </ion-item>
+
+    <ion-item>
       <ion-label color="primary">Fal sayısı</ion-label>
       <ion-label>{{userInfo?.coffeFortuneTellingCount}}</ion-label>
     </ion-item>

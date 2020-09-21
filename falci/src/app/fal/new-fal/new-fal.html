@@ -42,5 +42,5 @@
     </ion-item>
   </ion-list> 
   <br>
-  <ion-button (click)="submit()">Gönder</ion-button>
+  <ion-button (click)="submit()" [disabled]="submitting">Gönder</ion-button>
 </ion-content>

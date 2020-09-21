@@ -15,7 +15,7 @@ import { UpdateProfilePictureModal } from './update-profile-picture-modal/update
   templateUrl: 'my-account.html',
   styleUrls: ['./my-account.scss'],
 })
-export class MyAccountPage implements OnInit {
+export class MyAccountPage {
   userInfo : any = null;
   role: any;
   constants = constants;
@@ -39,7 +39,7 @@ export class MyAccountPage implements OnInit {
     private modalController: ModalController
   ) {}
 
-  ngOnInit() {
+  ionViewDidEnter() {
     this.userName = localStorage.getItem('userName');
     this.role = localStorage.getItem('role');
     if(this.role == constants.userRoles.consumer) {

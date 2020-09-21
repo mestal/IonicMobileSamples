@@ -28,7 +28,7 @@
   <ion-list *ngIf="fal" style="padding-top:50px">
     <ion-item>
       <ion-label color="primary">Durum</ion-label>
-      <ion-label>{{'FalStatus.Falci.' + fal.status | translate}}</ion-label>
+      <ion-label class="ion-text-wrap">{{'FalStatus.Falci.' + fal.status | translate}}</ion-label>
     </ion-item>
 
     <ion-item>
@@ -86,7 +86,7 @@
       <div class="text-pre-wrap" style="text-align: center;" *ngIf="fal.status == constants.fortuneTellingStatuses.SubmittedByUser">
         <form #submitCommentForm="ngForm" novalidate>
           <ion-textarea name="comment" [(ngModel)]="submitFortuneTellerComment.comment" #comment="ngModel" rows="6" cols="150" placeholder="Yorumunuzu buraya yazın..." style="background:#fdf7ad;border-radius:15px"></ion-textarea>
-          <ion-button class="fixedbutton" (click)="submitComment(submitCommentForm)" shape="round">Gönder</ion-button>
+          <ion-button class="fixedbutton" (click)="submitComment(submitCommentForm)" shape="round" [disabled]="commentSubmitting">Gönder</ion-button>
         </form>
       </div>
     </ion-item>
