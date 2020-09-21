@@ -1,5 +1,5 @@
 <div class="profile-picture">
-    <img *ngIf="profilePictureBase64 != null" [src]="profilePictureBase64">
+    <img [src]="profilePictureBase64">
 </div>
 <div style="text-align: center;">
     <ion-button (click)="profilePictureBase64 = rotateBase64Image90deg(profilePictureBase64, true)">
@@ -9,9 +9,9 @@
         <ion-icon name="reload-outline" class="mirrorItem" ></ion-icon>
     </ion-button>
     <ion-button (click)="loadImage()">
-        <ion-icon name="camera-outline"></ion-icon>
+        <ion-icon name="image-outline"></ion-icon>
     </ion-button>
 </div>
 <div style="text-align: center;">
-    <ion-button (click)="submitChangeProfile()">Değiştir</ion-button>
+    <ion-button (click)="submitChangeProfile()" [disabled]="!pictureChanged">Değiştir</ion-button>
 </div>

@@ -107,6 +107,7 @@ export class UpdateAccountPage implements OnInit {
     this.service.updateUserInfo(this.updateForm.value).subscribe(
       (res: any) => {
         this.notificationService.success({Message: "Bilgileriniz güncellenmiştir.", Duration: 6000 });
+        localStorage.setItem('fullName', this.updateForm.value.fullName);
         this.router.navigateByUrl('/myAccount');
       },
       err => {

@@ -9,8 +9,8 @@
 
 <ion-content  fullscreen="true">
   <div class="profile-picture">
-    <img id="profilePic"  crossOrigin="anonymous" *ngIf="profilePicture == null && userInfo?.picturePath != null" [src]="environment.urlForAssets + constants.folderForProfilePictures + userInfo?.picturePath"><br>
-    <img *ngIf="profilePicture != null" [src]="profilePicture"><br>
+    <img id="profilePic" [src]="environment.urlForAssets + constants.folderForProfilePictures + service.user.picturePath"
+    crossorigin="anonymous" >
   </div>
 
   <ion-list *ngIf="role == constants.userRoles.consumer">

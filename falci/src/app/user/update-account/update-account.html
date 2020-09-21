@@ -11,7 +11,8 @@
   <form [formGroup]="updateForm" (ngSubmit)="submit()">
     <ion-list>
       <ion-item>
-        <ion-label position="floating" color="primary">Üye isimi</ion-label>
+        <ion-label position="floating" color="primary">{{userName}}</ion-label>
+        <ion-label position="floating" color="primary"></ion-label>
       </ion-item>
 
       <ion-item>
@@ -20,7 +21,7 @@
         </ion-input>
       </ion-item>
 
-      <ion-item>
+      <ion-item *ngIf="role == constants.userRoles.falci">
         <ion-label position="floating" color="primary">Falcı Notu</ion-label>
         <ion-input formControlName="description" inputmode="text">
         </ion-input>

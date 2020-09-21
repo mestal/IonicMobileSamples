@@ -6,6 +6,8 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Router } from '@angular/router';
 import { constants } from './constants';
 import { TranslateService } from '@ngx-translate/core';
+import { UserService } from './services/user.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -15,13 +17,15 @@ import { TranslateService } from '@ngx-translate/core';
 export class AppComponent implements OnInit {
   public selectedMenuItem = 'mainPage';
   constants = constants;
+  environment = environment;
 
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     public router: Router,
-    private translate: TranslateService
+    private translate: TranslateService,
+    public userService: UserService
   ) {
     translate.setDefaultLang('tr');
     this.initializeApp();
@@ -39,6 +43,18 @@ export class AppComponent implements OnInit {
     if (path !== undefined) {
       //this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
     }
+
+    if(localStorage.getItem('role') != null) {
+      this.userService.user = {
+          userName: localStorage.getItem('userName'),
+          picturePath: localStorage.getItem('picturePath'),
+          fullName: localStorage.getItem('fullName'),
+          role: localStorage.getItem('role'),
+          token: localStorage.getItem('token'),
+          isTestUser: localStorage.getItem('isTestUser')
+      }
+    }
+
   }
 
   logout() {
@@ -47,6 +63,8 @@ export class AppComponent implements OnInit {
     localStorage.removeItem('fullName');
     localStorage.removeItem('role');
     localStorage.removeItem('isTestUser');
+    localStorage.removeItem('picturePath');
+    this.userService.user = null;
     this.router.navigateByUrl('/login');
   }
 

@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component } from '@angular/core';
 import { ActionSheetController, ModalController } from '@ionic/angular';
 import { UserService } from 'src/app/services/user.service';
 import { constants } from 'src/app/constants';
@@ -7,7 +6,6 @@ import { FortuneTellingService } from 'src/app/services/fortuneTelling.service';
 import { environment } from 'src/environments/environment';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { ErrorHandlerService } from 'src/app/shared-module/error-handler-service';
-import { NotificationService } from 'src/app/shared-module/notification-service';
 import { UpdateProfilePictureModal } from './update-profile-picture-modal/update-profile-picture-modal';
 
 @Component({
@@ -21,7 +19,6 @@ export class MyAccountPage {
   constants = constants;
   userName: string;
   environment = environment;
-  profilePicture: string;
 
   options: CameraOptions = {
     quality: 30,
@@ -32,7 +29,7 @@ export class MyAccountPage {
   
   constructor(
     public actionSheetCtrl: ActionSheetController,
-    private service: UserService,
+    public service: UserService,
     private fortuneTellingService: FortuneTellingService,
     private camera: Camera,
     private errorHandlerService : ErrorHandlerService,
@@ -50,7 +47,7 @@ export class MyAccountPage {
         this.errorHandlerService.handle(err);
       });
     }
-    else {
+    else if (this.role == constants.userRoles.falci) {
       this.fortuneTellingService.getFortuneTellerByName(this.userName).subscribe((result: any) => {
         this.userInfo = result;
       },
@@ -66,30 +63,16 @@ export class MyAccountPage {
     this.openModal();
   }
 
-  makeblob(dataURL) {
-    const BASE64_MARKER = ';base64,';
-    const parts = dataURL.split(BASE64_MARKER);
-    const contentType = parts[0].split(':')[1];
-    const raw = window.atob(parts[1]);
-    const rawLength = raw.length;
-    const uInt8Array = new Uint8Array(rawLength);
-
-    for (let i = 0; i < rawLength; ++i) {
-        uInt8Array[i] = raw.charCodeAt(i);
-    }
-
-    return new Blob([uInt8Array], { type: contentType });
-  }
-
   async openModal() {
-    //var base64Image = this.imageUrlToBase64('profilePic');
-    var base64Image = "";
-    if(this.profilePicture != null) {
-      base64Image = this.profilePicture;
-    }
-    else {
-      base64Image = this.getBase64Image(document.getElementById('profilePic'));
-    }
+    var image = document.getElementById('profilePic');
+
+    //image.setAttribute('crossorigin', 'anonymous');
+    // let image = new Image();
+    // image.crossOrigin = "Anonymous";
+    // image.src = environment.urlForAssets + constants.folderForProfilePictures + this.service.user.picturePath;
+
+    var base64Image = this.getBase64Image(image);
+    //alert(base64Image);
 
     const modal: HTMLIonModalElement =
        await this.modalController.create({
@@ -98,24 +81,14 @@ export class MyAccountPage {
             profilePictureBase64: base64Image
           }
     });
-     
+    
     modal.onDidDismiss().then((detail) => {
        if (detail !== null) {
-         this.profilePicture = detail.data;
+         this.userInfo.picturePath = detail.data;
        }
     });
     
     await modal.present();
-  }
-
-  imageUrlToBase64(elementName) {
-    var c = document.createElement('canvas');
-    var img = document.getElementById(elementName) as CanvasImageSource;
-    var ctx = c.getContext('2d');
-    c.height = img.height as number;
-    c.width = img.width as number;
-    ctx.drawImage(img, 0, 0, c.width, c.height);
-    return c.toDataURL();
   }
 
   getBase64Image(img) {
@@ -123,7 +96,7 @@ export class MyAccountPage {
     canvas.width = img.width;
     canvas.height = img.height;
     var ctx = canvas.getContext("2d");
-    ctx.drawImage(img, 0, 0);
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
     var dataURL = canvas.toDataURL("image/jpg");
     return dataURL;
     //return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");

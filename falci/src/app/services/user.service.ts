@@ -9,6 +9,8 @@ export class UserService {
 
   //singleton property
   productsRegistered: boolean;
+  user: any;
+
   constructor(private http: HttpClient) { }
   readonly BaseURI = environment.baseUrl;
 

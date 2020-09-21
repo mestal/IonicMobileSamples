@@ -15,9 +15,9 @@
           <ion-card-header>
             <ion-item detail="false" lines="none" class="fal-item" >
               <ion-label>
-                <p>{{ 'Type.' + fal.type | translate }}</p>
-                <p>{{ 'FalStatus.Consumer.' + fal.status | translate }}</p>
-                <p>{{ fal.fortuneTeller.fullName }}</p>
+                <p>Konu: {{ 'Type.' + fal.type | translate }}</p>
+                <p>Durum: {{ 'FalStatus.Consumer.' + fal.status | translate }}</p>
+                <p>Falcı: {{ fal.fortuneTeller.fullName }}</p>
                 <p>{{ fal.submitDateUtc | date: 'dd.LL.yyyy HH:mm'}}</p>
               </ion-label>
             </ion-item>

@@ -12,6 +12,7 @@ import { NotificationService } from 'src/app/shared-module/notification-service'
 })
 export class UpdateProfilePictureModal {
     profilePictureBase64: string;
+    pictureChanged = false;
 
     private optionsGallery: CameraOptions = {
         quality: 100,
@@ -31,9 +32,10 @@ export class UpdateProfilePictureModal {
 
     loadImage() {
         this.camera.getPicture(this.optionsGallery).then((imageData) => {
-          let base64Image = 'data:image/jpeg;base64,' + imageData;
+          let base64Image = 'data:image/jpg;base64,' + imageData;
     
           this.profilePictureBase64 = base64Image;
+          this.pictureChanged = true;
       });
     }
 
@@ -60,17 +62,20 @@ export class UpdateProfilePictureModal {
         }
         offScreenCanvasCtx.drawImage(img, 0, 0);
 
+        this.pictureChanged = true;
         // encode image to data-uri with base64
-        return offScreenCanvas.toDataURL("image/jpeg", 100);
+        return offScreenCanvas.toDataURL("image/jpg", 100);
     }
 
     submitChangeProfile() {
         const formData: FormData = new FormData();
         formData.append('Photo', this.makeblob(this.profilePictureBase64));
         this.service.updateProfilePhoto(formData).subscribe(
-            data => {
+            (result: any) => {
                 this.notificationService.success({Message: "Profil resmi değiştirildi." });
-                this.modalController.dismiss(this.profilePictureBase64);
+                this.service.user.picturePath = result.picturePath;
+                localStorage.setItem('picturePath', result.picturePath);
+                this.modalController.dismiss(result.picturePath);
             },
             err => {
                 this.errorHandlerService.handle(err);

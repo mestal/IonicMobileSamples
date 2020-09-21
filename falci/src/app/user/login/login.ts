@@ -30,6 +30,17 @@ export class LoginPage {
         localStorage.setItem('token', res.token);
         localStorage.setItem('role', res.role);
         localStorage.setItem('isTestUser', res.isTestUser);
+        localStorage.setItem('picturePath', res.picturePath);
+
+        this.service.user = {
+          userName: res.userName,
+          picturePath: res.picturePath,
+          fullName: res.fullName,
+          role: res.role,
+          token: res.token,
+          isTestUser: res.isTestUser
+        };
+
         this.router.navigateByUrl('/mainPage');
       },
       err => {
