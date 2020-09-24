@@ -74,6 +74,9 @@ export class PointListPage {
         ProductId: product.id,
         PointType: 'Android',
       }).subscribe((result: any) => {
+        this.userService.user.point = result;
+        localStorage.setItem('point', result);
+        this.userService.user$.next(this.userService.user);
         this.notificationService.success({ Message: `Toplam puanınız ${result} oldu.`});
       },
       err => {

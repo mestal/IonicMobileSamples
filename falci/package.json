@@ -28,10 +28,11 @@
     "@ionic/angular": "^5.0.0",
     "@ngx-translate/core": "^13.0.0",
     "@ngx-translate/http-loader": "^6.0.0",
-    "cordova-android": "^8.1.0",
+    "cordova-android": "8.1.0",
     "cordova-browser": "6.0.0",
     "cordova-plugin-camera": "^4.1.0",
     "cordova-plugin-file": "^6.0.2",
+    "cordova-plugin-ionic-webview": "^5.0.0",
     "cordova-plugin-purchase": "git+https://github.com/j3k0/cordova-plugin-purchase.git#v9",
     "rxjs": "^6.5.5",
     "tslib": "^1.10.0",
@@ -51,7 +52,6 @@
     "codelyzer": "^5.1.2",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-ionic-keyboard": "^2.2.0",
-    "cordova-plugin-ionic-webview": "^4.2.1",
     "cordova-plugin-statusbar": "^2.4.2",
     "cordova-plugin-whitelist": "^1.3.3",
     "jasmine-core": "~3.5.0",
@@ -72,17 +72,15 @@
       "cordova-plugin-whitelist": {},
       "cordova-plugin-statusbar": {},
       "cordova-plugin-device": {},
-      "cordova-plugin-ionic-webview": {
-        "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
-      },
       "cordova-plugin-ionic-keyboard": {},
-      "cordova-plugin-camera": {
-        "ANDROID_SUPPORT_V4_VERSION": "27.+"
-      },
       "cordova-plugin-file": {},
       "cordova-plugin-purchase": {
         "BILLING_KEY": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAt8E7YaEvikYIm2S5E4a/YR2Q0dP6wiJAib5tAaz1Do/yT/8b9K45y6DBqs1hWsxo3bZjwGsgdU+YGaOmWOIZCaiUfIuZ1QD9Mu1Q3SOqicdK6kof3o+nBh5czDcl3OFfa8sqDn5fJg9GiqIrY5djYS1j0dltC4PDoY3l6trtl6ZrvcndkbEkyDnjPvea023uFD3PUBTCHMZl4bbc27SZ3ZUb0qHLAKbEPzbbJC72CDHyBBnp6rxgW9Vr/pNojRIEHjniAjC9lDa0U0n400e8O4znXv+PwJfpGj56/u4vFR5FSaTvQb/Xo8u9Asx14DvXN543NPde9jd1C4BNFAsN2QIDAQAB"
-      }
+      },
+      "cordova-plugin-camera": {
+        "ANDROID_SUPPORT_V4_VERSION": "27.+"
+      },
+      "cordova-plugin-ionic-webview": {}
     },
     "platforms": [
       "browser",

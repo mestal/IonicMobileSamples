@@ -19,7 +19,10 @@
       <ion-col size="12" size-md="6" *ngFor="let point of pointList">
         <ion-card (click)="checkout(point)">
           <ion-card-content>
-            <div class="text-pre-wrap">{{ point.name }}</div>
+            <ion-item>
+              <ion-icon name="pricetag-outline"></ion-icon>
+              <ion-label>{{ point.name }}</ion-label>
+            </ion-item>
             <div class="text-pre-wrap">{{ point.description }}</div>
           </ion-card-content>
         </ion-card>

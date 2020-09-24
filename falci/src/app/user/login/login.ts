@@ -6,6 +6,9 @@ import { UserService } from 'src/app/services/user.service';
 import { NotificationService } from 'src/app/shared-module/notification-service';
 import { ErrorHandlerService } from 'src/app/shared-module/error-handler-service';
 
+import { constants } from './../../constants';
+import { environment } from 'src/environments/environment';
+
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
@@ -30,16 +33,20 @@ export class LoginPage {
         localStorage.setItem('token', res.token);
         localStorage.setItem('role', res.role);
         localStorage.setItem('isTestUser', res.isTestUser);
-        localStorage.setItem('picturePath', res.picturePath);
+        localStorage.setItem('picturePath', environment.urlForAssets + constants.folderForProfilePictures + res.picturePath);
+        localStorage.setItem('point', res.point)
 
         this.service.user = {
           userName: res.userName,
-          picturePath: res.picturePath,
+          picturePath: environment.urlForAssets + constants.folderForProfilePictures + res.picturePath,
           fullName: res.fullName,
           role: res.role,
           token: res.token,
-          isTestUser: res.isTestUser
+          isTestUser: res.isTestUser,
+          point: res.point
         };
+
+        this.service.user$.next(this.service.user);
 
         this.router.navigateByUrl('/mainPage');
       },

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { environment } from 'src/environments/environment';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,7 @@ export class UserService {
   //singleton property
   productsRegistered: boolean;
   user: any;
+  user$: BehaviorSubject<any> = new BehaviorSubject<any>(null); 
 
   constructor(private http: HttpClient) { }
   readonly BaseURI = environment.baseUrl;

@@ -7,12 +7,11 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content  fullscreen="true">
-  <div class="profile-picture">
-    <img id="profilePic" [src]="environment.urlForAssets + constants.folderForProfilePictures + service.user.picturePath"
-    crossorigin="anonymous" >
+<ion-content fullscreen="true">
+  <div class="profile-picture" *ngIf="userInfo?.picturePath">
+    <img id="profilePic" [src]="environment.urlForAssets + constants.folderForProfilePictures + userInfo.picturePath"
+    crossorigin="anonymous" />
   </div>
-
   <ion-list *ngIf="role == constants.userRoles.consumer">
     <ion-item>
       <ion-label color="primary">Üye İsimi</ion-label>

@@ -71,7 +71,15 @@ export class MyAccountPage {
     // image.crossOrigin = "Anonymous";
     // image.src = environment.urlForAssets + constants.folderForProfilePictures + this.service.user.picturePath;
 
-    var base64Image = this.getBase64Image(image);
+    var base64Image = null;
+    
+    try {
+      base64Image = this.getBase64Image(image);
+    }
+    catch (error) {
+      alert(JSON.stringify(error));
+      base64Image = null;
+    }
     //alert(base64Image);
 
     const modal: HTMLIonModalElement =
@@ -83,8 +91,12 @@ export class MyAccountPage {
     });
     
     modal.onDidDismiss().then((detail) => {
-       if (detail !== null) {
-         this.userInfo.picturePath = detail.data;
+       if (detail !== null && detail.data != null) {
+          this.service.user.picturePath = environment.urlForAssets + constants.folderForProfilePictures + detail.data;
+          localStorage.setItem('picturePath', environment.urlForAssets + constants.folderForProfilePictures + detail.data);
+          //alert('user during profile update: ' + JSON.stringify(this.service.user));
+          this.service.user$.next(this.service.user);
+          this.userInfo.picturePath = detail.data;
        }
     });
     
@@ -100,5 +112,14 @@ export class MyAccountPage {
     var dataURL = canvas.toDataURL("image/jpg");
     return dataURL;
     //return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+  }
+
+  getPicturePath() {
+    // if(localStorage.getItem('picturePath') == null) {
+    //   return 'defaultProfilePicture.png';
+    // }
+    // else {
+      return localStorage.getItem('picturePath');
+    // }
   }
 }

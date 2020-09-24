@@ -73,8 +73,6 @@ export class UpdateProfilePictureModal {
         this.service.updateProfilePhoto(formData).subscribe(
             (result: any) => {
                 this.notificationService.success({Message: "Profil resmi değiştirildi." });
-                this.service.user.picturePath = result.picturePath;
-                localStorage.setItem('picturePath', result.picturePath);
                 this.modalController.dismiss(result.picturePath);
             },
             err => {
@@ -96,5 +94,9 @@ export class UpdateProfilePictureModal {
         }
     
         return new Blob([uInt8Array], { type: contentType });
+    }
+
+    cancel() {
+        this.modalController.dismiss();
     }
 }
