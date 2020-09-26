@@ -15,6 +15,8 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { Camera } from '@ionic-native/camera/ngx';
 import { SortByPipe } from './components/sort-by-pipe';
 import { InAppPurchase2 } from '@ionic-native/in-app-purchase-2/ngx';
+import { Crop } from '@ionic-native/crop/ngx';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -30,7 +32,7 @@ import { InAppPurchase2 } from '@ionic-native/in-app-purchase-2/ngx';
           useFactory: HttpLoaderFactory,
           deps: [HttpClient]
       }
-    })
+    }),
   ],
   providers: [
     UserService,
@@ -45,7 +47,8 @@ import { InAppPurchase2 } from '@ionic-native/in-app-purchase-2/ngx';
     { provide: LocationStrategy, useClass: HashLocationStrategy },
     Camera,
     SortByPipe,
-    InAppPurchase2
+    InAppPurchase2,
+    Crop
 
   ],
   bootstrap: [AppComponent],

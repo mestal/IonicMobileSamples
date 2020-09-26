@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./change-password.scss'],
 })
 export class ChangePasswordPage {
-  submitted = false;
+  isSubmitting = false;
   changePassword: ChangePassword = { NewPassword: '', NewPassword2: '', CurrentPassword: '' };
 
   constructor(
@@ -23,12 +23,14 @@ export class ChangePasswordPage {
   ) { }
 
   onSubmit(form: NgForm) {
+    this.isSubmitting = true;
     this.service.changePassword(form.value).subscribe(
       (res: any) => {
         this.notificationService.success({Message: "Şifre değiştirildi." });
         this.router.navigateByUrl('/myAccount');
       },
       err => {
+        this.isSubmitting = false;
         this.errorHandlerService.handle(err);
       }
     );

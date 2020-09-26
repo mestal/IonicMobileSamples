@@ -100,8 +100,4 @@ export class AppComponent implements OnInit, OnDestroy {
   isLoggedIn() : string {
     return localStorage.getItem('role');
   }
-
-  getPicturePath() {
-      return localStorage.getItem('picturePath');
-  }
 }

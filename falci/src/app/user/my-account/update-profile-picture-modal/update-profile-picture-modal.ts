@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
-import { ModalController } from '@ionic/angular';
+import { ModalController, Platform } from '@ionic/angular';
 import { UserService } from 'src/app/services/user.service';
 import { ErrorHandlerService } from 'src/app/shared-module/error-handler-service';
 import { NotificationService } from 'src/app/shared-module/notification-service';
+import { Crop } from '@ionic-native/crop/ngx';
+import { File } from '@ionic-native/file/ngx';
 
 @Component({
     templateUrl: 'update-profile-picture-modal.html',
@@ -13,29 +15,43 @@ import { NotificationService } from 'src/app/shared-module/notification-service'
 export class UpdateProfilePictureModal {
     profilePictureBase64: string;
     pictureChanged = false;
+    isAndroid: boolean;
 
     private optionsGallery: CameraOptions = {
         quality: 100,
         sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
-        destinationType: this.camera.DestinationType.DATA_URL,
+        destinationType: this.camera.DestinationType.FILE_URI,
         encodingType: this.camera.EncodingType.JPEG,
         mediaType: this.camera.MediaType.PICTURE
-    }
+      }
+
 
     constructor(
         private camera: Camera,
         private service: UserService,
         private errorHandlerService : ErrorHandlerService,
         private notificationService: NotificationService,
-        private modalController: ModalController
-    ) {}
+        private modalController: ModalController,
+        private crop: Crop,
+        private file: File,
+        private platform: Platform,
+    ) {
+        this.isAndroid = this.platform.is("android");
+    }
 
     loadImage() {
+        if(!this.isAndroid) {
+            this.optionsGallery.destinationType = this.camera.DestinationType.DATA_URL;
+        }
+
         this.camera.getPicture(this.optionsGallery).then((imageData) => {
-          let base64Image = 'data:image/jpg;base64,' + imageData;
-    
-          this.profilePictureBase64 = base64Image;
-          this.pictureChanged = true;
+            if(this.isAndroid) {
+                this.cropImage(imageData);
+            }
+            else {
+                this.profilePictureBase64 = 'data:image/jpg;base64,' + imageData;
+                this.pictureChanged = true;
+            }
       });
     }
 
@@ -98,5 +114,34 @@ export class UpdateProfilePictureModal {
 
     cancel() {
         this.modalController.dismiss();
+    }
+
+    cropImage(fileUrl) {
+        this.crop.crop(fileUrl, { quality: 50 })
+        .then(
+            newPath => {
+                this.showCroppedImage(newPath.split('?')[0])
+            },
+            error => {
+                alert('Error cropping image: ' + JSON.stringify(error));
+            }
+        );
+    }
+
+    showCroppedImage(ImagePath) {
+        // this.isLoading = true;
+        var copyPath = ImagePath;
+        var splitPath = copyPath.split('/');
+        var imageName = splitPath[splitPath.length - 1];
+        var filePath = ImagePath.split(imageName)[0];
+
+        this.file.readAsDataURL(filePath, imageName).then(base64 => {
+            this.profilePictureBase64 = base64;
+            this.pictureChanged = true;
+            // this.isLoading = false;
+        }, error => {
+            alert('Error in showing image' + error);
+            // this.isLoading = false;
+        });
     }
 }

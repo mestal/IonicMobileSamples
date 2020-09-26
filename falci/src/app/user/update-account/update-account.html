@@ -79,7 +79,7 @@
         </ion-input>
       </ion-item>
       
-      <ion-button [disabled]="!updateForm.valid" type="submit" expand="block">Güncelle</ion-button>
+      <ion-button [disabled]="!updateForm.valid || isSubmitting" type="submit" expand="block">Güncelle</ion-button>
     </ion-list>
   </form>
 </ion-content>

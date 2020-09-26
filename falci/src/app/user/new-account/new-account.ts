@@ -15,6 +15,7 @@ export class NewAccountPage {
   defaultBirthDate: Date;
   defaultBirthDateString: string;
   birthTimeSet: boolean;
+  isSubmitting = false;
 
   get userName() {
     return this.registrationForm.get('userName');
@@ -100,12 +101,15 @@ export class NewAccountPage {
       this.registrationForm.value.birthTime = null;
     }
 
+    this.isSubmitting = true;
+
     this.service.register(this.registrationForm.value).subscribe(
       (res: any) => {
         this.notificationService.success({Message: "Lütfen mailinize gönderilen aktifleştirme butonuna tıklayın.", Duration: 6000 });
         this.router.navigateByUrl('/login');
       },
       err => {
+        this.isSubmitting = false;
         this.errorHandlerService.handle(err);
       }
     );

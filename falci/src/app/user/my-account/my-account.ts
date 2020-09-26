@@ -66,11 +66,6 @@ export class MyAccountPage {
   async openModal() {
     var image = document.getElementById('profilePic');
 
-    //image.setAttribute('crossorigin', 'anonymous');
-    // let image = new Image();
-    // image.crossOrigin = "Anonymous";
-    // image.src = environment.urlForAssets + constants.folderForProfilePictures + this.service.user.picturePath;
-
     var base64Image = null;
     
     try {
@@ -80,7 +75,6 @@ export class MyAccountPage {
       alert(JSON.stringify(error));
       base64Image = null;
     }
-    //alert(base64Image);
 
     const modal: HTMLIonModalElement =
        await this.modalController.create({
@@ -112,14 +106,5 @@ export class MyAccountPage {
     var dataURL = canvas.toDataURL("image/jpg");
     return dataURL;
     //return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
-  }
-
-  getPicturePath() {
-    // if(localStorage.getItem('picturePath') == null) {
-    //   return 'defaultProfilePicture.png';
-    // }
-    // else {
-      return localStorage.getItem('picturePath');
-    // }
   }
 }

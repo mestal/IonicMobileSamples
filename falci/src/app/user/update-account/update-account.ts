@@ -21,6 +21,7 @@ export class UpdateAccountPage implements OnInit {
   role: string;
   constants = constants;
   private initialBirthTime: Date;
+  private isSubmitting = false;
 
   get fullName() {
     return this.updateForm.get('fullName');
@@ -104,6 +105,8 @@ export class UpdateAccountPage implements OnInit {
       this.updateForm.value.birthTime = this.initialBirthTime;
     }
 
+    this.isSubmitting = true;
+
     this.service.updateUserInfo(this.updateForm.value).subscribe(
       (res: any) => {
         this.notificationService.success({Message: "Bilgileriniz güncellenmiştir.", Duration: 6000 });
@@ -114,6 +117,7 @@ export class UpdateAccountPage implements OnInit {
         this.router.navigateByUrl('/myAccount');
       },
       err => {
+        this.isSubmitting = false;
         this.errorHandlerService.handle(err);
       }
     );

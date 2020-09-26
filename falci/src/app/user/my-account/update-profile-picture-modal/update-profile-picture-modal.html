@@ -1,6 +1,8 @@
+
 <div class="profile-picture">
     <img [src]="profilePictureBase64">
 </div>
+
 <div style="text-align: center;">
     <ion-button (click)="profilePictureBase64 = rotateBase64Image90deg(profilePictureBase64, true)">
         <ion-icon name="reload-outline"></ion-icon>

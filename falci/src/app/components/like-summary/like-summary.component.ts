@@ -15,6 +15,8 @@ export class LikeSummaryComponent implements OnInit {
   @Input('comment-count') commentCount: number; 
   @Input('user-name') userName: string; 
   @Input('liked-type') likedType: string;
+
+  isSubmitting = false;
   
   likeIcon: string;
   dislikeIcon: string;
@@ -48,6 +50,8 @@ export class LikeSummaryComponent implements OnInit {
       feedId: this.feedId,
       likeType: likeType
     }
+
+    this.isSubmitting = true;
     this.feedService.submitLike(payload).subscribe((id: any) => {
         if(this.likedType == "0")
         {
@@ -72,8 +76,11 @@ export class LikeSummaryComponent implements OnInit {
         this.likedType = likeType;
         this.setIcons();
 
+        this.isSubmitting = false;
+
       },
       err => {
+        this.isSubmitting = false;
         this.errorHandlerService.handle(err);
       }
     );
@@ -84,6 +91,7 @@ export class LikeSummaryComponent implements OnInit {
       feedId: this.feedId,
       likeType: likeType
     }
+    this.isSubmitting = true;
     this.feedService.removeLike(payload).subscribe((id: any) => {
         if(likeType == "1") {
           this.likeCount--;
@@ -94,8 +102,11 @@ export class LikeSummaryComponent implements OnInit {
 
         this.likedType = "0";
         this.setIcons();
+
+        this.isSubmitting = false;
       },
       err => {
+        this.isSubmitting = false;
         this.errorHandlerService.handle(err);
       }
     );
@@ -103,6 +114,10 @@ export class LikeSummaryComponent implements OnInit {
 
   likeTypeClicked(likeType)
   {
+    if(this.isSubmitting) {
+      return;
+    }
+    
     if(this.userName == '' || this.userName == null) {
       return;
     }
