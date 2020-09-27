@@ -3,9 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ActionSheetController } from '@ionic/angular';
 import { FortuneTellingService } from 'src/app/services/fortuneTelling.service';
 import { constants } from '../../../constants';
+import { environment } from 'src/environments/environment';
 import { NgForm } from '@angular/forms';
 import { SubmitFortuneTellerComment } from '../../../interfaces/submitFortuneTellerComment';
-import { environment } from 'src/environments/environment';
 import { NotificationService } from 'src/app/shared-module/notification-service';
 import { ErrorHandlerService } from 'src/app/shared-module/error-handler-service';
 

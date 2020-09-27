@@ -7,14 +7,13 @@
     </ion-toolbar>
   </ion-header>
 
-  <div class="profile-picture">
-    <img *ngIf="falci != null" [src]="environment.urlForAssets + constants.folderForProfilePictures + falci.picturePath" [alt]="falci?.name"><br>
+  <div class="profile-picture" *ngIf="falci != null">
+    <img [src]="environment.urlForAssets + constants.folderForProfilePictures + falci.picturePath" [alt]="falci?.name"><br>
   </div>
-
   <ion-list *ngIf="falci != null">
     <ion-item>
       <ion-label color="primary">Falcı</ion-label>
-      <ion-label>{{ falci?.fullName }}</ion-label>
+      <ion-label>{{ falci?.fullName }} <pm-star [rating]="falci.userStarPointAvg"></pm-star></ion-label>
     </ion-item>
 
     <ion-item>

@@ -4,12 +4,14 @@ import { IonicModule } from '@ionic/angular';
 
 import { FalciListPage } from './falci-list';
 import { FalciListPageRoutingModule } from './falci-list-routing.module';
+import { SharedModule } from 'src/app/shared-module/shared-module';
 
 @NgModule({
   imports: [
     CommonModule,
     IonicModule,
-    FalciListPageRoutingModule
+    FalciListPageRoutingModule,
+    SharedModule
   ],
   declarations: [FalciListPage],
 })

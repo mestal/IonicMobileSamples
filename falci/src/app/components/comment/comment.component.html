@@ -13,12 +13,23 @@
 <div *ngIf="hasMoreComments">
   <span (click)="loadPreviousComments()">Önceki yorumları gör</span>
 </div>
-  <div *ngFor="let comment of comments" style="padding-bottom: 30px;">
-    <div><b>{{ comment.user.fullName }} - </b>{{ comment.comment }}</div>
-    <div>
-      <span>{{ comment.createDate | date: 'dd.LL.yyyy HH:mm' }}</span>
-      <span *ngIf="comment.user.userName == userName || userRole == 'Admin'"> - 
-        <span (click)="removeComment(comment)">Sil</span>
-      </span>
-    </div>
-  </div>
+<div *ngFor="let comment of comments" style="padding-bottom: 30px;">
+  <table>
+    <tr>
+      <td style="vertical-align: top;">
+        <ion-avatar slot="start" style="width: 35px;height:35px;">
+          <img [src]="environment.urlForAssets + constants.folderForProfilePictures + comment.user.picturePath">
+        </ion-avatar>
+      </td>
+      <td style="padding-left: 5px;">
+        <div><b>{{ comment.user.fullName }} - </b>{{ comment.comment }}</div>
+        <div style="padding-top: 10px;">
+          <span style="font-size: smaller;">{{ comment.createDate | date: 'dd.LL.yyyy HH:mm' }}</span>
+          <span *ngIf="comment.user.userName == userName || userRole == 'Admin'"> - 
+            <span (click)="removeComment(comment)">Sil</span>
+          </span>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>

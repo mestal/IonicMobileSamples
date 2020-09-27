@@ -38,7 +38,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   initializeApp() {
-    this.isAndroid = this.platform.is("android");
+    this.isAndroid = environment.platform == 'android';
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();

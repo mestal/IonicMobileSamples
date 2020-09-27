@@ -49,6 +49,7 @@
     <ion-item>
       <ion-label color="primary">Kullanıcı</ion-label>
       <ion-label>{{fal.user?.userName}} - {{fal.user?.fullName}}</ion-label>
+      <img [src]="environment.urlForAssets + constants.folderForProfilePictures + fal.user?.picturePath" style="width:100px;">
     </ion-item>
 
     <ion-item>

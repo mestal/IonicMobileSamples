@@ -6,6 +6,7 @@ import { ErrorHandlerService } from 'src/app/shared-module/error-handler-service
 import { NotificationService } from 'src/app/shared-module/notification-service';
 import { Crop } from '@ionic-native/crop/ngx';
 import { File } from '@ionic-native/file/ngx';
+import { environment } from 'src/environments/environment';
 
 @Component({
     templateUrl: 'update-profile-picture-modal.html',
@@ -36,7 +37,7 @@ export class UpdateProfilePictureModal {
         private file: File,
         private platform: Platform,
     ) {
-        this.isAndroid = this.platform.is("android");
+        this.isAndroid = environment.platform == 'android';
     }
 
     loadImage() {

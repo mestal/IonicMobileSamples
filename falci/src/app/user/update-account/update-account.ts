@@ -21,7 +21,7 @@ export class UpdateAccountPage implements OnInit {
   role: string;
   constants = constants;
   private initialBirthTime: Date;
-  private isSubmitting = false;
+  isSubmitting: boolean;
 
   get fullName() {
     return this.updateForm.get('fullName');

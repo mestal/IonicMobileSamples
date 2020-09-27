@@ -4,6 +4,8 @@ import { NgForm } from '@angular/forms';
 import { SortByPipe } from '../sort-by-pipe';
 import { NotificationService } from 'src/app/shared-module/notification-service';
 import { ErrorHandlerService } from 'src/app/shared-module/error-handler-service';
+import { constants } from '../../constants';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'comment-component',
@@ -23,6 +25,8 @@ export class CommentComponent implements OnInit {
   comments: any[] = [];
   hasMoreComments = false;
   enteredComment: string;
+  constants = constants;
+  environment = environment;
 
   constructor(
     public feedService: FeedService,

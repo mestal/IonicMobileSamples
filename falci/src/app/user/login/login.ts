@@ -8,6 +8,7 @@ import { ErrorHandlerService } from 'src/app/shared-module/error-handler-service
 
 import { constants } from './../../constants';
 import { environment } from 'src/environments/environment';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'page-login',
@@ -17,13 +18,17 @@ import { environment } from 'src/environments/environment';
 export class LoginPage {
   login: UserOptions = { username: '', password: '' };
   submitted = false;
+  isAndroid = false;
 
   constructor(
     public router: Router,
     private service: UserService,
     public notificationService: NotificationService,
-    private errorHandlerService : ErrorHandlerService
-  ) { }
+    private errorHandlerService : ErrorHandlerService,
+    private platform: Platform
+  ) { 
+    this.isAndroid = environment.platform == 'android';
+  }
 
   onLogin(form: NgForm) {
     this.service.login(form.value).subscribe(
