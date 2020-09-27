@@ -15,6 +15,7 @@ export class FalDetailPage implements OnInit {
   fal: any;
   constants = constants;
   selectedRating: 0;
+  ratingBeingSent = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -51,11 +52,15 @@ export class FalDetailPage implements OnInit {
       fortuneTellingId: this.fal.id
     };
 
+    this.ratingBeingSent = true;
+
     this.fortuneTellingService.rateFortuneTeller(request).subscribe((fal: any) => {
       this.fal.userStarPoint = this.selectedRating;
+      this.ratingBeingSent = false;
       this.notificationService.success({ Message: 'Puanınız alınmıştır.'});
     },
     err => {
+      this.ratingBeingSent = false;
       this.errorHandlerService.handle(err);
     });
   }

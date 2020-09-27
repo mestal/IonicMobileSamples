@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   baseUrl: 'http://localhost:5000/api/',
   urlForAssets: 'http://localhost:5000/',
-  platform: 'browser',
+  platform: 'android',
   apiUrls: {
     getFortuneTellers: 'FortuneTelling/GetFortuneTellers',
     getActiveFortuneTellers: 'FortuneTelling/GetActiveFortuneTellers',

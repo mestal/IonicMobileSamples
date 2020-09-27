@@ -6,7 +6,7 @@ export const environment = {
   production: true,
   baseUrl: 'https://backend.falcim.xyz/api/',
   urlForAssets: 'https://backend.falcim.xyz/',
-  platform: 'browser',
+  platform: 'android',
   apiUrls: {
     getFortuneTellers: 'FortuneTelling/GetFortuneTellers',
     getActiveFortuneTellers: 'FortuneTelling/GetActiveFortuneTellers',
@@ -24,6 +24,7 @@ export const environment = {
     removeComment: 'Feed/RemoveComment',
     submitLike: 'Feed/LikeFeed',
     removeLike: 'Feed/RemoveLikeFeed',
+    rateFortuneTeller: 'FortuneTelling/RateFortuneTeller'
   },
   feedsPageSize: 10
 };

@@ -5,6 +5,7 @@ import { FalDetailPage } from './fal-detail';
 import { FalDetailPageRoutingModule } from './fal-detail-routing.module';
 import { IonicModule } from '@ionic/angular';
 import { TranslateModule } from '@ngx-translate/core';
+import { SharedModule } from 'src/app/shared-module/shared-module';
 
 @NgModule({
   imports: [
@@ -12,7 +13,8 @@ import { TranslateModule } from '@ngx-translate/core';
     IonicModule,
     FalDetailPageRoutingModule,
     TranslateModule,
-    FormsModule
+    FormsModule,
+    SharedModule
   ],
   declarations: [
     FalDetailPage,

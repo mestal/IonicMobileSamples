@@ -38,9 +38,9 @@
     </ion-item>
 
     <ion-item *ngIf="fal.status == constants.fortuneTellingStatuses.SubmittedByFortuneTeller">
-      <ion-label color="primary">Puan verin</ion-label>
-      <ion-label><pm-star [rating]="fal.userStarPoint" [disabled]="fal.userStarPoint > 0" (ratingClicked)="starClicked($event)"></pm-star>
-        <ion-button (click)="sendRate()" *ngIf="fal.userStarPoint == 0" >Gönder</ion-button>
+      <ion-label color="primary">{{ fal.userStarPoint > 0 ? 'Verilen Puan' : 'Puan verin' }}</ion-label>
+      <ion-label><pm-star [rating]="fal.userStarPoint" [disabled]="fal.userStarPoint > 0" (ratingClicked)="starClicked($event)" size="large"></pm-star>
+        <ion-button (click)="sendRate()" *ngIf="fal.userStarPoint == 0" [disabled]="ratingBeingSent">Gönder</ion-button>
       </ion-label>
     </ion-item>
   </ion-list>

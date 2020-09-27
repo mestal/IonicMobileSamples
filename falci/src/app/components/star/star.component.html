@@ -3,11 +3,12 @@
   [style.width.px]="starWidth"
   >
 
-  <div style="width: 75px">
-    <span [title]="disabled ? rating : '1'"><ion-icon [name]="disabled ? 'star' : selectedRating < 1 ? 'star-outline' : 'star'" style="color:rgb(59, 100, 236);" (click)="onClick(1)"></ion-icon></span>
-    <span [title]="disabled ? rating : '2'"><ion-icon [name]="disabled ? 'star' : selectedRating < 2 ? 'star-outline' : 'star'" style="color:rgb(59, 100, 236);" (click)="onClick(2)"></ion-icon></span>
-    <span [title]="disabled ? rating : '3'"><ion-icon [name]="disabled ? 'star' : selectedRating < 3 ? 'star-outline' : 'star'" style="color:rgb(59, 100, 236);" (click)="onClick(3)"></ion-icon></span>
-    <span [title]="disabled ? rating : '4'"><ion-icon [name]="disabled ? 'star' : selectedRating < 4 ? 'star-outline' : 'star'" style="color:rgb(59, 100, 236);" (click)="onClick(4)"></ion-icon></span>
-    <span [title]="disabled ? rating : '5'"><ion-icon [name]="disabled ? 'star' : selectedRating < 5 ? 'star-outline' : 'star'" style="color:rgb(59, 100, 236);" (click)="onClick(5)"></ion-icon></span>
+  <!-- <div style="width: {{ size == 'large' ? 200 : 75 }}px"> -->
+  <div [ngStyle]="{'size':size == 'large' ? '200px' : '75px' }">
+    <span [title]="disabled ? rating : '1'"><ion-icon [name]="disabled ? 'star' : selectedRating < 1 ? 'star-outline' : 'star'" style="color:rgb(59, 100, 236);" [size]="size" (click)="onClick(1)"></ion-icon></span>
+    <span [title]="disabled ? rating : '2'"><ion-icon [name]="disabled ? 'star' : selectedRating < 2 ? 'star-outline' : 'star'" style="color:rgb(59, 100, 236);" [size]="size" (click)="onClick(2)"></ion-icon></span>
+    <span [title]="disabled ? rating : '3'"><ion-icon [name]="disabled ? 'star' : selectedRating < 3 ? 'star-outline' : 'star'" style="color:rgb(59, 100, 236);" [size]="size" (click)="onClick(3)"></ion-icon></span>
+    <span [title]="disabled ? rating : '4'"><ion-icon [name]="disabled ? 'star' : selectedRating < 4 ? 'star-outline' : 'star'" style="color:rgb(59, 100, 236);" [size]="size" (click)="onClick(4)"></ion-icon></span>
+    <span [title]="disabled ? rating : '5'"><ion-icon [name]="disabled ? 'star' : selectedRating < 5 ? 'star-outline' : 'star'" style="color:rgb(59, 100, 236);" [size]="size" (click)="onClick(5)"></ion-icon></span>
   </div>
 </div>
