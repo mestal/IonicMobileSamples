@@ -24,6 +24,7 @@ export const environment = {
     removeComment: 'Feed/RemoveComment',
     submitLike: 'Feed/LikeFeed',
     removeLike: 'Feed/RemoveLikeFeed',
+    rateFortuneTeller: 'FortuneTelling/RateFortuneTeller'
   },
   feedsPageSize: 10
 };

@@ -39,4 +39,8 @@ export class FortuneTellingService {
   submitByFortuneTeller(data: any) {
     return this.http.post(environment.baseUrl + environment.apiUrls.submitByFortuneTeller, data);
   }
+
+  rateFortuneTeller(data: any) {
+    return this.http.post(environment.baseUrl + environment.apiUrls.rateFortuneTeller, data);
+  }
 }

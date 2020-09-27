@@ -82,6 +82,11 @@
       <ion-label class="ion-text-wrap">{{fal?.fortuneTellerComment}}</ion-label>
     </ion-item>
 
+    <ion-item *ngIf="fal.status == constants.fortuneTellingStatuses.SubmittedByFortuneTeller">
+      <ion-label color="primary">Verilen Puan</ion-label>
+      <ion-label><pm-star [rating]="fal.userStarPoint" [disabled]="false"></pm-star></ion-label>
+    </ion-item>
+
     <ion-item *ngIf="fal.status == constants.fortuneTellingStatuses.SubmittedByUser">
       <!-- <ion-label color="primary">Yorum</ion-label> -->
       <div class="text-pre-wrap" style="text-align: center;" *ngIf="fal.status == constants.fortuneTellingStatuses.SubmittedByUser">

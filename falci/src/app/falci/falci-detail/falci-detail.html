@@ -13,7 +13,7 @@
   <ion-list *ngIf="falci != null">
     <ion-item>
       <ion-label color="primary">Falcı</ion-label>
-      <ion-label>{{ falci?.fullName }} <pm-star [rating]="falci.userStarPointAvg"></pm-star></ion-label>
+      <ion-label>{{ falci?.fullName }} <pm-star [rating]="falci.userStarPointAvg" disabled="true"></pm-star></ion-label>
     </ion-item>
 
     <ion-item>

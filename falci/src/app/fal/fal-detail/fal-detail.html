@@ -36,5 +36,12 @@
       <ion-label color="primary">Yorum</ion-label>
       <ion-label class="ion-text-wrap">{{fal?.fortuneTellerComment}}</ion-label>
     </ion-item>
+
+    <ion-item *ngIf="fal.status == constants.fortuneTellingStatuses.SubmittedByFortuneTeller">
+      <ion-label color="primary">Puan verin</ion-label>
+      <ion-label><pm-star [rating]="fal.userStarPoint" [disabled]="fal.userStarPoint > 0" (ratingClicked)="starClicked($event)"></pm-star>
+        <ion-button (click)="sendRate()" *ngIf="fal.userStarPoint == 0" >Gönder</ion-button>
+      </ion-label>
+    </ion-item>
   </ion-list>
 </ion-content>
