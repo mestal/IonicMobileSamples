@@ -23,10 +23,10 @@
   </ion-grid>
   <br>
    <ion-list>
-    <ion-item>
+    <ion-item> 
       <ion-label>Falcı</ion-label> 
-      <ion-select #newSelect formControlName="selectedFalci" (ionChange)="onSelectedFalciChanged($event)">
-        <ion-select-option *ngFor="let fortuneTeller of fortuneTellers;" [value]="fortuneTeller.id" >{{ fortuneTeller.fullName }}</ion-select-option>
+      <ion-select #newSelect formControlName="selectedFalci" (ionChange)="onSelectedFalciChanged($event)" >
+        <ion-select-option *ngFor="let fortuneTeller of fortuneTellers;" [value]="fortuneTeller.id" >{{ fortuneTeller.fullName }} ({{ fortuneTeller.coffeePointPrice }} Puan)</ion-select-option>
       </ion-select>
     </ion-item>
   </ion-list> 
