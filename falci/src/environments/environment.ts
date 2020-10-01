@@ -26,7 +26,7 @@ export const environment = {
     removeLike: 'Feed/RemoveLikeFeed',
     rateFortuneTeller: 'FortuneTelling/RateFortuneTeller'
   },
-  feedsPageSize: 10
+  feedsPageSize: 20
 };
 
 /*
