@@ -12,6 +12,10 @@ const routes: Routes = [
     loadChildren: () => import('./fal/new-fal/new-fal.module').then( m => m.NewFalModule)
   },
   {
+    path: 'newdreamfal',
+    loadChildren: () => import('./fal/new-dream-fal/new-dream-fal.module').then( m => m.NewDreamFalModule)
+  },
+  {
     path: 'mainPage',
     loadChildren: () => import('./news/news-list/news-list.module').then( m => m.NewsListModule)
   },

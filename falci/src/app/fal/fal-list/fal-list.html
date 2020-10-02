@@ -15,7 +15,8 @@
           <ion-card-header>
             <ion-item detail="false" lines="none" class="fal-item" >
               <ion-label>
-                <p>Konu: {{ 'Type.' + fal.type | translate }}</p>
+                <p>{{ 'FalType.' + fal.fortuneTellingType | translate }}</p>
+                <p *ngIf="fal.fortuneTellingType != 'DreamInterpretation'">Konu: {{ 'Type.' + fal.type | translate }}</p>
                 <p>Durum: {{ 'FalStatus.Consumer.' + fal.status | translate }}</p>
                 <p>Falcı: {{ fal.fortuneTeller.fullName }}</p>
                 <p>{{ fal.submitDateUtc | date: 'dd.LL.yyyy HH:mm'}}</p>
@@ -30,9 +31,20 @@
     <ion-infinite-scroll-content>
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <!-- <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button routerLink="/newfal">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
+  </ion-fab> -->
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button routerLink="/newfal" [queryParams]="{type: 'Coffee'}"><ion-icon name="cafe"></ion-icon></ion-fab-button>
+      <ion-fab-button routerLink="/newfal" [queryParams]="{type: 'Hand'}"><ion-icon name="hand-right"></ion-icon></ion-fab-button>
+      <ion-fab-button routerLink="/newdreamfal"><ion-icon name="chatbubbles"></ion-icon></ion-fab-button>
+    </ion-fab-list>
   </ion-fab>
 </ion-content>

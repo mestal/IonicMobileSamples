@@ -33,6 +33,22 @@
                 <pm-star [rating]="falci.userStarPointAvg" disabled="true"></pm-star>
               </ion-label>
             </ion-item>
+
+            <ion-item  detail="false" class="fal-item" >
+              <!-- <ion-label *ngFor="let falType of falci.fortuneTellingTypes">
+                  {{ 'FalType.' + falType | translate }}
+              </ion-label> -->
+              <!-- <span> {{falci.fortuneTellingTypes.join(", ")}} </span> -->
+
+              <!-- <span *ngFor="let falType of falci.fortuneTellingTypes; let isLast=last">
+                {{'FalType.' + falType | translate}}{{isLast ? '' : '-     '}} 
+              </span> -->
+              <ion-label>
+                <span *ngFor="let falType of falci.fortuneTellingTypes; let isFirst=first">
+                  {{isFirst ? '' : '- '}}{{'FalType.' + falType | translate}} 
+                </span>
+              </ion-label>
+            </ion-item>
           </ion-card-header>
         </ion-card>
       </ion-col>

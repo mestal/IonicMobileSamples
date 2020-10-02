@@ -4,6 +4,7 @@ import { constants } from '../../constants';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { ErrorHandlerService } from 'src/app/shared-module/error-handler-service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'page-falci-list',
@@ -18,7 +19,8 @@ export class FalciListPage {
   constructor(
     public fortuneTellingService: FortuneTellingService, 
     private router: Router,
-    private errorHandlerService : ErrorHandlerService
+    private errorHandlerService : ErrorHandlerService,
+    translate: TranslateService
   ) {}
 
   ionViewDidEnter() {

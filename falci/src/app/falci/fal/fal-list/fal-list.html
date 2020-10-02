@@ -21,7 +21,8 @@
           <ion-card-header>
             <ion-item detail="false" lines="none" class="fal-item" >
               <ion-label>
-                <p>Konu: {{ 'Type.' + fal.type | translate }}</p>
+                <p>{{ 'FalType.' + fal.fortuneTellingType | translate }}</p>
+                <p *ngIf="fal.fortuneTellingType != 'DreamInterpretation'">Konu: {{ 'Type.' + fal.type | translate }}</p>
                 <p>Durum: {{ 'FalStatus.Falci.' + fal.status | translate }}</p>
                 <p>Kullanıcı: {{ fal.user.fullName }}</p>
                 <p>Geliş: {{fal.submitDateUtc | date: 'dd.LL.yyyy HH:mm'}}</p>

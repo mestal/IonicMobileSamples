@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FortuneTellingService } from 'src/app/services/fortuneTelling.service';
 import { ErrorHandlerService } from 'src/app/shared-module/error-handler-service';
 import { NotificationService } from 'src/app/shared-module/notification-service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GetPhotoModal } from './get-photo-modal/get-photo-modal';
 import { ModalController } from '@ionic/angular';
 
@@ -21,13 +21,15 @@ export class NewFalPage implements OnInit {
   fortuneTellers: any;
   selectedFalciId: string;
   selectedType: string;
+  falType: string;
 
   constructor(
     private fortuneTellingService: FortuneTellingService,
     private errorHandlerService : ErrorHandlerService,
     private notificationService: NotificationService,
     public router: Router,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
@@ -36,9 +38,15 @@ export class NewFalPage implements OnInit {
     this.falImages.push(this.defaultImagePath);
     this.falImages.push(this.defaultImagePath);
 
+    this.falType = this.route.snapshot.queryParamMap.get('type');
+
     this.activeImageIndex = 0;
 
-    this.fortuneTellingService.getActiveFortuneTellers().subscribe(
+    var falciRequest = {
+      fortuneTellingType: this.falType
+    };
+
+    this.fortuneTellingService.getActiveFortuneTellersByType(falciRequest).subscribe(
       data => {
         this.fortuneTellers = data;
       },
@@ -127,6 +135,7 @@ export class NewFalPage implements OnInit {
     
     formData.append('FortuneTellerId', this.selectedFalciId);
     formData.append('Type', this.selectedType);
+    formData.append('FortuneTellingType', this.falType);
 
     this.fortuneTellingService.submitFortuneTelling(formData).subscribe(
       data => {

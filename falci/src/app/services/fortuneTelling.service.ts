@@ -25,6 +25,10 @@ export class FortuneTellingService {
     return this.http.get(environment.baseUrl + environment.apiUrls.getActiveFortuneTellers);
   }
 
+  getActiveFortuneTellersByType(data) {
+    return this.http.post(environment.baseUrl + environment.apiUrls.getActiveFortuneTellers, data);
+  }
+
   submitFortuneTelling(data: any) {
     return this.http.post(environment.baseUrl + environment.apiUrls.submitCoffeeFortuneTelling, data);
   }

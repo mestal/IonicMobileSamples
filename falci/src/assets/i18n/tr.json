@@ -15,5 +15,8 @@
     "RelationshipStatus.HaveLover": "Sevgilim var",
     "RelationshipStatus.Platonic": "Platonik",
     "RelationshipStatus.Complicated": "Karışık",
-    "RelationshipStatus.HaveNotRelationship": "İlişkim yok"
+    "RelationshipStatus.HaveNotRelationship": "İlişkim yok",
+    "FalType.Coffee": "Kahve Falı",
+    "FalType.Hand": "El Falı",
+    "FalType.DreamInterpretation": "Rüya Tabiri"
 }

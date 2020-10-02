@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Yeni Rüya Yorumu</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true">
+  <form [formGroup]="dreamInterpretationForm" (ngSubmit)="submit()">
+    <ion-list>
+      <ion-item>
+        <ion-label>Falcı</ion-label> 
+        <ion-select formControlName="FortuneTellerId">
+          <ion-select-option *ngFor="let fortuneTeller of fortuneTellers;" [value]="fortuneTeller.id" >{{ fortuneTeller.fullName }} ({{ fortuneTeller.coffeePointPrice }} Puan)</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    
+    <ion-list>
+        <ion-item>
+          <div class="text-pre-wrap" style="text-align: center;">
+            <ion-textarea formControlName="UserInput" name="userinput" rows="6" cols="150" placeholder="Rüyanızı buraya yazın..." style="background:#fdf7ad;border-radius:15px"></ion-textarea>
+          </div>
+        </ion-item>
+    </ion-list> 
+    <br>
+    <div style="text-align: center;">
+      <ion-button [disabled]="!dreamInterpretationForm.valid || isSubmitting" type="submit" >Gönder</ion-button>
+    </div>
+  </form>
+</ion-content>

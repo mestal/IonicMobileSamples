@@ -27,6 +27,10 @@
   
   <ion-list *ngIf="fal" style="padding-top:50px">
     <ion-item>
+      <ion-label color="primary">{{'FalType.' + fal.fortuneTellingType | translate}}</ion-label>
+    </ion-item>
+
+    <ion-item>
       <ion-label color="primary">Durum</ion-label>
       <ion-label class="ion-text-wrap">{{'FalStatus.Falci.' + fal.status | translate}}</ion-label>
     </ion-item>
@@ -75,6 +79,11 @@
     <ion-item>
       <ion-label color="primary">Meslek</ion-label>
       <ion-label>{{fal.consumerJob}}</ion-label>
+    </ion-item>
+
+    <ion-item *ngIf="fal.fortuneTellingType == 'DreamInterpretation'">
+      <ion-label color="primary">Rüya</ion-label>
+      <ion-label class="ion-text-wrap">{{fal?.userInput}}</ion-label>
     </ion-item>
 
     <ion-item *ngIf="fal.status == constants.fortuneTellingStatuses.SubmittedByFortuneTeller">
