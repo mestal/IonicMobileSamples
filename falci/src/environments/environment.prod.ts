@@ -6,7 +6,7 @@ export const environment = {
   production: true,
   baseUrl: 'https://backend.falcim.xyz/api/',
   urlForAssets: 'https://backend.falcim.xyz/',
-  platform: 'android',
+  platform: 'browser',
   apiUrls: {
     getFortuneTellers: 'FortuneTelling/GetFortuneTellers',
     getActiveFortuneTellers: 'FortuneTelling/GetActiveFortuneTellers',
