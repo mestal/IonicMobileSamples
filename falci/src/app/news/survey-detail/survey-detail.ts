@@ -20,6 +20,7 @@ export class SurveyDetailPage implements OnInit {
   surveyId: string;
   userName: string;
   userRole: string;
+  result: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -61,7 +62,7 @@ export class SurveyDetailPage implements OnInit {
     {
       for(var j = 0; j < this.survey.items[i].answers.length; j++)
       {
-        if(this.survey.items[i].answers[j] == this.survey.items[i].selectedAnswer)
+        if(this.survey.items[i].answers[j].order == this.survey.items[i].selectedAnswer)
         {
           totalPoint = totalPoint + this.survey.items[i].questionWeight * this.survey.items[i].answers[j].answerWeight;
           break;
@@ -73,14 +74,10 @@ export class SurveyDetailPage implements OnInit {
     for(var i = 0; i < this.survey.results.length; i ++)
     {
       if(totalPoint <= this.survey.results[i].point) {
-        alert(this.survey.results[i].resultInformation);
+        this.result = this.survey.results[i];
         resultFound = true;
         break;
       }
-    }
-
-    if(!resultFound) {
-      alert(this.survey.results[this.survey.results[i].length - 1].resultInformation);
     }
   }
 

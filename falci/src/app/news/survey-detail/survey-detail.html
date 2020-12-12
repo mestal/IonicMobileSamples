@@ -50,10 +50,22 @@
         </ion-row>
       </ion-grid>
     </div>
-    <div>
+    <div *ngIf="!result">
       <input type="button" value="Sonucu Gör" (click)="submitSurvey()" >
     </div>
     <br>
+    <div *ngIf="result">
+      Sonuç:
+      <div>
+        <b>{{result.title}}</b>
+      </div>
+      <div *ngIf="result.picturePath">
+        <img [src]="environment.urlForAssets + constants.folderForSurveyPictures + result.picturePath" style="width:100%">
+      </div>
+      <div>
+        {{result.resultInformation}}
+      </div>
+    </div>
     <br>
     <like-summary-component 
       [feed-id]="surveyId" 

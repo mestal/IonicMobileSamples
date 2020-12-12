@@ -35,6 +35,13 @@ export class NewsDetailPage {
     this.userRole = localStorage.getItem('role');
     this.feedService.getNews(this.newsId).subscribe((news: any) => {
       this.news = news;
+
+      this.news.items.sort(function(a, b) {
+        if (a.order > b.order) {
+          return 1;
+        }
+        return -1;
+      });
     },
     err => {
       this.errorHandlerService.handle(err);
